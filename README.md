@@ -1,1 +1,1 @@
-# full-stack-template
+# Vote!
