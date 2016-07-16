@@ -5,9 +5,10 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var compress = require('compression');
+
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var Test = require('./data/test.js');
+// var User = require('./data/user.js'); // for Passport
 
 // controllers
 var controller = require('./controllers/controller');

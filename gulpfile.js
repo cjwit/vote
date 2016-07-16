@@ -37,16 +37,16 @@ gulp.task('finalize-scripts', function() {
                      'app/main.js'])
         .pipe(concat('scripts.js'))
         .pipe(gulp.dest('app/dist'))
-        .pipe(uglify())
-        .pipe(gulp.dest('app/dist'));
+//        .pipe(uglify())
+//        .pipe(gulp.dest('app/dist'));
 });
 
 gulp.task('finalize-css', function() {
     return gulp.src('app/sources/*.css')
         .pipe(concatCSS('style.css'))
         .pipe(gulp.dest('app/dist'))
-        .pipe(uglifyCSS())
-        .pipe(gulp.dest('app/dist'))
+//        .pipe(uglifyCSS())
+//        .pipe(gulp.dest('app/dist'))
 });
 
 gulp.task('copy', function() {

@@ -48,7 +48,7 @@ function render() {
 
 function renderHome() {
     ReactDOM.render(<Home
-        thing = { things }
+//        thing = { things }
         />, document.getElementById('container'));
 }
 
