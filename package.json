@@ -1,0 +1,35 @@
+{
+  "name": "full-stack-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjwit/full-stack-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjwit/full-stack-template/issues"
+  },
+  "homepage": "https://github.com/cjwit/full-stack-template#readme",
+  "dependencies": {
+    "browserify": "^13.0.1",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^1.5.4",
+    "gulp-uglifycss": "^1.0.6",
+    "mongoose": "^4.5.4",
+    "passport": "^0.3.2",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
