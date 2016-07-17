@@ -3,23 +3,65 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var mongoose = require('mongoose');
 var compress = require('compression');
 
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-// var User = require('./data/user.js'); // for Passport
-
-// controllers
-var controller = require('./controllers/controller');
-
-// requests
 var app = express();
 app.use(compress())
 app.use(express.static(path.join(__dirname, "../app/dist")));
 app.use(bodyParser.json());
+
+// Passport setup
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+// var User = require('./data/user.js'); // for Passport
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(session({ secret: 'keyboard cat' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(
+	function(username, password, done) {
+		User.findOne({ username: username }, function (err, user) {
+			if (err) { return done(err); }
+			if (!user) {
+				return done(null, false, { message: "Incorrect username." });
+			}
+			if (!user.validPassword(password)) {
+				return done(null, false, { message: "Incorrect password."});
+			}
+			return done(null, user);
+		});
+	}
+));
+
+passport.serializeUser(function(user, done) {
+	done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+	User.findById(id, function(err, user) {
+		done(err, user);
+	});
+});
+
+app.post('/login',
+	passport.authenticate('local', { successRedirect: '/',
+									 failureRedirect: '/login' })
+);
+
+app.get('/login', function(req, res) {
+    res.sendFile(path.join(__dirname, '../app/dist/login.html'));
+})
+
+// controllers
+var controller = require('./controllers/controller');
 app.use("/api/things", controller);
 
+// requests
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/index.html'));
 })

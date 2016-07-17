@@ -51,7 +51,7 @@ gulp.task('finalize-css', function() {
 
 // remove app/style.css, jquery, main.js, and boostrap once finalize-css and finalize-scripts are back into the mix
 gulp.task('copy', function() {
-    return gulp.src(['app/index.html',
+    return gulp.src(['app/*.html',
 					 'app/sources/style.css',
 					 'app/sources/bootstrap.min.css',
 					 'app/main.js',
