@@ -31,5 +31,5 @@ app.listen(port, function() {
 });
 
 // connect to database
-var dburl = process.env.DBURL;
-mongoose.connect(dburl)
+// var dburl = process.env.DBURL;
+// mongoose.connect(dburl)

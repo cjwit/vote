@@ -24,7 +24,7 @@ gulp.task('bundle', function() {
 gulp.task('styles', function() {
     gulp.src('app/*.sass')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('app/styles'));
+        .pipe(gulp.dest('app/sources'));
 });
 
 // watch sass conversion, run 'styles' on changes
@@ -49,15 +49,17 @@ gulp.task('finalize-css', function() {
 //        .pipe(gulp.dest('app/dist'))
 });
 
+// remove app/style.css once finalize-css is back into the mix
 gulp.task('copy', function() {
-    return gulp.src('app/index.html')
+    return gulp.src(['app/index.html', 'app/style.css', 'app/sources/bootstrap.min.css'])
         .pipe(gulp.dest('app/dist'));
 });
 
 gulp.task('default', ['copy',
                       'bundle',
 //                      'styles',
-                      'finalize-scripts',
-                      'finalize-css'], function() {
+                      'finalize-scripts'],
+//                      'finalize-css'],
+					  function() {
     console.log('Gulp completed...');
 });
