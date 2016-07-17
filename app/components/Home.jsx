@@ -15,16 +15,16 @@ module.exports = React.createClass({
     render: function() {
 		return (
 			<div>
-				<div className="jumbotron">
-					<div className="container">
+				<div className="container">
+					<div className="header">
 						<h1>Vote!</h1>
-						<p>Easily create, share, and vote in polls</p>
-						<p><a className="btn btn-primary btn-lg" href="#" role="button">Login to get started</a></p>
+						<h2>Easily create, share, and vote in polls</h2>
+						<p><a className="btn btn-primary btn-lg" href="#" role="button">Create a new poll</a></p>
 					</div>
 				</div>
 				<div className="container">
 					<div className="row">
-						<div className="col-sm-8">
+						<div className="col-sm-4 col-sm-offset-2">
 							Hello World!
 						</div>
 						<div className="col-sm-4">

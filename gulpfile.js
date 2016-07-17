@@ -20,11 +20,11 @@ gulp.task('bundle', function() {
         .pipe(gulp.dest('app'))
 })
 
-// convert sass to css
+// convert sass to css (revert to moving to soures instead of dist for production)
 gulp.task('styles', function() {
     gulp.src('app/*.sass')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('app/sources'));
+        .pipe(gulp.dest('app/dist'));
 });
 
 // watch sass conversion, run 'styles' on changes
@@ -49,16 +49,20 @@ gulp.task('finalize-css', function() {
 //        .pipe(gulp.dest('app/dist'))
 });
 
-// remove app/style.css once finalize-css is back into the mix
+// remove app/style.css, jquery, main.js, and boostrap once finalize-css and finalize-scripts are back into the mix
 gulp.task('copy', function() {
-    return gulp.src(['app/index.html', 'app/style.css', 'app/sources/bootstrap.min.css'])
+    return gulp.src(['app/index.html',
+					 'app/sources/style.css',
+					 'app/sources/bootstrap.min.css',
+					 'app/main.js',
+					 'app/sources/jquery-1.12.3.min.js'])
         .pipe(gulp.dest('app/dist'));
 });
 
 gulp.task('default', ['copy',
-                      'bundle',
+                      'bundle'],
 //                      'styles',
-                      'finalize-scripts'],
+//                      'finalize-scripts',
 //                      'finalize-css'],
 					  function() {
     console.log('Gulp completed...');
