@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 // Passport setup
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-// var User = require('./data/user.js'); // for Passport
+var User = require('./data/user.js'); // for Passport
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(session({ secret: 'keyboard cat' }));
@@ -58,8 +58,8 @@ app.get('/login', function(req, res) {
 })
 
 // controllers
-var controller = require('./controllers/controller');
-app.use("/api/things", controller);
+var userController = require('./controllers/userController');
+app.use("/api/user", userController);
 
 // requests
 app.get('/*', function(req, res) {
@@ -73,5 +73,5 @@ app.listen(port, function() {
 });
 
 // connect to database
-// var dburl = process.env.DBURL;
-// mongoose.connect(dburl)
+var dburl = process.env.DBURL;
+mongoose.connect(dburl)

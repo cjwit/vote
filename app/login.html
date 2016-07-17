@@ -22,42 +22,59 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-				<a class="navbar-brand" href="../">Vote!</a>
+                <a class="navbar-brand" href="../">Vote!</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="../user">My Polls</a></li>
-					<li><a href="../login">Login/Logout</a></li>
+                    <li><a href="../login">Login/Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-	<form action="/login" method="post">
-		<div>
-			<label>Username:</label>
-			<input type="text" name="username"/>
-		</div>
-		<div>
-			<label>Password:</label>
-			<input type="password" name="password"/>
-		</div>
-		<div>
-			<input type="submit" value="Log In"/>
-		</div>
-	</form>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <label for="username-input">Username:</label>
+                        <input type="text" class="form-control" id="username-input" name="username" />
+                    </div>
+					<div class="form-group">
+                        <label for="password-input">Password:</label>
+                        <input type="password" class="form-control" id="password-input" name="password" />
+                    </div>
+                    <input type="submit" class="btn btn-default" value="Log In" />
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <form action="/api/user" method="post">
+                    <div class="form-group">
+                        <label for="username-input">Username:</label>
+                        <input type="text" class="form-control" id="username-input" name="username" />
+                    </div>
+					<div class="form-group">
+                        <label for="password-input">Password:</label>
+                        <input type="password" class="form-control" id="password-input" name="password" />
+                    </div>
+                    <input type="submit" class="btn btn-default" value="Create a New Account" />
+                </form>
+            </div>
+        </div>
+    </div>
 
-	<div id="footer">
-		<p>
-			Email <a href = 'mailto:chris.witulski@gmail.com'>chris.witulski@gmail.com</a> with any questions or comments.<br/>
-			Website by <a href = 'http://cjwit.github.io' target = '_blank'>Christopher Witulski</a>
-		</p>
-	</div>
+    <div id="footer">
+        <p>
+            Email <a href='mailto:chris.witulski@gmail.com'>chris.witulski@gmail.com</a> with any questions or comments.
+            <br/> Website by <a href='http://cjwit.github.io' target='_blank'>Christopher Witulski</a>
+        </p>
+    </div>
 
     <!-- Replace main.js with scripts.js and remove jquery once the gulpfile is updated -->
-	<script src="/jquery-1.12.3.min.js"></script>
-	<script src="/main.js"></script>
+    <script src="/jquery-1.12.3.min.js"></script>
+    <script src="/main.js"></script>
 </body>
 
 </html>
