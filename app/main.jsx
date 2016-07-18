@@ -17,13 +17,14 @@ var User = require('./components/User.jsx');
 
 // #################
 // React/Flux Stores
-var store = require('./stores/store');
+var authStore = require('./stores/authStore');
 
 // #########################
 // Get content from database
-var things = [];
-var getStoreCallback = function(_things) {
-    things = _things;
+var login = [];
+var getAuthStoreCallback = function(_login) {
+    login = _login;
+	console.log("login from getAuthStoreCallback", login);
     render();
 }
 
@@ -32,7 +33,7 @@ var getStoreCallback = function(_things) {
 
 // ################
 // set up listeners
-store.onChange(getStoreCallback);
+authStore.onChange(getAuthStoreCallback);
 
 // #################
 // initial rendering

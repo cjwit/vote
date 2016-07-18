@@ -5,14 +5,31 @@ var store = function() {
     var listeners = [];             // collection of functions
 
     var loggedIn = function(cb) {
+		console.log("loggedIn called from authStore");
         authService.loggedIn().then(function (res) {
             cb(res);
         })
     }
 
     var onChange = function(listener) {
-        getLogin(listener);
+        loggedIn(listener);
         listeners.push(listener);
+    }
+
+	var login = function(thing) {
+		console.log("login called from authStore");
+        authService.login(thing).then(function(res) {
+            console.log(res);
+            triggerListeners();
+        });
+    }
+
+	var logout = function(thing) {
+		console.log("logout called from authStore");
+        authService.logout(thing).then(function(res) {
+            console.log(res);
+            triggerListeners();
+        });
     }
 
     var addUser = function(event) {
@@ -36,22 +53,8 @@ var store = function() {
         });
     }
 
-	var login = function(thing) {
-        authService.login(thing).then(function(res) {
-            console.log(res);
-            triggerListeners();
-        });
-    }
-
-	var logout = function(thing) {
-        authService.logout(thing).then(function(res) {
-            console.log(res);
-            triggerListeners();
-        });
-    }
-
     var triggerListeners = function() {
-        getLogin(function (res) {
+        loggedIn(function (res) {
             listeners.forEach(function(listener) {
                 listener(res);
             });

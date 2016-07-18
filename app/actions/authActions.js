@@ -3,6 +3,7 @@ var dispatcher = require('../dispatcher');
 module.exports = {
     // called from the Thing component
     login: function(payload) {
+		console.log("login called from authActions");
         dispatcher.dispatch({
             object: payload,
             type: "auth:login"
@@ -10,6 +11,7 @@ module.exports = {
     },
 
 	logout: function(payload) {
+		console.log("logout called from authActions");
         dispatcher.dispatch({
             object: payload,
             type: "auth:logout"
@@ -17,7 +19,8 @@ module.exports = {
     },
 
 	loggedIn: function(payload) {
-        dispatcher.dispatch({
+		console.log("loggedIn called from authActions");
+		dispatcher.dispatch({
             object: payload,
             type: "auth:loggedIn"
         });
