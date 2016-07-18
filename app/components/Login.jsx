@@ -3,11 +3,6 @@ var auth = require('../actions/authActions.js');
 var router = require('react-router');
 var browserHistory = router.browserHistory;
 
-// ##########
-// Components
-
-// var Thing = require('./Thing.jsx');
-
 module.exports = React.createClass({
 	getInitialState() {
 		return {
@@ -31,7 +26,6 @@ module.exports = React.createClass({
 		var password = this.refs.passwordInput.value;
 		var _this = this;
 		var props = this.props;
-		console.log(props);
 		auth.login(username, password, function(loggedIn) {
 			if (!loggedIn) {
 				return _this.setState({ error: true });
