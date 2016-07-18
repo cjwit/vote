@@ -15,7 +15,7 @@ module.exports = React.createClass({
 					<div className="header">
 						<h1>Vote!</h1>
 						<h2>Easily create, share, and vote in polls</h2>
-						<p>{ loggedIn ? "Logged in" : "Not logged in"}</p>
+						<p>Home login status is: { loggedIn ? "Logged in" : "Not logged in"}</p>
 						<p><a className="btn btn-primary btn-lg" href="#" role="button" disabled={ loggedIn ? "true" : "false" } >Create a new poll</a></p>
 					</div>
 				</div>

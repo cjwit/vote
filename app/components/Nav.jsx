@@ -1,5 +1,6 @@
 var React = require('react');
 var router = require('react-router');
+var auth = require('../actions/authActions.js')
 var Link = router.Link;
 var IndexLink = router.IndexLink;
 
@@ -10,6 +11,14 @@ var IndexLink = router.IndexLink;
 
 module.exports = React.createClass({
     render: function() {
+		var loggedIn = auth.loggedIn();
+		var loginButton;
+		if (loggedIn) {
+			loginButton = <Link to="/logout">Logout</Link>
+		} else {
+			loginButton = <Link to="/login" activeClassName="active">Log In</Link>
+		}
+
 		return (
 			<nav className="navbar navbar-default">
 		        <div className="container-fluid">
@@ -25,8 +34,8 @@ module.exports = React.createClass({
 
 		            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		                <ul className="nav navbar-nav">
-		                    <li><Link to="/user" activeClassName="active">My Polls</Link></li>
-							<li><Link to="/login" activeClassName="active">{ this.props.loggedIn ? "Logout" : "Log In"}</Link></li>
+		                    <li><Link to="/user/fakeuser" activeClassName="active">My Polls</Link></li>
+							<li>{ loginButton }</li>
 		                </ul>
 		            </div>
 		        </div>

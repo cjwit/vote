@@ -30,7 +30,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<Nav loggedIn = { this.state.loggedIn } />
-				<p>Login status is: {this.state.loggedIn ? "Logged in" : "Not logged in"}</p>
+				<div className="container">App login status is: {this.state.loggedIn ? "Logged in" : "Not logged in"}</div>
 				{ this.props.children }
 				<Footer />
 			</div>
