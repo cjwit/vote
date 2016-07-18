@@ -9,12 +9,6 @@ var IndexLink = router.IndexLink;
 // var Thing = require('./Thing.jsx');
 
 module.exports = React.createClass({
-    getInitialState: function() {
-        return {
-//            login: this.props.login
-        }
-    },
-
     render: function() {
 		return (
 			<nav className="navbar navbar-default">
@@ -32,7 +26,7 @@ module.exports = React.createClass({
 		            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		                <ul className="nav navbar-nav">
 		                    <li><Link to="/user" activeClassName="active">My Polls</Link></li>
-							<li><Link to="/login" activeClassName="active">Login/Logout</Link></li>
+							<li><Link to="/login" activeClassName="active">{ this.props.loggedIn ? "Logout" : "Log In"}</Link></li>
 		                </ul>
 		            </div>
 		        </div>

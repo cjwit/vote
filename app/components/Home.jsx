@@ -1,4 +1,5 @@
 var React = require('react');
+var auth = require('../actions/authActions.js')
 
 // ##########
 // Components
@@ -7,13 +8,15 @@ var React = require('react');
 
 module.exports = React.createClass({
     render: function() {
+		var loggedIn = auth.loggedIn()
 		return (
 			<div>
 				<div className="container">
 					<div className="header">
 						<h1>Vote!</h1>
 						<h2>Easily create, share, and vote in polls</h2>
-						<p><a className="btn btn-primary btn-lg" href="#" role="button">Create a new poll</a></p>
+						<p>{ loggedIn ? "Logged in" : "Not logged in"}</p>
+						<p><a className="btn btn-primary btn-lg" href="#" role="button" disabled={ loggedIn ? "true" : "false" } >Create a new poll</a></p>
 					</div>
 				</div>
 				<div className="container">
