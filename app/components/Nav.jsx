@@ -1,6 +1,7 @@
 var React = require('react');
 var router = require('react-router');
 var Link = router.Link;
+var IndexLink = router.IndexLink;
 
 // ##########
 // Components
@@ -25,7 +26,7 @@ module.exports = React.createClass({
 		                    <span className="icon-bar"></span>
 		                    <span className="icon-bar"></span>
 		                </button>
-						<Link className="navbar-brand" to="/">Vote!</Link>
+						<IndexLink className="navbar-brand" to="/" activeClassName="active">Vote!</IndexLink>
 		            </div>
 
 		            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

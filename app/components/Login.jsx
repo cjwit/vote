@@ -10,7 +10,7 @@ module.exports = React.createClass({
 		return (
 			<div className="container">
 		        <div className="row">
-		            <div className="col-sm-6">
+		            <div className="col-sm-4 col-sm-offset-2">
 		                <form action="/login" method="post">
 		                    <div className="form-group">
 		                        <label htmlFor="username-input">Username:</label>
@@ -23,7 +23,7 @@ module.exports = React.createClass({
 		                    <input type="submit" className="btn btn-default" value="Log In" />
 		                </form>
 		            </div>
-		            <div className="col-sm-6">
+		            <div className="col-sm-4">
 		                <form action="/api/user" method="post">
 		                    <div className="form-group">
 		                        <label htmlFor="username-input">Username:</label>

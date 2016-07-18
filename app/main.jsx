@@ -4,7 +4,7 @@ var router = require('react-router');
 var Router = router.Router;
 var Route = router.Route;
 var IndexRoute = router.IndexRoute;
-var hashHistory = router.hashHistory;
+var browserHistory = router.browserHistory;
 
 // ################
 // React Components
@@ -35,7 +35,7 @@ store.onChange(getStoreCallback);
 // #################
 // initial rendering
 ReactDOM.render((
-	<Router history = { hashHistory }>
+	<Router history = { browserHistory }>
 		<Route path = "/" component = { App }>
 			<IndexRoute component = { Home } />
 			<Route path = "/login" component = { Login } />
