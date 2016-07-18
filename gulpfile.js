@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var run = require('run-sequence');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -59,11 +60,13 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('app/dist'));
 });
 
-gulp.task('default', ['copy',
-                      'bundle'],
-//                      'styles',
-//                      'finalize-scripts',
-//                      'finalize-css'],
-					  function() {
-    console.log('Gulp completed...');
+gulp.task('default', function(callback) {
+	run(
+		'bundle',
+		// 'styles',
+		// 'finalize-scripts',
+		// 'finalize-css',
+		'copy',
+		callback
+	)
 });

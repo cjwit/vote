@@ -1,19 +1,20 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var router = require('react-router');
+var Router = router.Router;
+var Route = router.Route;
+var hashHistory = router.hashHistory;
 
 // ################
 // React Components
-
-var Home = require('./components/Home.jsx');
+var App = require('./components/App.jsx');
 
 // #################
 // React/Flux Stores
-
 var store = require('./stores/store');
 
 // #########################
 // Get content from database
-
 var things = [];
 var getStoreCallback = function(_things) {
     things = _things;
@@ -23,39 +24,14 @@ var getStoreCallback = function(_things) {
 // ############################
 // functions to manipulate data
 
-function dateEvents() {
-    events.map(function(event) {
-        event.date = new Date(event.date);
-    })
-}
-
-// ################
-// render functions
-function render() {
-    var path = window.location.pathname;
-    var split = path.split('/')
-    var folder = split[1]
-    var id = split[2] || null
-
-    if (id === null) {
-        switch (folder) {
-            case '':
-                renderHome();
-                break;
-        }
-    }
-}
-
-function renderHome() {
-    ReactDOM.render(<Home
-//        thing = { things }
-        />, document.getElementById('container'));
-}
-
 // ################
 // set up listeners
 store.onChange(getStoreCallback);
 
 // #################
 // initial rendering
-render();
+ReactDOM.render((
+	<Router history = { hashHistory }>
+		<Route path = "/" component = { App } />
+	</Router>
+), document.getElementById('app'));
