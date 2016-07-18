@@ -53,10 +53,6 @@ app.post('/login',
 									 failureRedirect: '/login' })
 );
 
-app.get('/login', function(req, res) {
-    res.sendFile(path.join(__dirname, '../app/dist/login.html'));
-})
-
 // controllers
 var userController = require('./controllers/userController');
 app.use("/api/user", userController);

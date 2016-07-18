@@ -1,4 +1,6 @@
 var React = require('react');
+var router = require('react-router');
+var Link = router.Link;
 
 // ##########
 // Components
@@ -14,22 +16,22 @@ module.exports = React.createClass({
 
     render: function() {
 		return (
-			<nav class="navbar navbar-default">
-		        <div class="container-fluid">
-		            <div class="navbar-header">
-		                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nabvar-collapse" aria-expanded="false">
-		                    <span class="sr-only">Toggle navigation</span>
-		                    <span class="icon-bar"></span>
-		                    <span class="icon-bar"></span>
-		                    <span class="icon-bar"></span>
+			<nav className="navbar navbar-default">
+		        <div className="container-fluid">
+		            <div className="navbar-header">
+		                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nabvar-collapse" aria-expanded="false">
+		                    <span className="sr-only">Toggle navigation</span>
+		                    <span className="icon-bar"></span>
+		                    <span className="icon-bar"></span>
+		                    <span className="icon-bar"></span>
 		                </button>
-						<a class="navbar-brand" href="../">Vote!</a>
+						<Link className="navbar-brand" to="/">Vote!</Link>
 		            </div>
 
-		            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		                <ul class="nav navbar-nav">
-		                    <li><a href="../user">My Polls</a></li>
-							<li><a href="../login">Login/Logout</a></li>
+		            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		                <ul className="nav navbar-nav">
+		                    <li><Link to="/user" activeClassName="active">My Polls</Link></li>
+							<li><Link to="/login" activeClassName="active">Login/Logout</Link></li>
 		                </ul>
 		            </div>
 		        </div>

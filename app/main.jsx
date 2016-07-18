@@ -3,11 +3,15 @@ var ReactDOM = require('react-dom');
 var router = require('react-router');
 var Router = router.Router;
 var Route = router.Route;
+var IndexRoute = router.IndexRoute;
 var hashHistory = router.hashHistory;
 
 // ################
 // React Components
 var App = require('./components/App.jsx');
+var Login = require('./components/Login.jsx');
+var Home = require('./components/Home.jsx');
+var User = require('./components/User.jsx');
 
 // #################
 // React/Flux Stores
@@ -32,6 +36,10 @@ store.onChange(getStoreCallback);
 // initial rendering
 ReactDOM.render((
 	<Router history = { hashHistory }>
-		<Route path = "/" component = { App } />
+		<Route path = "/" component = { App }>
+			<IndexRoute component = { Home } />
+			<Route path = "/login" component = { Login } />
+			<Route path = "user/:username" component = { User } />
+		</Route>
 	</Router>
 ), document.getElementById('app'));

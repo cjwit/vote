@@ -1,6 +1,4 @@
 var React = require('react');
-var Nav = require('./Nav.jsx');
-var Footer = require('./Footer.jsx');
 
 // ##########
 // Components
@@ -10,11 +8,10 @@ var Footer = require('./Footer.jsx');
 module.exports = React.createClass({
     render: function() {
 		return (
-			<div>
-				<Nav />
-				{ this.props.children }
-				<Footer />
+
+			<div className = "container">
+				<h2>{ this.props.params.username }</h2>
 			</div>
-        )
+		)
     }
 });
