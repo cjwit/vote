@@ -2,30 +2,28 @@ var dispatcher = require('../dispatcher');
 
 module.exports = {
     // called from the Thing component
-    addThing: function(thing) {
+    login: function(payload) {
         dispatcher.dispatch({
-            object: thing,
-            type: "thing:addThing"
+            object: payload,
+            type: "auth:login"
         });
     },
 
-	deleteThing: function(thing) {
-		dispatcher.dispatch({
-			object: thing,
-			type: "event:deleteThing"
-		});
-	},
+	logout: function(payload) {
+        dispatcher.dispatch({
+            object: payload,
+            type: "auth:logout"
+        });
+    },
 
-	editThing: function(thing) {
-		dispatcher.dispatch({
-			object: thing,
-			type: "event:editThing"
-		});
-	},
+	loggedIn: function(payload) {
+        dispatcher.dispatch({
+            object: payload,
+            type: "auth:loggedIn"
+        });
+    },
 
-	///
-
-	login: function(username, pass, cb) {
+	loginOLD: function(username, pass, cb) {
 		console.log('auth.login');
 		cb = arguments[arguments.length - 1]
 		if (localStorage.token) {
@@ -66,14 +64,14 @@ module.exports = {
 		return localStorage.token
 	},
 
-	logout(cb) {
+	logoutOLD(cb) {
 		console.log('auth.logout');
 		delete localStorage.token
 		if (cb) cb()
 		this.onChange(false)
 	},
 
-	loggedIn() {
+	loggedInOLD() {
 		return !!localStorage.token
 	},
 

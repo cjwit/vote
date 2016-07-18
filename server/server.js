@@ -33,6 +33,7 @@ passport.use(new LocalStrategy(
 			if (!user.validPassword(password)) {
 				return done(null, false, { message: "Incorrect password."});
 			}
+			console.log(user);
 			return done(null, user);
 		});
 	}
@@ -48,14 +49,18 @@ passport.deserializeUser(function(id, done) {
 	});
 });
 
-app.post('/login',
+/*
+app.post('/api/auth',
 	passport.authenticate('local', { successRedirect: '/',
 									 failureRedirect: '/login' })
 );
+*/
 
 // controllers
 var userController = require('./controllers/userController');
+var authController = require('./controllers/authController');
 app.use("/api/user", userController);
+app.use("/api/auth", authController);
 
 // requests
 app.get('/*', function(req, res) {
