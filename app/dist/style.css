@@ -2,6 +2,10 @@
   padding-top: 50px;
   padding-bottom: 50px; }
 
+.loginForm form {
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
 .mini-poll {
   margin-bottom: 20px; }
 

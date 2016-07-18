@@ -1,6 +1,7 @@
 var React = require('react');
 var router = require('react-router');
 var auth = require('../actions/authActions.js')
+var browserHistory = router.browserHistory;
 var Link = router.Link;
 
 // ##########
@@ -10,7 +11,9 @@ var Link = router.Link;
 
 module.exports = React.createClass({
     componentDidMount() {
-		auth.logout();
+		auth.logout(function() {
+			browserHistory.push('/');
+		});
 	},
 
 	render: function() {

@@ -19,6 +19,8 @@ module.exports = React.createClass({
 			loginButton = <Link to="/login" activeClassName="active">Log In</Link>
 		}
 
+		// create user/fakename link based on passed in user information
+
 		return (
 			<nav className="navbar navbar-default">
 		        <div className="container-fluid">
