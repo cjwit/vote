@@ -2,13 +2,15 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var _ = require('underscore');
+var bodyParser = require('body-parser');
+app.use(bodyParser());
 
 // Passport setup
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var User = require('../data/user.js'); // for Passport
 app.use(passport.initialize());
 app.use(passport.session());
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('../data/user.js'); // for Passport
 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
@@ -23,7 +25,7 @@ passport.use(new LocalStrategy(
 				console.log('invalid password')
 				return done(null, false, { message: "Incorrect password."});
 			}
-			console.log(user);
+			console.log('user from strategy', user);
 			return done(null, user);
 		});
 	}
@@ -49,8 +51,24 @@ app.post('/api/auth',
 // ####################################
 // Routing and controller functionality
 
+function loginCallback(err, user, info) {
+	console.log('err', err, 'user', user, 'info', info);
+}
+
+/*
+app.post('/login',
+	passport.authenticate('local'),
+	function(req, res) {
+		console.log('login called', req.body)
+		console.log('from authenticate', req.user);
+		res.redirect('/user/' + req.user.username);
+	}
+);
+*/
+
 var router = require('express').Router();
-router.route('/').get(loggedIn).post(login);
+router.route('/').get(loggedIn);
+router.route('/login').post(login);
 router.route('/logout').get(logout);
 
 function loggedIn(req, res) {
@@ -58,26 +76,9 @@ function loggedIn(req, res) {
 }
 
 function login(req, res) {
-	console.log("login called")
-
-	// add validation
-	console.log(req.body); // NOT MOVING INTO PASSPORT
-	passport.authenticate('local', function(err, user, info) {
-		if (err || !user) {
-			console.log('err', err);
-			return res.status(400).send(info);
-		}
-		console.log("user", user);
-
-		req.logIn(user, function(err) {
-			if (err) {
-				return next(err);
-			}
-
-			console.log(user);
-			res.status(200).json(user);
-		});
-	});
+	passport.authenticate('local');
+	console.log('login called', req.body)
+	console.log('from authenticate', req.user);
 }
 
 function logout() {

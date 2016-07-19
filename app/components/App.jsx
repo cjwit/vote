@@ -23,7 +23,7 @@ module.exports = React.createClass({
 
 	componentWillMount() {
 		auth.onChange = this.updateAuth
-		auth.login()
+		// auth.login()
 	},
 
 	render: function() {

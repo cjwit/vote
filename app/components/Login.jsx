@@ -46,7 +46,7 @@ module.exports = React.createClass({
 						</div>
 					</div>
 		            <div id="signinForm" className="col-sm-6 col-sm-offset-3 loginForm">
-		                <form onSubmit= { this.handleSubmit }>
+		                <form action="/api/auth/login" method="post" >
 		                    <div className="form-group">
 		                        <label htmlFor="usernameInput">Username:</label> Hint: joe
 		                        <input type="text" className="form-control" id="usernameInput" ref="usernameInput" name="username" />

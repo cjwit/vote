@@ -22,7 +22,7 @@ module.exports = {
 		var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + 'auth',
+                url: resourceURL + 'auth/login',
                 data: JSON.stringify(user),
                 method: "POST",
                 dataType: 'json',
