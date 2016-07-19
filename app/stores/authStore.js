@@ -16,9 +16,9 @@ var store = function() {
         listeners.push(listener);
     }
 
-	var login = function(thing) {
-		console.log("login called from authStore");
-        authService.login(thing).then(function(res) {
+	var login = function(user) {
+		console.log("login called from authStore", user);
+        authService.login(user).then(function(res) {
             console.log(res);
             triggerListeners();
         });
@@ -63,7 +63,7 @@ var store = function() {
 
     dispatcher.register(function (payload) {
         var split = payload.type.split(':');
-        if (split[0] === 'thing') {
+        if (split[0] === 'auth') {
             switch (split[1]) {
                 case "addUser":
                     addUser(payload.object);
@@ -73,6 +73,9 @@ var store = function() {
                     break;
                 case "editUser":
                     editUser(payload.object);
+                    break;
+				case "loggedIn":
+                    loggedIn(payload.object);
                     break;
 				case "login":
                     login(payload.object);

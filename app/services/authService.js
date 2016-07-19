@@ -4,6 +4,7 @@ var resourceURL = location.protocol + '//' + location.host + '/api/';
 
 module.exports = {
     loggedIn: function() {
+		console.log("loggedIn called from authService");
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -17,6 +18,7 @@ module.exports = {
     },
 
 	login: function(user) {
+		console.log("login called from authService", user);
 		var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -32,6 +34,7 @@ module.exports = {
     },
 
 	logout: function() {
+		console.log("logout called from authService");
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({

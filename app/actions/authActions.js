@@ -3,7 +3,7 @@ var dispatcher = require('../dispatcher');
 module.exports = {
     // called from the Thing component
     login: function(payload) {
-		console.log("login called from authActions");
+		console.log("login called from authActions", payload);
         dispatcher.dispatch({
             object: payload,
             type: "auth:login"

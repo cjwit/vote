@@ -26,7 +26,7 @@ module.exports = React.createClass({
 		var password = this.refs.passwordInput.value;
 		var _this = this;
 		var props = this.props;
-		auth.login(username, password, function(loggedIn) {
+		auth.login({ username: username, password: password }, function(loggedIn) {
 			if (!loggedIn) {
 				return _this.setState({ error: true });
 			}

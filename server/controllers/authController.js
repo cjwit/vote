@@ -12,6 +12,7 @@ app.use(passport.session());
 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
+		console.log("Local Strategy invoked");
 		User.findOne({ username: username }, function (err, user) {
 			if (err) { return done(err); }
 			if (!user) {
@@ -60,11 +61,13 @@ function login(req, res) {
 	console.log("login called")
 
 	// add validation
-
+	console.log(req.body); // NOT MOVING INTO PASSPORT
 	passport.authenticate('local', function(err, user, info) {
 		if (err || !user) {
+			console.log('err', err);
 			return res.status(400).send(info);
 		}
+		console.log("user", user);
 
 		req.logIn(user, function(err) {
 			if (err) {
@@ -74,7 +77,7 @@ function login(req, res) {
 			console.log(user);
 			res.status(200).json(user);
 		});
-	})(req, res, next);
+	});
 }
 
 function logout() {
