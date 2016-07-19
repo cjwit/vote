@@ -60,7 +60,7 @@ module.exports = React.createClass({
 						{ this.state.error ? <div className="alert alert-danger">Bad login info</div> : null }
 		            </div>
 		            <div id="createAccountForm" className="col-sm-6 col-sm-offset-3 hidden loginForm">
-		                <form action="/api/user" method="post">
+		                <form action="/api/register" method="post">
 		                    <div className="form-group">
 		                        <label htmlFor="usernameInput">Username:</label>
 		                        <input type="text" className="form-control" id="usernameInput" name="username" />

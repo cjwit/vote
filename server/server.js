@@ -1,71 +1,82 @@
 // process.env requires PORT and DBURL
-
 var express = require('express');
 var path = require('path');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var mongoose = require('mongoose');
 var compress = require('compression');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
-app.use(cookieParser());
-app.use(bodyParser());
-app.use(session({ secret: 'keyboard cat' }));
-app.use(compress())
-app.use(express.static(path.join(__dirname, "../app/dist")));
+
+app.use(compress());
 app.use(bodyParser.json());
-
-// controllers
-var userController = require('./controllers/userController');
-// var authController = require('./controllers/authController');
-app.use("/api/user", userController);
-// app.use("/api/auth", authController);
-
-// passport setup
-var passport = require('passport');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(require('express-session')({
+	secret: 'keyboard cat',
+ 	resave: false,
+	saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session());
-var LocalStrategy = require('passport-local').Strategy;
-var User = require('./data/user.js'); // for Passport
+app.use(express.static(path.join(__dirname, "../app/dist")));
 
-passport.use(new LocalStrategy(
-	function(username, password, done) {
-		console.log("Local Strategy invoked");
-		User.findOne({ username: username }, function (err, user) {
-			if (err) { return done(err); }
-			if (!user) { return done(null, false); }
-			if (user.password != password) { return done(null, false); }
-			console.log('user from strategy', user);
-			return done(null, user);
+// controllers
+// var userController = require('./controllers/userController');
+// var authController = require('./controllers/authController');
+// app.use("/api/user", userController);
+// app.use("/api/auth", authController);
+
+// passport config
+var User = require('./data/user.js');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// connect to database
+var dburl = process.env.DBURL;
+mongoose.connect(dburl)
+
+// passport requests
+app.post('/api/register', function(req, res) {
+	console.log('register called', req.body);
+	User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
+		if (err) {
+			return res.send('error with registration');
+		}
+		passport.authenticate('local')(req, res, function() {
+			console.log('  -- user from authenticate', req.user, '\n');
+			res.redirect('/');
 		});
-	}
-));
-
-passport.serializeUser(function(user, done) {
-	done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-	User.findById(id, function(err, user) {
-		done(err, user);
 	});
 });
 
-// passport requests
+app.get('/api/auth', function(req, res) {
+	console.log('checking login status')
+	console.log('  -- user:', req.user, '\n');
+	// res.send(req.user);
+})
+
 app.post('/api/auth/login',
 	passport.authenticate('local'),
 	function(req, res) {
-		console.log('login called', req.body);
-		console.log('from authenticate', req.user);
-		res.redirect('/user/' + req.user.username);
+		console.log('login called');
+		console.log('  -- user from authenticate:', req.user, '\n');
+		res.redirect('/');
 	});
 
-app.get('/api/auth', function(req, res) {
-	console.log('checking login status');
+app.get('/api/auth/logout', function(req, res) {
+	console.log('logged out\n');
+	req.logout();
+	res.redirect('/');
+});
+
+app.get('/ping', function(req, res) {
+	res.status(200).send("pong!");
 })
 
-// requests
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/index.html'));
 })
@@ -75,7 +86,3 @@ var port = process.env.PORT || 8080;
 app.listen(port, function() {
     console.log("   Listening on port ", port, "...");
 });
-
-// connect to database
-var dburl = process.env.DBURL;
-mongoose.connect(dburl)

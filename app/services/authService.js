@@ -51,7 +51,7 @@ module.exports = {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + 'user',
+                url: resourceURL + 'register',
                 data: JSON.stringify(user),
                 method: "POST",
                 dataType: 'json',

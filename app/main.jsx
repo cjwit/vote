@@ -52,7 +52,9 @@ ReactDOM.render((
 			<IndexRoute component = { Home } />
 			<Route path = "/login" component = { Login } />
 			<Route path = "/logout" component = { Logout } />
-			<Route path = "/user/:username" component = { User } onEnter = { requireAuth }/>
+			<Route path = "/user/:username" component = { User } />
 		</Route>
 	</Router>
 ), document.getElementById('app'));
+
+// 			<Route path = "/user/:username" component = { User } onEnter = { requireAuth }/>
