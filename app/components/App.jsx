@@ -11,22 +11,20 @@ var auth = require('../actions/authActions.js')
 module.exports = React.createClass({
 	getInitialState() {
 		return {
-			loggedIn: auth.loggedIn()
+			loggedIn: false
 		}
 	},
 
-	updateAuth(loggedIn) {
+	componentDidMount() {
+		var loginStatus = auth.loggedIn()
+		console.log("App mounted, loginStatus is", loginStatus); // perhaps this needs to be a callback?
 		this.setState({
-			loggedIn
-		})
-	},
-
-	componentWillMount() {
-		auth.onChange = this.updateAuth
-		// auth.login()
+			loggedIn: loginStatus
+		});
 	},
 
 	render: function() {
+		console.log("rendering App, login:", this.state.loggedIn); // reading as undefined after running update
 		return (
 			<div>
 				<Nav loggedIn = { this.state.loggedIn } />

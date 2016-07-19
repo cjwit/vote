@@ -21,6 +21,7 @@ module.exports = React.createClass({
 	},
 
 	handleSubmit(event) {
+		// currently not being used
 		event.preventDefault();
 		var username = this.refs.usernameInput.value;
 		var password = this.refs.passwordInput.value;

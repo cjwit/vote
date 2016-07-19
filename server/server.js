@@ -55,16 +55,22 @@ app.post('/api/register', function(req, res) {
 
 app.get('/api/auth', function(req, res) {
 	console.log('checking login status')
-	console.log('  -- user:', req.user, '\n');
-	// res.send(req.user);
+	if (req.user) {
+		console.log('  -- user:', req.user, '\n');
+		res.send(true);
+	}
+	else {
+		console.log('  -- not logged in\n');
+		res.send(false);
+	}
 })
 
 app.post('/api/auth/login',
 	passport.authenticate('local'),
 	function(req, res) {
 		console.log('login called');
-		console.log('  -- user from authenticate:', req.user, '\n');
-		res.redirect('/');
+		console.log('  -- user from authenticate:', req.user.username, '\n');
+		res.redirect('/user/' + req.user.username);
 	});
 
 app.get('/api/auth/logout', function(req, res) {

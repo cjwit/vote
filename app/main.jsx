@@ -21,7 +21,7 @@ var authStore = require('./stores/authStore');
 
 // #########################
 // Get content from database
-var login = [];
+var login;
 var getAuthStoreCallback = function(_login) {
     login = _login;
 	console.log("login from getAuthStoreCallback", login);
@@ -48,7 +48,7 @@ function requireAuth(nextState, replace) {
 
 ReactDOM.render((
 	<Router history = { browserHistory }>
-		<Route path = "/" component = { App }>
+		<Route path = "/" component = { App } loggedIn = { login } >
 			<IndexRoute component = { Home } />
 			<Route path = "/login" component = { Login } />
 			<Route path = "/logout" component = { Logout } />
