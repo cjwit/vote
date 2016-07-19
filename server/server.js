@@ -34,15 +34,9 @@ passport.use(new LocalStrategy(
 		console.log("Local Strategy invoked");
 		User.findOne({ username: username }, function (err, user) {
 			if (err) { return done(err); }
-			if (!user) {
-				console.log('invalid user')
-				return done(null, false, { message: "Incorrect username." });
-			}
+			if (!user) { return done(null, false); }
+			if (user.password != password) { return done(null, false); }
 			console.log('user from strategy', user);
-			if (user.password != password) {
-				console.log('invalid password')
-				return done(null, false, { message: "Incorrect password."});
-			}
 			return done(null, user);
 		});
 	}
