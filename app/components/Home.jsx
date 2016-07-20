@@ -1,8 +1,16 @@
 var React = require('react');
 var MiniPoll = require('./MiniPoll.jsx');
+var CreatePollForm = require('./CreatePollForm.jsx');
 
 module.exports = React.createClass({
-    render: function() {
+	componentDidMount: function() {
+		$("#newPollButton").click(function() {
+			$("#newPollForm").toggleClass("hidden");
+			$("#searchAndSort").toggleClass("hidden");
+		})
+	},
+
+	render: function() {
 		var loggedIn = this.props.state.loggedIn,
 			username = this.props.state.username,
 			polls = this.props.state.polls;
@@ -25,25 +33,16 @@ module.exports = React.createClass({
 							<p>Not logged in</p>
 						}
 
-						<p><a className="btn btn-primary btn-lg" href="#" role="button" disabled={ loggedIn ? "true" : "false" } >Create a new poll</a></p>
+						<p><span id = "newPollButton" className="btn btn-primary btn-lg" role="button">Create a new poll</span></p>
 					</div>
 				</div>
 				<div className="container">
 					<div className="row">
 						<div className="col-sm-4 col-sm-offset-2">
-							<h2>Create a New Poll</h2>
-							<div id="newPollForm">
-								<form action="/api/polls" method="post" >
-									<div className="form-group">
-										<label htmlFor="nameInput">Name of your poll:</label>
-										<input type="text" className="form-control" id="nameInput" ref="nameInput" name="name" />
-									</div>
-									<div className="form-group">
-										<label htmlFor="optionsInput">List options, separated by commas:</label>
-										<input type="text" className="form-control" id="optionsInput" ref="optionsInput" name="options" />
-									</div>
-									<input type="submit" className="btn btn-primary" value="Create New Poll" />
-								</form>
+							<CreatePollForm state = { this.props.state }/>
+							<div id = "searchAndSort">
+								<h2>Search and Sort Logic</h2>
+								<p>Add to individual component later.</p>
 							</div>
 						</div>
 						<div className="col-sm-4">
