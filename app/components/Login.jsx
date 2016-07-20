@@ -20,21 +20,6 @@ module.exports = React.createClass({
 		$("#createAccountForm").removeClass('hidden');
 	},
 
-	handleSubmit(event) {
-		// currently not being used
-		event.preventDefault();
-		var username = this.refs.usernameInput.value;
-		var password = this.refs.passwordInput.value;
-		var _this = this;
-		var props = this.props;
-		auth.login({ username: username, password: password }, function(loggedIn) {
-			if (!loggedIn) {
-				return _this.setState({ error: true });
-			}
-			browserHistory.push('/user/fakename'); // switch to received object from passport
-		});
-	},
-
     render: function() {
 		return (
 			<div className="container">
@@ -73,6 +58,7 @@ module.exports = React.createClass({
 		                    <input type="submit" className="btn btn-default" value="Create a New Account" />
 		                </form>
 		            </div>
+					{ this.props.children }
 		        </div>
 		    </div>
         )

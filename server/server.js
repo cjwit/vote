@@ -66,11 +66,16 @@ app.get('/api/auth', function(req, res) {
 })
 
 app.post('/api/auth/login',
-	passport.authenticate('local'),
+	passport.authenticate('local', { failureRedirect: '/login/error' }),
 	function(req, res) {
-		console.log('login called');
-		console.log('  -- user from authenticate:', req.user.username, '\n');
-		res.redirect('/user/' + req.user.username);
+		if (req.user) {
+			console.log('login called');
+			console.log('  -- user from authenticate:', req.user.username, '\n');
+			res.redirect('/user/' + req.user.username);
+		} else {
+			console.log('login failed');
+			res.redirect('/login/error');
+		}
 	});
 
 app.get('/api/auth/logout', function(req, res) {

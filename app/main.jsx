@@ -11,6 +11,7 @@ var auth = require('./actions/authActions.js')
 // React Components
 var App = require('./components/App.jsx');
 var Login = require('./components/Login.jsx');
+var LoginError = require('./components/LoginError.jsx');
 var Logout = require('./components/Logout.jsx');
 var Home = require('./components/Home.jsx');
 var User = require('./components/User.jsx');
@@ -56,10 +57,12 @@ function requireAuth(nextState, replace) {
 */
 
 ReactDOM.render((
-	<Router history = { browserHistory }>
+	<Router history = { browserHistory } >
 		<Route path = "/" component = { App } >
 			<IndexRoute component = { Home } />
-			<Route path = "/login" component = { Login } />
+			<Route path = "/login" component = { Login } >
+				<Route path = "/login/error" component = { LoginError } />
+			</Route>
 			<Route path = "/logout" component = { Logout } />
 			<Route path = "/user/:username" component = { User }/>
 		</Route>
