@@ -1,14 +1,10 @@
 var React = require('react');
-var auth = require('../actions/authActions.js')
-
-// ##########
-// Components
-
-// var Thing = require('./Thing.jsx');
 
 module.exports = React.createClass({
     render: function() {
-		var loggedIn = this.props.login.loggedIn;
+		var loggedIn = this.props.login.loggedIn,
+			username = this.props.login.username;
+
 		return (
 			<div>
 				<div className="container">
@@ -16,8 +12,8 @@ module.exports = React.createClass({
 						<h1>Vote!</h1>
 						<h2>Easily create, share, and vote in polls</h2>
 
-						{ loggedIn ? 
-							<p>Logged in as { this.props.login.username }</p>
+						{ loggedIn ?
+							<p>Logged in as { username }</p>
 							:
 							<p>Not logged in</p>
 						}
