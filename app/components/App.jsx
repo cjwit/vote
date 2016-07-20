@@ -15,7 +15,6 @@ module.exports = React.createClass({
 	componentDidMount: function() {
 		var _this = this;
 		this.serverRequest = $.get("/api/auth", function(result) {
-			console.log("App.componentDidMount", result);
 			if (result) {
 				_this.setState({
 					loggedIn: true,
@@ -26,7 +25,6 @@ module.exports = React.createClass({
 	},
 
 	logout: function() {
-		console.log('clicked logout');
 		var _this = this;
 		this.serverRequest = $.get("/api/auth/logout", function(result) {
 			if (result) {
