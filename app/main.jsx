@@ -31,6 +31,14 @@ var getAuthStoreCallback = function(_login) {
 }
 */
 
+var polls;
+var getPollsStoreCallback = function(_polls) {
+    polls = _polls;
+	console.log("polls from getPollsStoreCallback", polls);
+    render();
+}
+
+
 // ############################
 // functions to manipulate data
 
@@ -57,7 +65,7 @@ function requireAuth(nextState, replace) {
 */
 
 ReactDOM.render((
-	<Router history = { browserHistory } >
+	<Router history = { browserHistory } polls = { polls } >
 		<Route path = "/" component = { App } >
 			<IndexRoute component = { Home } />
 			<Route path = "/login" component = { Login } >

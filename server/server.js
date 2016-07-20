@@ -24,10 +24,11 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, "../app/dist")));
 
 // controllers
+// Polls
+var pollController = require('./controllers/pollController');
+app.use("/api/polls", pollController);
 // var userController = require('./controllers/userController');
-// var authController = require('./controllers/authController');
 // app.use("/api/user", userController);
-// app.use("/api/auth", authController);
 
 // passport config
 var User = require('./data/user.js');

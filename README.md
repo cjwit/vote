@@ -1,5 +1,9 @@
 # Vote!
 
-* Create username link in nav based on passed info
-* Connect Passport.js
-http://blog.robertonodi.me/node-authentication-series-email-and-password/
+To do:
+
+* User should redirect if
+	* Not logged in
+	* Not the user requested in the params
+* Build polls
+* Edit/delete Account

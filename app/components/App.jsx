@@ -8,7 +8,8 @@ module.exports = React.createClass({
 	getInitialState: function() {
 		return {
 			loggedIn: false,
-			username: ""
+			username: "",
+			polls: []
 		}
 	},
 
@@ -19,6 +20,14 @@ module.exports = React.createClass({
 				_this.setState({
 					loggedIn: true,
 					username: result
+				});
+			}
+		});
+
+		this.serverRequest = $.get("/api/polls", function(result) {
+			if (result) {
+				_this.setState({
+					polls: result
 				});
 			}
 		});
@@ -43,8 +52,9 @@ module.exports = React.createClass({
 	render: function() {
 		// get login info for navigation
 		var loggedIn = this.state.loggedIn,
-			username = this.state.username
-		console.log("rendering App, login:", loggedIn, username);
+			username = this.state.username,
+			polls = this.state.polls;
+		console.log("rendering App, state:", loggedIn, username, polls);
 
 		// build login buttons
 		var loginButton, userButton;
@@ -80,7 +90,7 @@ module.exports = React.createClass({
 					</div>
 				</nav>
 
-				{ this.props.children && React.cloneElement(this.props.children, { login: this.state }) }
+				{ this.props.children && React.cloneElement(this.props.children, { state: this.state }) }
 
 				<Footer />
 			</div>

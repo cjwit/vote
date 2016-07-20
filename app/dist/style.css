@@ -1,6 +1,6 @@
 .header {
-  padding-top: 50px;
-  padding-bottom: 50px; }
+  padding-top: 20px;
+  padding-bottom: 20px; }
 
 .loginForm form {
   padding-top: 15px;
@@ -8,6 +8,9 @@
 
 .mini-poll {
   margin-bottom: 20px; }
+
+.mini-name {
+  font-size: 1.2em; }
 
 .mini-option {
   width: 60%; }
