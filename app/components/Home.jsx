@@ -8,14 +8,20 @@ var auth = require('../actions/authActions.js')
 
 module.exports = React.createClass({
     render: function() {
-		var loggedIn = auth.loggedIn()
+		var loggedIn = this.props.login.loggedIn;
 		return (
 			<div>
 				<div className="container">
 					<div className="header">
 						<h1>Vote!</h1>
 						<h2>Easily create, share, and vote in polls</h2>
-						<p>Home login status is: { loggedIn ? "Logged in" : "Not logged in"}</p>
+
+						{ loggedIn ? 
+							<p>Logged in as { this.props.login.username }</p>
+							:
+							<p>Not logged in</p>
+						}
+
 						<p><a className="btn btn-primary btn-lg" href="#" role="button" disabled={ loggedIn ? "true" : "false" } >Create a new poll</a></p>
 					</div>
 				</div>

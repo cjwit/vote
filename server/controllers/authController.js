@@ -1,129 +1,62 @@
+// process.env requires PORT and DBURL
 var express = require('express');
-var app = express();
-var mongoose = require('mongoose');
-var _ = require('underscore');
+var path = require('path');
+var compress = require('compression');
+var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-app.use(bodyParser());
-
-// Passport setup
+var mongoose = require('mongoose');
 var passport = require('passport');
-app.use(passport.initialize());
-app.use(passport.session());
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../data/user.js'); // for Passport
 
-passport.use(new LocalStrategy(
-	function(username, password, done) {
-		console.log("Local Strategy invoked");
-		User.findOne({ username: username }, function (err, user) {
-			if (err) { return done(err); }
-			if (!user) {
-				console.log('invalid user')
-				return done(null, false, { message: "Incorrect username." });
-			}
-			if (!user.validPassword(password)) {
-				console.log('invalid password')
-				return done(null, false, { message: "Incorrect password."});
-			}
-			console.log('user from strategy', user);
-			return done(null, user);
+var app = express();
+
+// passport config
+var User = require('../data/user.js');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// passport requests
+app.post('/api/register', function(req, res) {
+	console.log('register called', req.body);
+	User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
+		if (err) {
+			return res.send('error with registration');
+		}
+		passport.authenticate('local')(req, res, function() {
+			console.log('  -- user from authenticate', req.user, '\n');
+			res.redirect('/');
 		});
-	}
-));
-
-passport.serializeUser(function(user, done) {
-	done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-	User.findById(id, function(err, user) {
-		done(err, user);
 	});
 });
 
-/*
-app.post('/api/auth',
-	passport.authenticate('local', { successRedirect: '/',
-									 failureRedirect: '/login' })
-);
-*/
-
-// ####################################
-// Routing and controller functionality
-
-function loginCallback(err, user, info) {
-	console.log('err', err, 'user', user, 'info', info);
-}
-
-/*
-app.post('/login',
-	passport.authenticate('local'),
-	function(req, res) {
-		console.log('login called', req.body)
-		console.log('from authenticate', req.user);
-		res.redirect('/user/' + req.user.username);
+app.get('/', function(req, res) {
+	console.log('checking login status')
+	if (req.user) {
+		console.log('  -- user:', req.user.username, '\n');
+		res.json(req.user.username);
 	}
-);
-*/
+	else {
+		console.log('  -- not logged in\n');
+		res.send(false);
+	}
+})
 
-var router = require('express').Router();
-router.route('/').get(loggedIn);
-router.route('/login').post(login);
-router.route('/logout').get(logout);
+app.post('/login',
+	passport.authenticate('local', { failureRedirect: '/login/error' }),
+	function(req, res) {
+		if (req.user) {
+			console.log('login called');
+			console.log('  -- user from authenticate:', req.user.username, '\n');
+			res.redirect('/user/' + req.user.username);
+		} else {
+			console.log('login failed');
+			res.redirect('/login/error');
+		}
+	});
 
-function loggedIn(req, res) {
-	console.log("loggedIn called")
-}
-
-function login(req, res) {
-	passport.authenticate('local');
-	console.log('login called', req.body)
-	console.log('from authenticate', req.user);
-}
-
-function logout() {
-	console.log("logout called")
-}
-
-// delete all this
-function getUsers(req, res) {
-    User.find(function (err, users) {
-        if (err) res.send(err);
-        else res.json(users);
-    });
-}
-
-function addUser(req, res) {
-    var user = new User(_.extend({}, req.body));
-	console.log(user);
-    user.save(function (err) {
-        if (err) res.send(err);
-        else res.json(user);
-    });
-}
-
-function editUser(req, res) {
-    var id = req.params.id;
-    var info = req.body;
-    var query = { _id: id },
-        update = { $set: {
-            username: info.username,
-            // location: info.location,
-            // description: info.description,
-            // date: new Date(info.date)
-        }};
-    User.update(query, update, function (err, updated) {
-        if (err) res.send(err);
-        else res.json(updated);
-    });
-}
-
-function deleteUser(req, res) {
-    var id = req.params.id;
-    User.remove({ _id: id }, function (err, removed) {
-        if (err) res.send(err);
-        else res.json(removed);
-    });
-}
-
-module.exports = router;
+app.get('/logout', function(req, res) {
+	console.log('logged out\n');
+	req.logout();
+	res.redirect('/');
+});

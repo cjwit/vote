@@ -80,8 +80,8 @@ module.exports = React.createClass({
 					</div>
 				</nav>
 
-				<div className="container">App login status is: { loggedIn ? username : "Not logged in" }</div>
-				{ this.props.children }
+				{ this.props.children && React.cloneElement(this.props.children, { login: this.state }) }
+
 				<Footer />
 			</div>
         )
