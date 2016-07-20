@@ -4,7 +4,6 @@ var resourceURL = location.protocol + '//' + location.host + '/api/';
 
 module.exports = {
     loggedIn: function() {
-		console.log("loggedIn called from authService");
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({

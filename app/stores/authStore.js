@@ -7,7 +7,8 @@ var store = function() {
     var loggedIn = function(cb) {
 		console.log("loggedIn called from authStore");
         authService.loggedIn().then(function (res) {
-            cb(res);
+			console.log("loggedIn from authStore", res)
+			cb(res);
         })
     }
 

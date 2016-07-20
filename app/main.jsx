@@ -17,42 +17,51 @@ var User = require('./components/User.jsx');
 
 // #################
 // React/Flux Stores
-var authStore = require('./stores/authStore');
+// var authStore = require('./stores/authStore');
 
 // #########################
 // Get content from database
+/*
 var login;
 var getAuthStoreCallback = function(_login) {
     login = _login;
 	console.log("login from getAuthStoreCallback", login);
     render();
 }
+*/
 
 // ############################
 // functions to manipulate data
 
 // ################
 // set up listeners
-authStore.onChange(getAuthStoreCallback);
+// authStore.onChange(getAuthStoreCallback);
 
 // #################
 // initial rendering
+/*
+// requireAuth needs login info, which populates within the App itself now
 function requireAuth(nextState, replace) {
-	if (!auth.loggedIn()) {
+	var path = window.location.pathname;
+	var split = path.split('/')
+	var pathUser = split[2]
+	console.log("requireAuth", login, pathUser)
+	if (login != pathUser) {
 		replace({
 			pathname: "/login",
 			state: { nextPathname: nextState.location.pathname }
 		});
 	}
 }
+*/
 
 ReactDOM.render((
 	<Router history = { browserHistory }>
-		<Route path = "/" component = { App } loggedIn = { login } >
+		<Route path = "/" component = { App } >
 			<IndexRoute component = { Home } />
 			<Route path = "/login" component = { Login } />
 			<Route path = "/logout" component = { Logout } />
-			<Route path = "/user/:username" component = { User } />
+			<Route path = "/user/:username" component = { User }/>
 		</Route>
 	</Router>
 ), document.getElementById('app'));

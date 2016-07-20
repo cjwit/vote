@@ -56,8 +56,8 @@ app.post('/api/register', function(req, res) {
 app.get('/api/auth', function(req, res) {
 	console.log('checking login status')
 	if (req.user) {
-		console.log('  -- user:', req.user, '\n');
-		res.send(true);
+		console.log('  -- user:', req.user.username, '\n');
+		res.json(req.user.username);
 	}
 	else {
 		console.log('  -- not logged in\n');
