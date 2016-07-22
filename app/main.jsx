@@ -9,22 +9,24 @@ var LoginPage = require('./components/Login.jsx');
 var UserPage = require('./components/User.jsx');
 var PollPage = require('./components/User.jsx');
 var PollsOverview = require('./components/User.jsx');
+
 // #################
 // React/Flux Stores
-// var authStore = require('./stores/authStore');
+var authStore = require('./stores/authStore');
+var pollStore = require('./stores/authStore');
 
 // #########################
 // Get content from database
 
 var login = { status: false, user: null }
-var getAuthStoreCallback = function(_login) {
+var getUserCallback = function(_login) {
     login = _login;
 	console.log("login from getAuthStoreCallback", login);
     render();
 }
 
 var polls;
-var getPollsStoreCallback = function(_polls) {
+var getPollsCallback = function(_polls) {
     polls = _polls;
 	console.log("polls from getPollsStoreCallback", polls);
     render();
@@ -117,7 +119,7 @@ function renderPollPage(id) {
 
 // ################
 // set up listeners
-loginStore.onChange(getLoginCallback);
+loginStore.onChange(getUserCallback);
 pollStore.onChange(getPollsCallback);
 
 // #################
