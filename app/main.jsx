@@ -1,35 +1,27 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var router = require('react-router');
-var Router = router.Router;
-var Route = router.Route;
-var IndexRoute = router.IndexRoute;
-var browserHistory = router.browserHistory;
 var auth = require('./actions/authActions.js')
 
 // ################
 // React Components
-var App = require('./components/App.jsx');
-var Login = require('./components/Login.jsx');
-var LoginError = require('./components/LoginError.jsx');
-var Logout = require('./components/Logout.jsx');
 var Home = require('./components/Home.jsx');
-var User = require('./components/User.jsx');
-
+var LoginPage = require('./components/Login.jsx');
+var UserPage = require('./components/User.jsx');
+var PollPage = require('./components/User.jsx');
+var PollsOverview = require('./components/User.jsx');
 // #################
 // React/Flux Stores
 // var authStore = require('./stores/authStore');
 
 // #########################
 // Get content from database
-/*
-var login;
+
+var login = { status: false, user: null }
 var getAuthStoreCallback = function(_login) {
     login = _login;
 	console.log("login from getAuthStoreCallback", login);
     render();
 }
-*/
 
 var polls;
 var getPollsStoreCallback = function(_polls) {
@@ -48,33 +40,86 @@ var getPollsStoreCallback = function(_polls) {
 
 // #################
 // initial rendering
-/*
-// requireAuth needs login info, which populates within the App itself now
-function requireAuth(nextState, replace) {
-	var path = window.location.pathname;
-	var split = path.split('/')
-	var pathUser = split[2]
-	console.log("requireAuth", login, pathUser)
-	if (login != pathUser) {
-		replace({
-			pathname: "/login",
-			state: { nextPathname: nextState.location.pathname }
-		});
+function render() {
+    var path = window.location.pathname;
+    var split = path.split('/')
+    var folder = split[1]
+    var id = split[2] || null
+
+    if (id === null) {
+        switch (folder) {
+            case '':
+                renderHome();
+                break;
+            case 'polls':
+                renderPolls();
+                break;
+            case 'login':
+                renderLogin();
+                break;
+			case 'user':
+                renderUser();
+                break;
+            // add default error case
+        }
+    } else {
+        switch (folder) {
+            case 'polls':
+                renderPollPage(id);
+                break;
+            // add default error case
+        }
+    }
+}
+
+function renderHome() {
+    ReactDOM.render(<Home
+		login = { login }
+        polls = { polls }
+        />, document.getElementById('container'));
+}
+
+function renderUser() {
+    if (login.status === true) {
+        ReactDOM.render(<UserPage
+            login = { login }
+            polls = { polls }
+            />, document.getElementById('container'));
+    } else {
+		console.log("Trying to render user, but login = false")
+		renderHome();
 	}
 }
-*/
 
-ReactDOM.render((
-	<Router history = { browserHistory } polls = { polls } >
-		<Route path = "/" component = { App } >
-			<IndexRoute component = { Home } />
-			<Route path = "/login" component = { Login } >
-				<Route path = "/login/error" component = { LoginError } />
-			</Route>
-			<Route path = "/logout" component = { Logout } />
-			<Route path = "/user/:username" component = { User }/>
-		</Route>
-	</Router>
-), document.getElementById('app'));
+function renderLogin() {
+    ReactDOM.render(<LoginPage
+        login = { login }
+        />, document.getElementById('container'));
+}
 
-// 			<Route path = "/user/:username" component = { User } onEnter = { requireAuth }/>
+function renderPolls() {
+    if (polls.length > 0) {
+        ReactDOM.render(<PollsOverview
+            login = { login }
+			polls = { polls }
+            />, document.getElementById('container'));
+    }
+}
+
+function renderPollPage(id) {
+    if (polls.length > 0) {
+        ReactDOM.render(<PollPage
+            login = { login }
+			polls = { polls }
+            />, document.getElementById('container'));
+    }
+}
+
+// ################
+// set up listeners
+loginStore.onChange(getLoginCallback);
+pollStore.onChange(getPollsCallback);
+
+// #################
+// initial rendering
+render();
