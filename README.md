@@ -2,10 +2,10 @@
 
 To do:
 
-* Build polls
-	* Route through Flux to update automatically
-	* Add options with text boxes?
-* User should redirect if
-	* Not logged in
-	* Not the user requested in the params
-* Edit/delete Account
+* Reintegrate addUser into Auth Flow
+* Build action/stores/service flow for adding polls
+* Reorganize Home and other initial pages using the current `<App />` page as a template
+
+Then:
+
+* Build edit and delete functionality for users and polls
