@@ -3,7 +3,9 @@ var promise = require('es6-promise');
 var resourceURL = location.protocol + '//' + location.host + '/api/user';
 
 module.exports = {
-    getUsers: function() {
+
+	// likely to be unecssary, delete if so
+	getUsers: function() {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({

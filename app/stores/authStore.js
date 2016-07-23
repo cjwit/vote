@@ -1,5 +1,5 @@
 var dispatcher = require('../dispatcher.js');
-var loginService = require('../services/loginService.js');
+var authService = require('../services/authService.js');
 
 var LoginStore = function() {
     var listeners = [];             // collection of functions

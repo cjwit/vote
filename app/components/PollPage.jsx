@@ -11,9 +11,9 @@ module.exports = React.createClass({
 		}
 		return (
 			<div>
-				<Nav active = { "home" } login = { this.props.login } />
+				<Nav active = { "poll" } login = { this.props.login } />
 				<div className = "container">
-					<h1>Home page</h1>
+					<h1>Poll page</h1>
 					<p>Logged in? { this.props.login.status ? "Yes" : "No" }{ username !== "" ? ", " + username : null}</p>
 					<p>Polls: { this.props.polls.length }</p>
 				</div>

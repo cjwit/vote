@@ -5,14 +5,14 @@ var auth = require('./actions/authActions.js')
 // ################
 // React Components
 var Home = require('./components/Home.jsx');
-var LoginPage = require('./components/Login.jsx');
-var UserPage = require('./components/User.jsx');
-var PollPage = require('./components/User.jsx');
+var LoginPage = require('./components/LoginPage.jsx');
+var UserPage = require('./components/UserPage.jsx');
+var PollPage = require('./components/PollPage.jsx');
 
 // #################
 // React/Flux Stores
 var authStore = require('./stores/authStore');
-var pollStore = require('./stores/authStore');
+var pollStore = require('./stores/pollStore');
 
 // #########################
 // Get content from database
@@ -20,11 +20,11 @@ var pollStore = require('./stores/authStore');
 var login = { status: false, user: null }
 var getUserCallback = function(_login) {
     login = _login;
-	console.log("login from getAuthStoreCallback", login);
+	console.log("login from getUserCallback", login);
     render();
 }
 
-var polls;
+var polls = [];
 var getPollsCallback = function(_polls) {
     polls = _polls;
 	console.log("polls from getPollsStoreCallback", polls);
@@ -77,15 +77,16 @@ function renderHome() {
     ReactDOM.render(<Home
 		login = { login }
         polls = { polls }
-        />, document.getElementById('container'));
+        />, document.getElementById('app'));
 }
 
 function renderUser() {
+	// filter polls to those owned by the user
     if (login.status === true) {
         ReactDOM.render(<UserPage
             login = { login }
             polls = { polls }
-            />, document.getElementById('container'));
+            />, document.getElementById('app'));
     } else {
 		console.log("Trying to render user, but login = false")
 		renderHome();
@@ -95,30 +96,22 @@ function renderUser() {
 function renderLogin() {
     ReactDOM.render(<LoginPage
         login = { login }
-        />, document.getElementById('container'));
-}
-
-function renderPolls() {
-    if (polls.length > 0) {
-        ReactDOM.render(<PollsOverview
-            login = { login }
-			polls = { polls }
-            />, document.getElementById('container'));
-    }
+        />, document.getElementById('app'));
 }
 
 function renderPollPage(id) {
+	// find the correct poll and deliver just that one
     if (polls.length > 0) {
         ReactDOM.render(<PollPage
             login = { login }
 			polls = { polls }
-            />, document.getElementById('container'));
+            />, document.getElementById('app'));
     }
 }
 
 // ################
 // set up listeners
-loginStore.onChange(getUserCallback);
+authStore.onChange(getUserCallback);
 pollStore.onChange(getPollsCallback);
 
 // #################

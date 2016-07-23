@@ -1,5 +1,5 @@
 var dispatcher = require('../dispatcher.js');
-var pollService = require('../pollServices/pollService.js');
+var pollService = require('../services/pollService.js');
 
 var store = function() {
     var listeners = [];             // collection of functions
