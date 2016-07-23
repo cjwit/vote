@@ -17,10 +17,10 @@ var pollStore = require('./stores/pollStore');
 // #########################
 // Get content from database
 
-var login = { status: false, user: null }
-var getUserCallback = function(_login) {
+var login = {}
+var getLoginCallback = function(_login) {
     login = _login;
-	console.log("login from getUserCallback", login);
+	console.log("login from getLoginCallback", login);
     render();
 }
 
@@ -111,7 +111,7 @@ function renderPollPage(id) {
 
 // ################
 // set up listeners
-authStore.onChange(getUserCallback);
+authStore.onChange(getLoginCallback);
 pollStore.onChange(getPollsCallback);
 
 // #################

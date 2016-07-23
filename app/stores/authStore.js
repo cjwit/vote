@@ -18,7 +18,7 @@ var LoginStore = function() {
     }
 
     var login = function(loginObject) {
-        loginService.login(loginObject).then(function (res) {
+        authService.login(loginObject).then(function (res) {
             console.log(res);
             currentUser = {
                 status: true,
@@ -29,7 +29,7 @@ var LoginStore = function() {
     }
 
     var logout = function() {
-		loginService.logout(loginObject).then(function (res) {
+		authService.logout(loginObject).then(function (res) {
 			console.log(res);
 			currentUser = {
 				status: ralse,
@@ -50,7 +50,7 @@ var LoginStore = function() {
 
     dispatcher.register(function (payload) {
         var split = payload.type.split(':');
-        if (split[0] === 'login') {
+        if (split[0] === 'auth') {
             switch (split[1]) {
                 case "login":
                     login(payload.object);

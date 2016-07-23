@@ -1,5 +1,6 @@
 var React = require('react');
 var Footer = require('./Footer.jsx');
+var LoginForm = require('./LoginForm.jsx');
 var Nav = require('./Nav.jsx');
 
 module.exports = React.createClass({
@@ -15,6 +16,7 @@ module.exports = React.createClass({
 				<div className = "container">
 					<h1>Login page</h1>
 					<p>Logged in? { this.props.login.status ? "Yes" : "No" }{ username !== "" ? ", " + username : null}</p>
+					<LoginForm />
 				</div>
 				<Footer />
 			</div>
