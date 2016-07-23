@@ -27,8 +27,8 @@ app.use(express.static(path.join(__dirname, "../app/dist")));
 // Polls
 var pollController = require('./controllers/pollController');
 app.use("/api/polls", pollController);
-// var userController = require('./controllers/userController');
-// app.use("/api/user", userController);
+var userController = require('./controllers/userController');
+app.use("/api/user", userController);
 
 // passport config
 var User = require('./data/user.js');

@@ -3,8 +3,13 @@ var Poll = require('../data/poll');
 var _ = require('underscore');
 
 var router = require('express').Router();
-// router.route('/:id').post(editEvent).delete(deleteEvent);
+router.route('/:id').get(getPoll).post(editPoll).delete(deletePoll);
 router.route('/').get(getPolls).post(addPoll);
+
+// getPoll necessary?
+function getPoll(req, res) {
+	console.log("get poll called")
+}
 
 function getPolls(req, res) {
     Poll.find(function (err, polls) {
@@ -15,54 +20,35 @@ function getPolls(req, res) {
 
 function addPoll(req, res) {
     var poll = new Poll(_.extend({}, req.body));
-	var options = poll.options[0].split(",");
-	poll.options = [];
-	options.map(function(optionName) {
-		var option = {
-			name: optionName.trim(),
-			votes: 0
-		};
-		poll.options.push(option);
-	})
-
-	console.log(poll);
-
+	console.log("addPoll:", poll);
+	poll.date = new Date(Date.now());
     poll.save(function (err) {
         if (err) res.send(err);
         else res.json(poll);
     });
 }
 
-/*
-function editEvent(req, res) {
+function editPoll(req, res) {
     var id = req.params.id;
     var info = req.body;
     var query = { _id: id },
         update = { $set: {
             name: info.name,
-            location: info.location,
-            description: info.description,
-            date: new Date(info.date),
-            tags: info.tags,
-            contactName: info.contactName,
-            contactEmail: info.contactEmail,
-            edited: info.edited,
-            editDate: info.editDate
+			options: info.options
         }};
-    Event.update(query, update, function (err, updated) {
+	console.log("editPoll:", update);
+    Poll.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
     });
 }
 
-function deleteEvent(req, res) {
+function deletePoll(req, res) {
     var id = req.params.id;
-    Event.remove({ _id: id }, function (err, removed) {
+    Poll.remove({ _id: id }, function (err, removed) {
         if (err) res.send(err);
         else res.json(removed);
     });
 }
-
-*/
 
 module.exports = router;

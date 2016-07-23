@@ -1,25 +1,25 @@
 var dispatcher = require('../dispatcher');
 
 module.exports = {
-    // called from the Thing component
-    addThing: function(thing) {
+    // called from the Poll component
+    addPoll: function(poll) {
         dispatcher.dispatch({
-            object: thing,
-            type: "thing:addThing"
+            object: poll,
+            type: "poll:addPoll"
         });
     },
 
-	deleteThing: function(thing) {
+	deletePoll: function(poll) {
 		dispatcher.dispatch({
-			object: thing,
-			type: "event:deleteThing"
+			object: poll,
+			type: "poll:deletePoll"
 		});
 	},
 
-	editThing: function(thing) {
+	editPoll: function(poll) {
 		dispatcher.dispatch({
-			object: thing,
-			type: "event:editThing"
+			object: poll,
+			type: "poll:editPoll"
 		});
 	}
 }

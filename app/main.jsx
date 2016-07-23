@@ -8,7 +8,6 @@ var Home = require('./components/Home.jsx');
 var LoginPage = require('./components/Login.jsx');
 var UserPage = require('./components/User.jsx');
 var PollPage = require('./components/User.jsx');
-var PollsOverview = require('./components/User.jsx');
 
 // #################
 // React/Flux Stores
