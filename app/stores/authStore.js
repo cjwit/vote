@@ -1,5 +1,6 @@
 var dispatcher = require('../dispatcher.js');
 var authService = require('../services/authService.js');
+var authActions = require('../actions/authActions.js');
 
 var LoginStore = function() {
     var listeners = [];             // collection of functions
@@ -18,8 +19,15 @@ var LoginStore = function() {
         listeners.push(listener);
     }
 
-    var login = function(loginObject) {
-        authService.login(loginObject).then(function (res) {
+	var addUser = function(user) {
+		authService.addUser(user).then(function (res) {
+			console.log(res);
+			authActions.login(user);
+		});
+	}
+
+	var login = function(loginObject) {
+		authService.login(loginObject).then(function (res) {
             console.log(res);
             currentUser = {
                 status: true,
@@ -90,6 +98,9 @@ var LoginStore = function() {
                     break;
                 case "logout":
                     logout();
+                    break;
+				case "addUser":
+                    addUser(payload.object);
                     break;
             }
         }

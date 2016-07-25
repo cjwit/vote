@@ -5,7 +5,6 @@ var Nav = require('./Nav.jsx');
 
 module.exports = React.createClass({
 	render: function() {
-		console.log(this.props.login)
 		var err;
 		if (this.props.login.error) {
 			console.log(this.props.login.error);

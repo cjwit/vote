@@ -45,12 +45,9 @@ app.post('/api/register', function(req, res) {
 	console.log('register called', req.body);
 	User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
 		if (err) {
-			return res.send('error with registration');
+			res.json({ message: 'error' });
 		}
-		passport.authenticate('local')(req, res, function() {
-			console.log('  -- user from authenticate', req.user, '\n');
-			res.redirect('/');
-		});
+		res.json({ message: 'user created' });
 	});
 });
 
@@ -67,7 +64,7 @@ app.get('/api/auth', function(req, res) {
 })
 
 app.post('/api/auth/login',
-	passport.authenticate('local', { failureRedirect: '/login/error' }),
+	passport.authenticate('local'),
 	function(req, res) {
 		if (req.user) {
 			console.log('login called');

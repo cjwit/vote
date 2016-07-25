@@ -20,5 +20,12 @@ module.exports = {
             object: payload,
             type: "auth:getLoginStatus"
         });
-    }
+    },
+
+	addUser: function(payload) {
+		dispatcher.dispatch({
+			object: payload,
+			type: "auth:addUser"
+		});
+	}
 }

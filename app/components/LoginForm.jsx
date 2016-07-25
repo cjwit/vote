@@ -28,7 +28,7 @@ module.exports = React.createClass({
 	createAccount: function(e) {
 		e.preventDefault();
 		var user = this.state;
-		userActions.addUser(user);
+		authActions.addUser(user);
 	},
 
 	login: function(e) {
