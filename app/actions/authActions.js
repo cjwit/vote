@@ -17,11 +17,11 @@ module.exports = {
         });
     },
 
-	loggedIn: function(payload) {
+	getLoginStatus: function(payload) {
 		console.log("loggedIn called from authActions");
 		dispatcher.dispatch({
             object: payload,
-            type: "auth:loggedIn"
+            type: "auth:getLoginStatus"
         });
     }
 }

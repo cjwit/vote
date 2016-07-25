@@ -3,7 +3,8 @@ var promise = require('es6-promise');
 var resourceURL = location.protocol + '//' + location.host + '/api/';
 
 module.exports = {
-    loggedIn: function() {
+    getLoginStatus: function() {
+		console.log("getLoginStatus called");
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({

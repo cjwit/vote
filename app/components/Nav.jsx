@@ -2,6 +2,10 @@ var React = require('react');
 var actions = require('../actions/authActions');
 
 module.exports = React.createClass({
+	componentDidMount: function() {
+		actions.getLoginStatus();
+	},
+
 	logout: function() {
 		actions.logout();
 	},

@@ -22,8 +22,31 @@ var LoginStore = function() {
             console.log(res);
             currentUser = {
                 status: true,
-                user: res
+                user: {
+					username: res
+				}
             };
+            triggerListeners();
+        })
+    }
+
+	var getLoginStatus = function(loginObject) {
+		console.log("store getLoginStatus called");
+		authService.getLoginStatus(loginObject).then(function (res) {
+            console.log(res);
+			if (res === false) {
+				currentUser = {
+					status: false,
+					user: null
+				};
+			} else {
+				currentUser = {
+					status: true,
+					user: {
+						username: res
+					}
+				};
+			}
             triggerListeners();
         })
     }
@@ -32,7 +55,7 @@ var LoginStore = function() {
 		authService.logout(loginObject).then(function (res) {
 			console.log(res);
 			currentUser = {
-				status: ralse,
+				status: false,
 				user: null
 			};
 			triggerListeners();
@@ -52,6 +75,9 @@ var LoginStore = function() {
         var split = payload.type.split(':');
         if (split[0] === 'auth') {
             switch (split[1]) {
+				case "getLoginStatus":
+                    getLoginStatus();
+                    break;
                 case "login":
                     login(payload.object);
                     break;
