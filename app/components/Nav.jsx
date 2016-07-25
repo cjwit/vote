@@ -28,7 +28,7 @@ module.exports = React.createClass({
 		if (loggedIn) {
 			logoutButton = <li className= 'navlink' id = 'logout'><a onClick = { this.logout }>Logout</a></li>
 			var userLinkString = "/user/" + username;
-			userButton = <li className= { active === 'user' ? 'navlink active' : 'navlink' } id = 'user'><a href= { userLinkString }>My Polls</a></li>
+			userButton = <li className= { active === 'user' ? 'navlink active' : 'navlink' } id = 'user'><a href="/user">My Polls</a></li>
 		} else {
 			loginButton = <li className= { active === 'login' ? 'navlink active' : 'navlink' } id = 'login'><a href="/login">Login</a></li>
 		}
