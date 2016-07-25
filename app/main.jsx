@@ -20,7 +20,6 @@ var pollStore = require('./stores/pollStore');
 var login = {}
 var getLoginCallback = function(_login) {
     login = _login;
-	console.log("login from getLoginCallback", login);
     render();
 }
 

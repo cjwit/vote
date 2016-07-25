@@ -4,7 +4,6 @@ var resourceURL = location.protocol + '//' + location.host + '/api/';
 
 module.exports = {
     getLoginStatus: function() {
-		console.log("getLoginStatus called");
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -18,7 +17,6 @@ module.exports = {
     },
 
 	login: function(user) {
-		console.log("login called from authService", user);
 		var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -34,8 +32,7 @@ module.exports = {
     },
 
 	logout: function() {
-		console.log("logout called from authService");
-        var Promise = promise.Promise;
+		var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + 'auth/logout',
@@ -56,34 +53,6 @@ module.exports = {
                 method: "POST",
                 dataType: 'json',
                 contentType: 'application/json',
-                success: resolve,
-                error: reject
-            });
-        });
-    },
-
-    editUser: function (user) {
-        var Promise = promise.Promise;
-        return new Promise(function (resolve, reject) {
-            $.ajax({
-                url: resourceURL + 'user/' + user.id,
-                data: JSON.stringify(user),
-                method: "POST",
-                dataType: 'json',
-                contentType: 'application/json',
-                success: resolve,
-                error: reject
-            });
-        });
-    },
-
-    deleteUser: function(user) {
-        var Promise = promise.Promise;
-        return new Promise(function (resolve, reject) {
-            $.ajax({
-                url: resourceURL + 'user/' + user._id,
-                method: "DELETE",
-                dataType: 'json',
                 success: resolve,
                 error: reject
             });

@@ -2,7 +2,6 @@ var dispatcher = require('../dispatcher');
 
 module.exports = {
     login: function(payload) {
-		console.trace("login called from authActions", payload);
         dispatcher.dispatch({
             object: payload,
             type: "auth:login"
@@ -10,15 +9,13 @@ module.exports = {
     },
 
 	logout: function(payload) {
-		console.log("logout called from authActions");
-        dispatcher.dispatch({
+		dispatcher.dispatch({
             object: payload,
             type: "auth:logout"
         });
     },
 
 	getLoginStatus: function(payload) {
-		console.log("loggedIn called from authActions");
 		dispatcher.dispatch({
             object: payload,
             type: "auth:getLoginStatus"

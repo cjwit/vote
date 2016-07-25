@@ -6,7 +6,8 @@ module.exports = React.createClass({
 		actions.getLoginStatus();
 	},
 
-	logout: function() {
+	logout: function(e) {
+		e.preventDefault();
 		actions.logout();
 	},
 
@@ -17,9 +18,7 @@ module.exports = React.createClass({
 		if (loggedIn) {
 			username = this.props.login.user.username;
 		}
-		var polls = this.props.polls;
 		var active = this.props.active;
-		console.log("Rendering Nav. Logged In:", loggedIn, "Username:", username, "Polls:", polls);
 
 		// build login buttons
 		var loginButton = null,
@@ -27,7 +26,7 @@ module.exports = React.createClass({
 			userButton = null;
 
 		if (loggedIn) {
-			logoutButton = <li className= 'navlink' id = 'logout'><a href="#" onClick = { this.logout }>Logout</a></li>
+			logoutButton = <li className= 'navlink' id = 'logout'><a onClick = { this.logout }>Logout</a></li>
 			var userLinkString = "/user/" + username;
 			userButton = <li className= { active === 'user' ? 'navlink active' : 'navlink' } id = 'user'><a href= { userLinkString }>My Polls</a></li>
 		} else {
@@ -52,6 +51,7 @@ module.exports = React.createClass({
 							<ul className="nav navbar-nav">
 								{ userButton }
 								{ loginButton }
+								{ logoutButton }
 							</ul>
 						</div>
 					</div>

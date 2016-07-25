@@ -31,7 +31,6 @@ var LoginStore = function() {
     }
 
 	var getLoginStatus = function(loginObject) {
-		console.log("store getLoginStatus called");
 		authService.getLoginStatus(loginObject).then(function (res) {
             console.log(res);
 			if (res === false) {
@@ -52,15 +51,14 @@ var LoginStore = function() {
     }
 
     var logout = function() {
-		authService.logout(loginObject).then(function (res) {
+		authService.logout().then(function (res) {
 			console.log(res);
 			currentUser = {
 				status: false,
 				user: null
 			};
 			triggerListeners();
-		})
-        triggerListeners();
+		});
     }
 
     var triggerListeners = function() {

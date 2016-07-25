@@ -72,7 +72,7 @@ app.post('/api/auth/login',
 		if (req.user) {
 			console.log('login called');
 			console.log('  -- user from authenticate:', req.user.username, '\n');
-			res.json(req.user);
+			res.json(req.user.username);
 		} else {
 			console.log('login failed');
 			res.redirect('/login');
@@ -82,7 +82,7 @@ app.post('/api/auth/login',
 app.get('/api/auth/logout', function(req, res) {
 	console.log('logged out\n');
 	req.logout();
-	res.redirect('/');
+	res.send(false);
 });
 
 app.get('/ping', function(req, res) {

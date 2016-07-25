@@ -10,6 +10,7 @@ module.exports = React.createClass({
 		if (this.props.login.status) {
 			username = this.props.login.user.username;
 		}
+
 		return (
 			<div>
 				<Nav active = { "login" } login = { this.props.login } />
