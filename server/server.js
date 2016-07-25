@@ -72,10 +72,18 @@ app.post('/api/auth/login',
 		if (req.user) {
 			console.log('login called');
 			console.log('  -- user from authenticate:', req.user.username, '\n');
-			res.json(req.user.username);
+			var result = {
+				username: req.user.username,
+				err: null
+			}
+			res.json(result);
 		} else {
 			console.log('login failed');
-			res.redirect('/login');
+			var result = {
+				username: null,
+				err: "Login Failed"
+			}
+			res.json(result);
 		}
 	});
 

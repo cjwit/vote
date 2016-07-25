@@ -5,7 +5,8 @@ var LoginStore = function() {
     var listeners = [];             // collection of functions
     var currentUser = {
         status: false,
-        user: null
+        user: null,
+		error: null
     }
 
     var getUser = function(cb) {
@@ -23,11 +24,14 @@ var LoginStore = function() {
             currentUser = {
                 status: true,
                 user: {
-					username: res
-				}
+					username: res.username
+				},
+				error: res.err
             };
             triggerListeners();
-			window.location.href = "/user";
+			if (currentUser.error === null) {
+				window.location.href = "/user";
+			}
         })
     }
 
@@ -37,14 +41,16 @@ var LoginStore = function() {
 			if (res === false) {
 				currentUser = {
 					status: false,
-					user: null
+					user: null,
+					error: null
 				};
 			} else {
 				currentUser = {
 					status: true,
 					user: {
 						username: res
-					}
+					},
+					error: null
 				};
 			}
             triggerListeners();
@@ -56,7 +62,8 @@ var LoginStore = function() {
 			console.log(res);
 			currentUser = {
 				status: false,
-				user: null
+				user: null,
+				error: null
 			};
 			triggerListeners();
 			window.location.href = "/";

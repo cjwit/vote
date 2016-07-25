@@ -3,8 +3,9 @@
 To do:
 
 * Login
-	* Decide what to do with errors (maybe status can include error state?)
-	* Deal with failed login attempts
+	* Failed login is not reaching else statement on server.js
+		* Decide what to do with errors (maybe status can include error state?)
+		* Deal with failed login attempts
 	* Reintegrate addUser into Auth Flow
 
 Then:

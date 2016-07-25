@@ -18,7 +18,7 @@ var pollStore = require('./stores/pollStore');
 // #########################
 // Get content from database
 
-var login = {}
+var login = {};
 var getLoginCallback = function(_login) {
     login = _login;
     render();
