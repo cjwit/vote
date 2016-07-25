@@ -26,7 +26,11 @@ module.exports = {
                 dataType: 'json',
                 contentType: 'application/json',
                 success: resolve,
-                error: reject
+                error: function(httpObject, exception) {
+					if (httpObject.status == 401) {
+						alert("Login failed, try again");
+					}
+				}
             });
 		});
     },

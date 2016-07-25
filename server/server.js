@@ -66,6 +66,7 @@ app.get('/api/auth', function(req, res) {
 app.post('/api/auth/login',
 	passport.authenticate('local'),
 	function(req, res) {
+		console.log('trying to log in, req.user:', req.user)
 		if (req.user) {
 			console.log('login called');
 			console.log('  -- user from authenticate:', req.user.username, '\n');
