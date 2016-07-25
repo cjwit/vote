@@ -2,10 +2,7 @@
 
 To do:
 
-* Login
-	* Failed login is not reaching else statement on server.js
-		* Decide what to do with errors (maybe status can include error state?)
-		* Deal with failed login attempts
+* Catch 401 error on failed login
 
 Then:
 

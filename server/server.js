@@ -63,26 +63,17 @@ app.get('/api/auth', function(req, res) {
 	}
 })
 
+// incorrect login results in 401 error, needs to be caught somewhere
 app.post('/api/auth/login',
 	passport.authenticate('local'),
 	function(req, res) {
-		console.log('trying to log in, req.user:', req.user)
-		if (req.user) {
-			console.log('login called');
-			console.log('  -- user from authenticate:', req.user.username, '\n');
-			var result = {
-				username: req.user.username,
-				err: null
-			}
-			res.json(result);
-		} else {
-			console.log('login failed');
-			var result = {
-				username: null,
-				err: "Login Failed"
-			}
-			res.json(result);
+		console.log('login called');
+		console.log('  -- user from authenticate:', req.user.username, '\n');
+		var result = {
+			username: req.user.username,
+			err: null
 		}
+		res.json(result);
 	});
 
 app.get('/api/auth/logout', function(req, res) {
