@@ -27,6 +27,7 @@ var LoginStore = function() {
 				}
             };
             triggerListeners();
+			window.location.href = "/user";
         })
     }
 
@@ -58,6 +59,7 @@ var LoginStore = function() {
 				user: null
 			};
 			triggerListeners();
+			window.location.href = "/";
 		});
     }
 

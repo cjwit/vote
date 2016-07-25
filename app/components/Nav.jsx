@@ -9,7 +9,6 @@ module.exports = React.createClass({
 	logout: function(e) {
 		e.preventDefault();
 		actions.logout();
-		window.location.href = "/";
 	},
 
 	render: function() {

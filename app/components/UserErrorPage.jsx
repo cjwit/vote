@@ -13,7 +13,7 @@ module.exports = React.createClass({
 			<div>
 				<Nav active = { "user" } login = { this.props.login } />
 				<div className = "container">
-					<h1>User page: NOT LOGGED IN!</h1>
+					<h1>User page:</h1>
 					<p>Logged in? { this.props.login.status ? "Yes" : "No" }{ username !== "" ? ", " + username : null}</p>
 					<p>Polls: { this.props.polls.length }</p>
 				</div>
