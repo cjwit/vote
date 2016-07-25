@@ -2,7 +2,7 @@
 
 To do:
 
-* Catch 401 error on failed login
+* Catch 401 error on failed login (instead of using alert)
 
 Then:
 

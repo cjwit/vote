@@ -16,7 +16,8 @@ module.exports = {
         });
     },
 
-	login: function(user) {
+	// currently handling erroneous login info with alert, could be fancier
+	login: function(user) {	
 		var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
