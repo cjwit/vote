@@ -3,6 +3,7 @@ var Poll = require('../data/poll');
 var _ = require('underscore');
 
 var router = require('express').Router();
+router.route('/vote/:id').post(addVote);
 router.route('/:id').get(getPoll).post(editPoll).delete(deletePoll);
 router.route('/').get(getPolls).post(addPoll);
 
@@ -47,6 +48,21 @@ function deletePoll(req, res) {
     Poll.remove({ _id: id }, function (err, removed) {
         if (err) res.send(err);
         else res.json(removed);
+    });
+}
+
+function addVote(req, res) {
+    var id = req.params.id;
+	var option = req.body.option;
+    console.log("addVote", id, option);
+	var query = { _id: id,
+				  'options.name': option },
+        update = { $inc: {
+			'options.$.votes': 1
+        }};
+    Poll.update(query, update, function (err, updated) {
+        if (err) res.send(err);
+        else res.json(updated);
     });
 }
 

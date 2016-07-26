@@ -36,6 +36,13 @@ var store = function() {
         });
     }
 
+	var addVote = function(vote) {
+        pollService.addVote(vote).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        })
+    }
+
     var triggerListeners = function() {
         getPolls(function (res) {
             listeners.forEach(function(listener) {
@@ -56,6 +63,9 @@ var store = function() {
                     break;
                 case "editPoll":
                     editPoll(payload.object);
+                    break;
+				case "addVote":
+                    addVote(payload.object);
                     break;
             }
         }

@@ -21,5 +21,12 @@ module.exports = {
 			object: poll,
 			type: "poll:editPoll"
 		});
+	},
+
+	addVote: function(vote) {
+		dispatcher.dispatch({
+			object: vote,
+			type: "poll:addVote"
+		});
 	}
 }
