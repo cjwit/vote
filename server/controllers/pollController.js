@@ -21,7 +21,6 @@ function getPolls(req, res) {
 function addPoll(req, res) {
     var poll = new Poll(_.extend({}, req.body));
 	console.log("addPoll:", poll);
-	poll.date = new Date(Date.now());
     poll.save(function (err) {
         if (err) res.send(err);
         else res.json(poll);

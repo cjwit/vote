@@ -16,12 +16,32 @@ module.exports = React.createClass({
         submit.prop('disabled', true)
     },
 
+	resetForm: function() {
+		this.setState({
+			name: "",
+			options: "",
+			date: null
+		});
+		$(".form-group").removeClass("has-error has-success");
+		$('#submit').prop('disabled', true);
+	},
+
     addPoll: function(e) {
         e.preventDefault();
         var info = this.state;
         var now = new Date(Date.now());
         info.date = now;
+		var options = [];
+		info.options.split(',').forEach(function(o) {
+			var option = {
+				name: o.trim(),
+				votes: 0
+			}
+			options.push(option);
+		});
+		info.options = options;
         actions.addPoll(info);
+		this.resetForm();
     },
 
     handleInputChange: function(e) {
