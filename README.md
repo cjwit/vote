@@ -11,6 +11,8 @@ Next up:
 	* Show my polls
 * Create sort and search functionality on home page
 * Build D3 representations for minipoll and poll page
+* Require login for creating poll
+	* Add owner to schema, add login.status to form validation, add owner to addPoll
 
 Potential future projects:
 

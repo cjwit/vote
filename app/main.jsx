@@ -7,7 +7,6 @@ var auth = require('./actions/authActions.js')
 var Home = require('./components/Home.jsx');
 var LoginPage = require('./components/LoginPage.jsx');
 var UserPage = require('./components/UserPage.jsx');
-var UserErrorPage = require('./components/UserErrorPage.jsx');
 var PollPage = require('./components/PollPage.jsx');
 
 // #################
