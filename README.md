@@ -2,6 +2,7 @@
 
 Next up:
 
+* Disable voting for a poll after a vote is cast
 * Set up individual poll page
 	* Edit poll
 	* Delete poll
