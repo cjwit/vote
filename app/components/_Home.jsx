@@ -11,15 +11,14 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		var loggedIn = this.props.state.loggedIn,
-			username = this.props.state.username,
-			polls = this.props.state.polls;
+		var polls = this.props.polls;
 
 		console.log(polls);
 		var MiniPolls = [];
 		polls.forEach(function(poll, index) {
 			MiniPolls.push(<MiniPoll name = { poll.name } options = { poll.options } key = { "poll" + index } />)
 		})
+		
 		return (
 			<div>
 				<div className="container">
