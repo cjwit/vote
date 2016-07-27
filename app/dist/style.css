@@ -27,3 +27,8 @@
   margin-top: 50px;
   text-align: center;
   border-top: 1px solid #aaaaaa; }
+
+.pager li,
+.currentPage {
+  font-size: 0.7em;
+  margin: 5px; }

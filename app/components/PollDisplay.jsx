@@ -1,5 +1,5 @@
 var React = require('react');
-var MiniPoll = require('./MiniPoll.jsx');
+var PollList = require('./PollList.jsx');
 var CreatePollForm = require('./CreatePollForm.jsx');
 
 module.exports = React.createClass({
@@ -77,11 +77,6 @@ module.exports = React.createClass({
 
 		polls = this.sortPolls(polls);
 
-		var MiniPolls = [];
-		polls.forEach(function(poll, index) {
-			MiniPolls.push(<MiniPoll poll = { poll } key = { "poll" + index } />)
-		});
-
 		return (
 			<div className="row">
 				<div className="col-sm-4 col-sm-offset-2">
@@ -89,7 +84,7 @@ module.exports = React.createClass({
 						<CreatePollForm login = { this.props.login }/>
 						:
 						<div id = "searchAndSort">
-							<h2>Sort Polls By:</h2>
+							<h2>Sort Polls By</h2>
 							<p><span id = "mostVotes" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Number of Votes</span></p>
 							<p><span id = "dateRecent" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Most Recent</span></p>
 							<p><span id = "dateOldest" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Creation Date</span></p>
@@ -101,7 +96,7 @@ module.exports = React.createClass({
 				</div>
 				<div className="col-sm-4">
 					<h2>Recent Polls</h2>
-					{ MiniPolls }
+					<PollList polls = { polls } login = { this.props.login } />
 				</div>
 			</div>
         )
