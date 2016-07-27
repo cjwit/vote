@@ -86,10 +86,14 @@ module.exports = React.createClass({
 						<div id = "searchAndSort">
 							<h2>Sort Polls By</h2>
 							<p><span id = "mostVotes" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Number of Votes</span></p>
-							<p><span id = "dateRecent" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Most Recent</span></p>
-							<p><span id = "dateOldest" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Creation Date</span></p>
-							<p><span id = "nameAZ" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Name (A-Z)</span></p>
-							<p><span id = "nameZA" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Name (Z-A)</span></p>
+							<div className = "btn-group btn-group-justified" role = "group" aria-label = "...">
+								<button type = "button" id = "dateRecent" onClick = { this.sortSelector } className="btn btn-default sort-selector">Newest</button>
+								<button type = "button" id = "dateOldest" onClick = { this.sortSelector } className="btn btn-default sort-selector">Oldest</button>
+							</div>
+							<div className = "btn-group btn-group-justified" role = "group" aria-label = "...">
+								<button type = "button" id = "nameAZ" onClick = { this.sortSelector } className="btn btn-default sort-selector">Name (A-Z)</button>
+								<button type = "button" id = "nameZA" onClick = { this.sortSelector } className="btn btn-default sort-selector">Name (Z-A)</button>
+							</div>
 							<h2>Search</h2>
 						</div>
 					}
