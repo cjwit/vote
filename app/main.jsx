@@ -30,6 +30,7 @@ var getPollsCallback = function(_polls) {
     render();
 }
 
+sessionStorage.setItem('voted', JSON.stringify([]));
 
 // ############################
 // functions to manipulate data

@@ -14,7 +14,8 @@ module.exports = React.createClass({
     },
 
     componentWillReceiveProps: function() {
-        this.setState({ startIndex: 0 });
+		// if resorting, setState
+		// this.setState({ startIndex: 0 });
     },
 
     previous: function() {
