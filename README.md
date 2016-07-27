@@ -2,7 +2,6 @@
 
 Next up:
 
-* Disable voting for a poll after a vote is cast
 * Set up individual poll page
 	* Edit poll
 	* Delete poll
@@ -20,3 +19,4 @@ Next up:
 Potential future projects:
 
 * Catch 401 error on failed login (instead of using alert)
+* Move disable voting logic from sessionStorage to localStorage or require login for voting and keep an array of voted polls in the user info

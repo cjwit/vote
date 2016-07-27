@@ -13,10 +13,10 @@ module.exports = React.createClass({
         $("#previousPage").addClass("disabled");
     },
 
-    componentWillReceiveProps: function() {
+    // componentWillReceiveProps: function() {
 		// if resorting, setState
 		// this.setState({ startIndex: 0 });
-    },
+    // },
 
     previous: function() {
         var previous = $("#previousPage"),
