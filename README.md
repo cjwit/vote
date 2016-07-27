@@ -11,7 +11,7 @@ Next up:
 	* Show my polls
 * Create sort and search functionality on home page
 	* If resorting (not just updating vote counts), call setState({ startIndex: 0 }) from PollList
-* Build D3 representations for MiniPoll and PollPage
+* Build D3 representations for PollMini and PollPage
 * Require login for creating poll
 	* Add owner to schema, add login.status to form validation, add owner to addPoll
 	* Handle duplicate poll names, usernames

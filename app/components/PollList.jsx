@@ -1,5 +1,5 @@
 var React = require('react');
-var MiniPoll = require('./MiniPoll.jsx');
+var PollMini = require('./PollMini.jsx');
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -66,14 +66,14 @@ module.exports = React.createClass({
 
         var polls = incomingPolls.slice(startIndex, endIndex);
 
-		var MiniPolls = [];
+		var PollMinis = [];
 		polls.forEach(function(poll, index) {
-			MiniPolls.push(<MiniPoll poll = { poll } key = { "poll" + index } />)
+			PollMinis.push(<PollMini poll = { poll } key = { "poll" + index } />)
 		});
 
         return (
             <div className = 'list'>
-                { MiniPolls }
+                { PollMinis }
                 {
                     incomingLength > this.state.listings ?
                     <nav>
