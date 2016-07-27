@@ -5,7 +5,8 @@ var CreatePollForm = require('./CreatePollForm.jsx');
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
-			pollSorting: 'dateRecent'
+			pollSorting: 'dateRecent',
+			pollFilter: ""
 		}
 	},
 
@@ -14,42 +15,51 @@ module.exports = React.createClass({
 		this.setState({ pollSorting: e.target.id });
 	},
 
-	sortPolls: function(polls) {
+	filterPolls: function(obj) {
+		var filter = this.state.pollFilter.toLowerCase();
+		var name = obj.name.toLowerCase();
+		return name.indexOf(filter) > -1;
+	},
+
+	sortPolls: function() {
+		var polls = this.props.polls;
+		var filterPolls = this.filterPolls;
+		var filteredPolls = polls.filter(filterPolls);
 		switch(this.state.pollSorting) {
 			case 'dateRecent':
-				polls.sort(function(a, b) {
+				filteredPolls.sort(function(a, b) {
 					var aDate = new Date(a.date);
 					var bDate = new Date(b.date);
 					return bDate - aDate;
 				});
-				return polls;
+				return filteredPolls;
 				break;
 			case 'dateOldest':
-				polls.sort(function(a, b) {
+				filteredPolls.sort(function(a, b) {
 					var aDate = new Date(a.date);
 					var bDate = new Date(b.date);
 					return aDate - bDate;
 				});
-				return polls;
+				return filteredPolls;
 				break;
 			case 'nameAZ':
-				polls.sort(function(a, b) {
+				filteredPolls.sort(function(a, b) {
 					if (a.name < b.name) { return -1; }
 					if (a.name > b.name) { return 1; }
 					return 0;
 				});
-				return polls;
+				return filteredPolls;
 				break;
 			case 'nameZA':
-				polls.sort(function(a, b) {
+				filteredPolls.sort(function(a, b) {
 					if (a.name > b.name) { return -1; }
 					if (a.name < b.name) { return 1; }
 					return 0;
 				});
-				return polls;
+				return filteredPolls;
 				break;
 			case 'mostVotes':
-				polls.sort(function(a, b) {
+				filteredPolls.sort(function(a, b) {
 					var aVotes = 0;
 					var bVotes = 0;
 					a.options.forEach(function(option) {
@@ -60,22 +70,30 @@ module.exports = React.createClass({
 					})
 					return bVotes - aVotes;
 				});
-				return polls;
+				return filteredPolls;
 				break;
 		}
+	},
+
+	handleInputChange: function(e) {
+        e.preventDefault();
+        var name = e.target.name;
+        var value = e.target.value;
+        var state = this.state;
+        state[name] = value;
+        this.setState(state);
 	},
 
 	render: function() {
 		// get login info for navigation
 		var username = "",
-			loggedIn = this.props.login.status,
-			polls = this.props.polls;
+			loggedIn = this.props.login.status;
 
 		if (loggedIn) {
 			username = this.props.login.user.username;
 		}
 
-		polls = this.sortPolls(polls);
+		var polls = this.sortPolls();
 
 		return (
 			<div className="row">
@@ -84,7 +102,16 @@ module.exports = React.createClass({
 						<CreatePollForm login = { this.props.login }/>
 						:
 						<div id = "searchAndSort">
-							<h2>Sort Polls By</h2>
+							<h2>Search</h2>
+							<div className="form-group">
+			                    <input type="text" className="form-control"
+			                           id="pollFilter"
+			                           name = 'pollFilter'
+			                           placeholder="Search"
+			                           value = { this.state.pollFilter }
+			                           onChange = { this.handleInputChange } />
+			                </div>
+							<h2>Sort By</h2>
 							<p>
 								<span id = "mostVotes" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Most Popular</span>
 								<span id = "dateRecent" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Newest</span>
@@ -92,7 +119,6 @@ module.exports = React.createClass({
 								<span id = "nameAZ" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">A-Z</span>
 								<span id = "nameZA" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Z-A</span>
 							</p>
-							<h2>Search</h2>
 						</div>
 					}
 				</div>
