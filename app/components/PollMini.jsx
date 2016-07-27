@@ -26,7 +26,7 @@ module.exports = React.createClass({
 			voted = this.updateVoteStatus();
 
 		options.map(function(option, index) {
-			var voteButton = <button id = { option.name } className = "btn btn-default btn-sm" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
+			var voteButton = <button id = { option.name } className = "btn btn-default btn-sm mini-vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
 			optionButtons.push(<div className = "mini-option" key = { 'option' + index }><p>{ voteButton } { option.name }</p></div>)
 		});
 

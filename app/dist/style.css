@@ -10,10 +10,16 @@
   margin-bottom: 20px; }
 
 .mini-name {
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  font-weight: 200; }
 
 .mini-option {
-  width: 60%; }
+  width: 60%;
+  font-weight: 200;
+  margin-left: 20px; }
+
+.mini-vote-button {
+  margin-right: 20px; }
 
 .mini-results {
   background: red;
