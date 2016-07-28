@@ -18,16 +18,24 @@ module.exports = React.createClass({
 		actions.addVote({ poll: this.props.poll._id, option: e.target.id });
 	},
 
+	deleteOption: function(e) {
+		e.preventDefault();
+		var option = { id: this.props.poll._id, option: e.target.id }
+		actions.deleteOption(option);
+	},
+
     render: function() {
 		var poll = this.props.poll,
 			options = poll.options,
 			optionButtons = [],
 			addVote = this.addVote,
+			deleteOption = this.deleteOption,
 			voted = this.updateVoteStatus();
 
 		options.map(function(option, index) {
 			var voteButton = <button id = { option.name } className = "btn btn-default btn-sm vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
-			optionButtons.push(<div className = "poll-option" key = { 'option' + index }><p>{ voteButton } { option.name }</p></div>)
+			var deleteButton = <button id = { option.name } className = "btn btn-danger btn-sm delete-option-button" onClick = { deleteOption } >&#10006;</button>
+			optionButtons.push(<div className = "poll-option" key = { 'option' + index }><p>{ voteButton } { option.name } { deleteButton }</p></div>)
 		});
 
 		return (

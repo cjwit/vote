@@ -35,5 +35,12 @@ module.exports = {
 			object: option,
 			type: "poll:addOption"
 		});
+	},
+
+	deleteOption: function(option) {
+		dispatcher.dispatch({
+			object: option,
+			type: "poll:deleteOption"
+		});
 	}
 }

@@ -50,6 +50,13 @@ var store = function() {
         })
     }
 
+	var deleteOption = function(option) {
+        pollService.deleteOption(option).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        })
+    }
+
     var triggerListeners = function() {
         getPolls(function (res) {
             listeners.forEach(function(listener) {
@@ -76,6 +83,9 @@ var store = function() {
                     break;
 				case "addOption":
                     addOption(payload.object);
+                    break;
+				case "deleteOption":
+                    deleteOption(payload.object);
                     break;
             }
         }
