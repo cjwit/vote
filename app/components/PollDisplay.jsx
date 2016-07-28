@@ -17,8 +17,18 @@ module.exports = React.createClass({
 
 	filterPolls: function(obj) {
 		var filter = this.state.pollFilter.toLowerCase();
+		var foundFilter = false;
 		var name = obj.name.toLowerCase();
-		return name.indexOf(filter) > -1;
+		if (name.indexOf(filter) > -1) {
+			foundFilter = true;
+		}
+		obj.options.forEach(function(option) {
+			var optionName = option.name.toLowerCase();
+			if (optionName.indexOf(filter) > -1) {
+				foundFilter = true;
+			}
+		})
+		return foundFilter;
 	},
 
 	sortPolls: function() {
