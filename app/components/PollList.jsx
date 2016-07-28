@@ -13,10 +13,9 @@ module.exports = React.createClass({
         $("#previousPage").addClass("disabled");
     },
 
-    // componentWillReceiveProps: function() {
-		// if resorting, setState
-		// this.setState({ startIndex: 0 });
-    // },
+    componentWillReceiveProps: function() {
+		this.setState({ startIndex: 0 });
+    },
 
     previous: function() {
         var previous = $("#previousPage"),
@@ -61,8 +60,12 @@ module.exports = React.createClass({
             startIndex = this.state.startIndex,
             endIndex = startIndex + this.state.listings,
             currentPage = startIndex / this.state.listings + 1,
-            totalPages = Math.floor(incomingLength / this.state.listings) + 1,
-            login = this.props.login;
+            login = this.props.login,
+			totalPages;
+
+		incomingLength % this.state.listings === 0 ?
+			totalPages = incomingLength / this.state.listings :
+			totalPages = Math.floor(incomingLength / this.state.listings) + 1;
 
         var polls = incomingPolls.slice(startIndex, endIndex);
 
