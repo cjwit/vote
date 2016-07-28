@@ -43,6 +43,13 @@ var store = function() {
         })
     }
 
+	var addOption = function(option) {
+        pollService.addOption(option).then(function (res) {
+            console.log(res);
+            triggerListeners();
+        })
+    }
+
     var triggerListeners = function() {
         getPolls(function (res) {
             listeners.forEach(function(listener) {
@@ -66,6 +73,9 @@ var store = function() {
                     break;
 				case "addVote":
                     addVote(payload.object);
+                    break;
+				case "addOption":
+                    addOption(payload.object);
                     break;
             }
         }

@@ -28,5 +28,12 @@ module.exports = {
 			object: vote,
 			type: "poll:addVote"
 		});
+	},
+
+	addOption: function(option) {
+		dispatcher.dispatch({
+			object: option,
+			type: "poll:addOption"
+		});
 	}
 }

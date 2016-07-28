@@ -74,5 +74,21 @@ module.exports = {
                 error: reject
             });
         });
-    }
+    },
+
+	addOption: function (option) {
+		var Promise = promise.Promise;
+		console.log("addOptions from pollService", resourceURL + "/option/" + option.id)
+		return new Promise(function (resolve, reject) {
+			$.ajax({
+				url: resourceURL + "/option/" + option.id,
+				data: JSON.stringify(option),
+				method: "POST",
+				dataType: 'json',
+				contentType: 'application/json',
+				success: resolve,
+				error: reject
+			});
+		});
+	}
 }
