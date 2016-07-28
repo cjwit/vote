@@ -34,6 +34,9 @@ sessionStorage.setItem('voted', JSON.stringify([]));
 
 // ############################
 // functions to manipulate data
+function findById(item, id) {
+	return item._id === id;
+}
 
 // ################
 // set up listeners
@@ -104,12 +107,26 @@ function renderLogin() {
 
 function renderPollPage(id) {
 	// find the correct poll and deliver just that one
-    if (polls.length > 0) {
-        ReactDOM.render(<PollPage
-            login = { login }
-			polls = { polls }
-            />, document.getElementById('app'));
-    }
+	var poll = polls.find(function(poll) {
+		return poll._id === id;
+	})
+
+	if (poll === undefined) {
+		poll = {
+			name: "",
+			owner: "",
+			date: null,
+			_id: id,
+			options: []
+		};
+	}
+
+	console.log(poll);
+
+    ReactDOM.render(<PollPage
+        login = { login }
+		poll = { poll }
+        />, document.getElementById('app'));
 }
 
 // ################

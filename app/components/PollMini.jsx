@@ -23,7 +23,8 @@ module.exports = React.createClass({
 			options = poll.options,
 			optionButtons = [],
 			addVote = this.addVote,
-			voted = this.updateVoteStatus();
+			voted = this.updateVoteStatus(),
+			pollUrl = "/polls/" + poll._id;
 
 		options.map(function(option, index) {
 			var voteButton = <button id = { option.name } className = "btn btn-default btn-sm mini-vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
@@ -32,7 +33,7 @@ module.exports = React.createClass({
 
 		return (
 			<div className = "mini-poll">
-				<p className = "mini-name">{ this.props.poll.name }</p>
+				<p className = "mini-name"><a href = { pollUrl }>{ this.props.poll.name }</a></p>
 				<div className = "mini-results" />
 				{ optionButtons }
 			</div>

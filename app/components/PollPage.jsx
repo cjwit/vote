@@ -15,7 +15,7 @@ module.exports = React.createClass({
 				<div className = "container">
 					<h1>Poll page</h1>
 					<p>Logged in? { this.props.login.status ? "Yes" : "No" }{ username !== "" ? ", " + username : null}</p>
-					<p>Polls: { this.props.polls.length }</p>
+					<p>Poll Name: { this.props.poll.name === "" ? "undefined" : this.props.poll.name }</p>
 				</div>
 				<Footer />
 			</div>
