@@ -37,7 +37,7 @@ module.exports = {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + poll.id,
+                url: resourceURL + "/" + poll.id,
                 data: JSON.stringify(poll),
                 method: "POST",
                 dataType: 'json',

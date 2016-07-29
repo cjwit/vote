@@ -24,12 +24,13 @@ module.exports = React.createClass({
 					<div className = "row">
 						<div className = "col-sm-8 col-sm-offset-2">
 							<h1>{ poll.name }</h1>
+							<InputSubmit poll = { poll } login = { login } submitFunction = { actions.editPoll } placeholder = "Edit" />
 							<p>Logged in? { login.status ? "Yes" : "No" }{ username !== "" ? ", " + username : null}</p>
 							<p>Share: <a href = { pollUrl }>Link</a></p>
-							<InputSubmit poll = { poll } login = { login } submitFunction = { actions.addOption } placeholder = "Add An Option" />
 						</div>
 						<div className = "col-sm-8 col-sm-offset-2 text-center">
 							<Poll login = { login } poll = { poll } />
+							<InputSubmit poll = { poll } login = { login } submitFunction = { actions.addOption } placeholder = "Add An Option" />
 						</div>
 					</div>
 

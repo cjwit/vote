@@ -22,7 +22,6 @@ function getPolls(req, res) {
 
 function addPoll(req, res) {
     var poll = new Poll(_.extend({}, req.body));
-	console.log("addPoll:", poll);
     poll.save(function (err) {
         if (err) res.send(err);
         else res.json(poll);
@@ -34,8 +33,7 @@ function editPoll(req, res) {
     var info = req.body;
     var query = { _id: id },
         update = { $set: {
-            name: info.name,
-			options: info.options
+            name: info.value
         }};
 	console.log("editPoll:", update);
     Poll.update(query, update, function (err, updated) {
