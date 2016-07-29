@@ -29,11 +29,13 @@ module.exports = React.createClass({
 
 		options.map(function(option, index) {
 			var voteButton = <button id = { option.name } className = "btn btn-default btn-sm vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
+			var optionStyle = { color: actions.pollColors(index) };
+			var optionName = <span style = { optionStyle }>{ option.name }</span>
 			// only show deleteButton if logged in
 			optionButtons.push( <div className = "poll-option" key = { 'option' + index }>
 									<p>
 										{ voteButton }
-										{ option.name }
+										{ optionName }
 										<DeleteButton poll = { poll } deleteFunction = { actions.deleteOption } valueToDelete = { option.name } />
 									</p>
 								</div> )
