@@ -54,16 +54,18 @@ module.exports = React.createClass({
 		var onClick = this.submitValue;
 
         return (
-                <div className="input-group">
-                    <input type="text" className="form-control"
-                           id="value"
-                           name = "value"
-                           placeholder= { this.props.placeholder }
-                           value = { this.state.value }
-                           onChange = { this.handleInputChange } />
-					   <span className = "input-group-btn">
-						   <button id = "submitButton" className = "btn btn-default" onClick = { onClick } type = "button">Submit</button>
-					   </span>
+                <div className = "form-group">
+					<div className="input-group">
+	                    <input type="text" className="form-control"
+	                           id="value"
+	                           name = "value"
+	                           placeholder= { this.props.placeholder }
+	                           value = { this.state.value }
+	                           onChange = { this.handleInputChange } />
+						   <span className = "input-group-btn">
+							   <button id = "submitButton" className = "btn btn-default" onClick = { onClick } type = "button">Submit</button>
+						   </span>
+	                </div>
                 </div>
         )
     }

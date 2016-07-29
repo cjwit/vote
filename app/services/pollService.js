@@ -52,7 +52,7 @@ module.exports = {
         var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
-                url: resourceURL + poll._id,
+                url: resourceURL + "/" + poll.id,
                 method: "DELETE",
                 dataType: 'json',
                 success: resolve,
