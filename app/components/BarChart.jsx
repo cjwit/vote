@@ -13,6 +13,8 @@ module.exports = React.createClass({
 			.domain(data.map(function(d) { return d.name; }))
 			.rangeRoundBands([0, width], .1);
 
+		var colors = d3.scale.category10();
+
 		var y = d3.scale.linear()
 			.domain([0, d3.max(data, function(d) { return d.votes; })])
 			.range([height, 0]);
@@ -33,6 +35,7 @@ module.exports = React.createClass({
 			.attr('x', 1)
 			.attr('width', x.rangeBand())
 			.attr('height', function(d) { return height - y(d.votes); })
+			.attr('fill', function (d) { return colors(d.name); })
 
 		bar.append('text')
 			.attr('dy', '.75em')
