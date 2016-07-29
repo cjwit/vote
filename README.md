@@ -2,10 +2,6 @@
 
 Next up:
 
-* Set up individual poll page
-	* Edit poll
-	* Delete poll
-	* Share poll
 * Build D3 representations for PollMini and PollPage
 * Require login for creating poll
 	* Add owner to schema, add login.status to form validation, add owner to addPoll
