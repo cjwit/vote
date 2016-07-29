@@ -3,12 +3,11 @@
 Next up:
 
 * Build D3 representations for PollMini and PollPage
+	* Circle Chart based on http://bl.ocks.org/dbuezas/9306799
 	* Bar Chart issues:
-		* Show flat line if no votes
 		* Transition on update
 		* Thickness needs to update when adding option
 		* First/highest does not update
-		* Add labels or mouseover or something
 * Require login for creating poll
 	* Add owner to schema, add login.status to form validation, add owner to addPoll
 	* Handle duplicate poll names, usernames

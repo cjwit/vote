@@ -2,14 +2,11 @@ var React = require('react');
 
 module.exports = React.createClass({
 	render: function() {
+		// http://bl.ocks.org/dbuezas/9306799
 		var data = this.props.poll.options,
 			margin = { top: 30, right: 30, bottom: 30, left: 30 },
-			width = 300 - margin.left - margin.right,
+			width = 200 - margin.left - margin.right,
 			height = 200 - margin.top - margin.bottom;
-
-		var x = d3.scale.ordinal()
-			.domain(data.map(function(d) { return d.name; }))
-			.rangeRoundBands([0, width], .1);
 
 		var colors = d3.scale.category10();
 
