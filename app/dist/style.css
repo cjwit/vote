@@ -57,3 +57,10 @@
 .currentPage {
   font-size: 0.7em;
   margin: 5px; }
+
+.bar {
+  fill: steelBlue; }
+
+.bar text {
+  fill: white;
+  font: 10px sans-serif; }

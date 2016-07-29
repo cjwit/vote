@@ -1,5 +1,6 @@
 var React = require('react');
 var DeleteButton = require('./DeleteButton.jsx');
+var BarChart = require('./BarChart.jsx');
 var actions = require('../actions/pollsActions.js');
 
 module.exports = React.createClass({
@@ -41,7 +42,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<h1></h1>
-				<div className = "poll-results" />
+				<BarChart poll = { poll } />
 				{ optionButtons }
 			</div>
 		)
