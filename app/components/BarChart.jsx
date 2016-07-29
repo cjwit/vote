@@ -36,6 +36,13 @@ module.exports = React.createClass({
 
 		bar.append('text')
 			.attr('dy', '.75em')
+			.attr('class', function(d) {
+				var rectHeight = height - y(d.votes);
+				if (rectHeight < 15) {
+					return 'chart-text-black';
+				}
+				return 'chart-text-white';
+			})
 			.attr('y', function(d) {
 				var rectHeight = height - y(d.votes);
 				if (rectHeight < 15) {

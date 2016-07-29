@@ -62,5 +62,10 @@
   fill: steelBlue; }
 
 .bar text {
-  fill: black;
   font: 10px sans-serif; }
+
+.chart-text-white {
+  fill: white; }
+
+.chart-text-black {
+  fill: black; }
