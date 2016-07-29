@@ -1,8 +1,9 @@
 var React = require('react');
 var Poll = require('./Poll.jsx');
-var AddOption = require('./AddOption.jsx');
+var InputSubmit = require('./InputSubmit.jsx');
 var Footer = require('./Footer.jsx');
 var Nav = require('./Nav.jsx');
+var actions = require('../actions/pollsActions');
 
 module.exports = React.createClass({
 	render: function() {
@@ -25,7 +26,7 @@ module.exports = React.createClass({
 							<h1>{ poll.name }</h1>
 							<p>Logged in? { login.status ? "Yes" : "No" }{ username !== "" ? ", " + username : null}</p>
 							<p>Share: <a href = { pollUrl }>Link</a></p>
-							<AddOption poll = { poll } login = { login } />
+							<InputSubmit poll = { poll } login = { login } submitFunction = { actions.addOption } placeholder = "Add An Option" />
 						</div>
 						<div className = "col-sm-8 col-sm-offset-2 text-center">
 							<Poll login = { login } poll = { poll } />

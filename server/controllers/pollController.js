@@ -69,7 +69,7 @@ function addVote(req, res) {
 function addOption(req, res) {
     var id = req.params.id;
 	var option = {
-		name: req.body.option,
+		name: req.body.value,
 		votes: 0
 	}
 	var query = { _id: id },
