@@ -8,7 +8,7 @@ module.exports = React.createClass({
 			height = 200 - margin.top - margin.bottom;
 
 		console.log("rendering", data);
-		
+
 		var x = d3.scale.ordinal()
 			.domain(data.map(function(d) { return d.name; }))
 			.rangeRoundBands([0, width], .1);
@@ -25,21 +25,28 @@ module.exports = React.createClass({
 
 		var bar = chart.selectAll('.bar')
 			.data(data)
-		  .enter().append('rect')
+		  .enter().append('g')
 			.attr('class', 'bar')
-			.attr('x', function(d) { return x(d.name); })
+			.attr('transform', function(d) { return 'translate(' + x(d.name) + ',' + y(d.votes) + ')'; })
+
+		bar.append('rect')
+			.attr('x', 1)
 			.attr('width', x.rangeBand())
-			.attr('y', function(d) { return y(d.votes); })
 			.attr('height', function(d) { return height - y(d.votes); })
 
-/*
 		bar.append('text')
 			.attr('dy', '.75em')
-			.attr('y', 6)
-			.attr('x', (x(bins[0].x1) - x(bins[0].x0)) / 2)
+			.attr('y', function(d) {
+				var rectHeight = height - y(d.votes);
+				if (rectHeight < 15) {
+					return -12;
+				}
+				return 6;
+			})
+			.attr('x', function(d) { return (x.rangeBand() / 2 )})
 			.attr('text-anchor', 'middle')
-			.text(function(d) { return formatCount(d.length); });
-*/
+			.text(function(d) { return d.votes; });
+
         return (
                 <div>
 					<svg className = "barChart" />
