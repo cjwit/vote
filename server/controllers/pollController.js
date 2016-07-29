@@ -80,9 +80,9 @@ function addOption(req, res) {
 
 function deleteOption(req, res) {
     var id = req.params.id;
-	var option = req.body.option;
+	var value = req.body.value;
 	var query = { _id: id },
-        update = { $pull: { options: { name: option }}};
+        update = { $pull: { options: { name: value }}};
     Poll.update(query, update, function (err, updated) {
         if (err) res.send(err);
         else res.json(updated);
