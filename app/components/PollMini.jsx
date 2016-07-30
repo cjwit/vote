@@ -1,4 +1,5 @@
 var React = require('react');
+var CircleChart = require('./CircleChart.jsx');
 var actions = require('../actions/pollsActions.js');
 
 module.exports = React.createClass({
@@ -33,8 +34,8 @@ module.exports = React.createClass({
 
 		return (
 			<div className = "mini-poll">
-				<p className = "mini-name"><a href = { pollUrl }>{ this.props.poll.name }</a></p>
-				<div className = "mini-results" />
+				<p className = "mini-name"><a href = { pollUrl }>{ poll.name }</a></p>
+				<CircleChart poll = { poll } pollPage = { false } />
 				{ optionButtons }
 			</div>
 		)

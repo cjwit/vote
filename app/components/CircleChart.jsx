@@ -1,8 +1,15 @@
 var React = require('react');
 
 module.exports = React.createClass({
-	render: function() {
+	componentDidMount: function() {
+		if (!this.props.pollPage) {
+			this.renderChart();
+		}
+	},
+
+	renderChart: function() {
 		var data = this.props.poll.options;
+		var pollPage = this.props.pollPage;
 		var totalVotes = 0;
 		if (data.length > 0) {
 			totalVotes = data.map(function(a) {
@@ -13,11 +20,15 @@ module.exports = React.createClass({
 		}
 
 		var colors = d3.scale.category10()
-		var width = 200, height = 200, radius = 100;
+		var width = pollPage ? 200 : 100,
+			height = pollPage ? 200 : 100,
+			radius = pollPage ? 100 : 50,
+			outerRadius = pollPage ? radius - 10 : radius - 0,
+			innerRadius = pollPage ? radius - 40 : radius - 30;
 
 		var arc = d3.svg.arc()
-			.outerRadius(radius - 10)
-			.innerRadius(radius - 40);
+			.outerRadius(outerRadius)
+			.innerRadius(innerRadius);
 
 		var pie = d3.layout.pie()
 			.sort(null)
@@ -38,14 +49,22 @@ module.exports = React.createClass({
 			.attr("d", arc)
 			.style("fill", function(d) { return colors(d.data.name); });
 
-		g.append("text")
-			.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-			.attr("dy", ".35em")
-			.text(function (d) {
-				if (d.data.votes > 0) {
-					return Math.ceil(d.data.votes / totalVotes * 100) + "%";
-				}
-			});
+		if (pollPage) {
+			g.append("text")
+				.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+				.attr("dy", ".35em")
+				.text(function (d) {
+					if (d.data.votes > 0) {
+						return Math.ceil(d.data.votes / totalVotes * 100) + "%";
+					}
+				});
+		}
+	},
+
+	render: function() {
+		if (this.props.pollPage) {
+			this.renderChart();
+		}
 
         return (
                 <div className = "poll-chart">

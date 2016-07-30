@@ -21,20 +21,6 @@
 .mini-vote-button {
   margin-right: 20px; }
 
-.mini-results {
-  background: red;
-  border-radius: 100%;
-  height: 80px;
-  width: 80px;
-  float: right; }
-
-.poll-results {
-  background: red;
-  border-radius: 100%;
-  height: 100px;
-  width: 100px;
-  margin-bottom: 20px; }
-
 .poll-option {
   font-weight: 200; }
 

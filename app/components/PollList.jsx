@@ -4,7 +4,7 @@ var PollMini = require('./PollMini.jsx');
 module.exports = React.createClass({
     getInitialState: function() {
         return ({
-            listings: 2,
+            listings: 1,
             startIndex: 0
         })
     },

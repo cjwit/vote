@@ -45,7 +45,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<h1></h1>
-				<CircleChart poll = { poll } />
+				<CircleChart poll = { poll } pollPage = { true } />
 				<BarChart poll = { poll } />
 				{ optionButtons }
 			</div>
