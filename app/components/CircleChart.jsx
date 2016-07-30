@@ -2,14 +2,17 @@ var React = require('react');
 
 module.exports = React.createClass({
 	render: function() {
-
-		// https://bl.ocks.org/mbostock/3887193
 		var data = this.props.poll.options;
-
-		// COLOR NOT WORKING, add text percentages
+		var totalVotes = 0;
+		if (data.length > 0) {
+			totalVotes = data.map(function(a) {
+				return a.votes;
+			}).reduce(function(a, b) {
+				return a + b;
+			});
+		}
+		console.log(totalVotes);
 		var colors = d3.scale.category10()
-			.domain(data.map(function(d) { return d.name; }))
-
 		var width = 300, height = 300, radius = 150;
 
 		var arc = d3.svg.arc()
@@ -33,7 +36,16 @@ module.exports = React.createClass({
 
 		g.append("path")
 			.attr("d", arc)
-			.style("fill", function(d) { return colors(d.name); });
+			.style("fill", function(d) { return colors(d.data.name); });
+
+		g.append("text")
+			.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+			.attr("dy", ".35em")
+			.text(function (d) {
+				if (d.data.votes > 0) {
+					return Math.ceil(d.data.votes / totalVotes * 100) + "%";
+				}
+			});
 
         return (
                 <div>
