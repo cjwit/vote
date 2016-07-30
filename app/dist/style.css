@@ -58,6 +58,9 @@
   font-size: 0.7em;
   margin: 5px; }
 
+.poll-chart {
+  display: inline-block; }
+
 .bar text {
   font: 10px sans-serif; }
 

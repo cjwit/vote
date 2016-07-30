@@ -48,7 +48,7 @@ module.exports = React.createClass({
 			});
 
         return (
-                <div>
+                <div className = "poll-chart">
 					<svg className = "circleChart" />
 				</div>
         )

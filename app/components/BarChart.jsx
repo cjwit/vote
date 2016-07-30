@@ -56,7 +56,7 @@ module.exports = React.createClass({
 			.text(function(d) { return d.votes; });
 
         return (
-                <div>
+                <div className = "poll-chart">
 					<svg className = "barChart" />
 				</div>
         )
