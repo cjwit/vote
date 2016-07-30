@@ -34,7 +34,7 @@ module.exports = React.createClass({
 			.sort(null)
 			.value(function(d) { return d.votes; });
 
-		var chart = d3.select(".circleChart")
+		var chart = d3.select("#circle-chart-" + this.props.poll._id)
 			.attr("width", width)
 			.attr("height", height)
 		  .append("g")
@@ -49,26 +49,24 @@ module.exports = React.createClass({
 			.attr("d", arc)
 			.style("fill", function(d) { return colors(d.data.name); });
 
-		if (pollPage) {
+		// if (pollPage) {
 			g.append("text")
 				.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
 				.attr("dy", ".35em")
 				.text(function (d) {
 					if (d.data.votes > 0) {
-						return Math.ceil(d.data.votes / totalVotes * 100) + "%";
+						return d.data.votes // Math.ceil(d.data.votes / totalVotes * 100) + "%";
 					}
 				});
-		}
+		// }
 	},
 
 	render: function() {
-		if (this.props.pollPage) {
-			this.renderChart();
-		}
+		this.renderChart();
 
         return (
                 <div className = "poll-chart">
-					<svg className = "circleChart" />
+					<svg id = { "circle-chart-" + this.props.poll._id } className = "circleChart" />
 				</div>
         )
     }

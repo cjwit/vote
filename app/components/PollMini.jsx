@@ -27,9 +27,17 @@ module.exports = React.createClass({
 			voted = this.updateVoteStatus(),
 			pollUrl = "/polls/" + poll._id;
 
-		options.map(function(option, index) {
-			var voteButton = <button id = { option.name } className = "btn btn-default btn-sm mini-vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
-			optionButtons.push(<div className = "mini-option" key = { 'option' + index }><p>{ voteButton } { option.name }</p></div>)
+			options.map(function(option, index) {
+				var voteButton = <button id = { option.name } className = "btn btn-default btn-sm mini-vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
+				var optionStyle = { color: actions.pollColors(index) };
+				var optionName = <span style = { optionStyle }>{ option.name }</span>
+				// only show deleteButton if logged in
+				optionButtons.push( <div className = "mini-option" key = { 'option' + index }>
+										<p>
+											{ voteButton }
+											{ optionName }
+										</p>
+									</div> )
 		});
 
 		return (
