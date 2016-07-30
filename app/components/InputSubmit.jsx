@@ -8,12 +8,12 @@ module.exports = React.createClass({
     },
 
     componentDidMount: function () {
-		$('#submitButton').prop('disabled', true);
+		$('#' + this.props.name).prop('disabled', true);
     },
 
 	resetForm: function() {
-		this.setState({ option: "" });
-		$('#submitButton').prop('disabled', true);
+		this.setState({ value: "" });
+		$('#' + this.props.name).prop('disabled', true);
 	},
 
     submitValue: function(e) {
@@ -38,7 +38,7 @@ module.exports = React.createClass({
 
     validateForm: function() {
         // set submit button
-        var submit = $('#submitButton'),
+        var submit = $('#' + this.props.name),
             value = this.state.value.length > 0,
 			// login = this.props.login.status,
 			// valid = login && option, ADD THIS BACK IN TO CHECK LOGIN AGAINST POLL OWNER
@@ -63,7 +63,7 @@ module.exports = React.createClass({
 	                           value = { this.state.value }
 	                           onChange = { this.handleInputChange } />
 						   <span className = "input-group-btn">
-							   <button id = "submitButton" className = "btn btn-default" onClick = { onClick } type = "button">Submit</button>
+							   <button id = { this.props.name } className = "btn btn-default" onClick = { onClick } type = "button">Submit</button>
 						   </span>
 	                </div>
                 </div>
