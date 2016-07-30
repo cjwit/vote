@@ -3,7 +3,7 @@ var React = require('react');
 module.exports = React.createClass({
 	render: function() {
 		var data = this.props.poll.options,
-			margin = { top: 30, right: 30, bottom: 30, left: 30 },
+			margin = { top: 10, right: 0, bottom: 10, left: 20 },
 			width = 300 - margin.left - margin.right,
 			height = 200 - margin.top - margin.bottom;
 

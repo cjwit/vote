@@ -11,13 +11,13 @@ module.exports = React.createClass({
 				return a + b;
 			});
 		}
-		console.log(totalVotes);
+
 		var colors = d3.scale.category10()
-		var width = 300, height = 300, radius = 150;
+		var width = 200, height = 200, radius = 100;
 
 		var arc = d3.svg.arc()
 			.outerRadius(radius - 10)
-			.innerRadius(radius - 70);
+			.innerRadius(radius - 40);
 
 		var pie = d3.layout.pie()
 			.sort(null)
