@@ -2,6 +2,7 @@ var React = require('react');
 
 module.exports = React.createClass({
 	render: function() {
+		$(".barChart").html("");
 		var data = this.props.poll.options,
 			margin = { top: 10, right: 0, bottom: 10, left: 20 },
 			width = 300 - margin.left - margin.right,

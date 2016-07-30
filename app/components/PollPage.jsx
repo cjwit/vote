@@ -29,8 +29,10 @@ module.exports = React.createClass({
 							<p>{ login.status ? "Logged in as " + login.user.username : "Not logged in" }</p>
 							<p>Share: <a href = { pollUrl }>Link</a></p>
 						</div>
-						<div className = "col-sm-8 col-sm-offset-2 text-center">
+						<div className = "text-center">
 							<Poll login = { login } poll = { poll } />
+						</div>
+						<div className = "col-sm-6 col-sm-offset-3 text-center">
 							<InputSubmit poll = { poll } login = { login } submitFunction = { actions.addOption } placeholder = "Add An Option" />
 						</div>
 					</div>
