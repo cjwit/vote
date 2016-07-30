@@ -28,7 +28,8 @@ module.exports = React.createClass({
 
 		var arc = d3.svg.arc()
 			.outerRadius(outerRadius)
-			.innerRadius(innerRadius);
+			.innerRadius(innerRadius)
+			// .startAngle(0); // https://bl.ocks.org/mbostock/5100636
 
 		var pie = d3.layout.pie()
 			.sort(null)
@@ -46,8 +47,9 @@ module.exports = React.createClass({
 			.attr("class", "arc");
 
 		g.append("path")
+			//add tau?
 			.attr("d", arc)
-			.style("fill", function(d) { return colors(d.data.name); });
+			.style("fill", function(d) { return colors(d.data.name); })
 
 		// if (pollPage) {
 			g.append("text")
