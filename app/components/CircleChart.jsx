@@ -51,16 +51,16 @@ module.exports = React.createClass({
 			.attr("d", arc)
 			.style("fill", function(d) { return colors(d.data.name); })
 
-		// if (pollPage) {
+		if (pollPage) {
 			g.append("text")
 				.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
 				.attr("dy", ".35em")
 				.text(function (d) {
 					if (d.data.votes > 0) {
-						return d.data.votes // Math.ceil(d.data.votes / totalVotes * 100) + "%";
+						return Math.ceil(d.data.votes / totalVotes * 100) + "%";
 					}
 				});
-		// }
+		}
 	},
 
 	render: function() {

@@ -4,8 +4,6 @@ Next up:
 
 * Build D3 representations for PollMini and PollPage
 	* Circle Chart issues:
-		* Rendering wrong chart on second page of mini-polls
-		* Not updating with mini-polls (likely due to odd componentDidMount requirement)
 		* Return to percentages on main poll and remove text from mini-poll (see commented out code)
 	* Bar Chart issues:
 		* Transition on update
