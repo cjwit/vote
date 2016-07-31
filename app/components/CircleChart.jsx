@@ -74,7 +74,7 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		this.renderChart();
+		if (this.props.pollPage) { this.renderChart(); }
 
         return (
                 <div className = "poll-chart">
