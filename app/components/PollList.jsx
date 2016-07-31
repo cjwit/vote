@@ -69,14 +69,11 @@ module.exports = React.createClass({
 
         var polls = incomingPolls.slice(startIndex, endIndex);
 
-		var PollMinis = [];
-		polls.forEach(function(poll, index) {
-			PollMinis.push(<PollMini poll = { poll } key = { "poll" + index } />)
-		});
-
         return (
             <div className = 'list'>
-                { PollMinis }
+                { polls.map(function(poll) {
+					return <PollMini poll = { poll } key = { "poll" + poll._id } />;
+				}) }
                 {
                     incomingLength > this.state.listings ?
                     <nav>
