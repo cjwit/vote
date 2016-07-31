@@ -28,12 +28,20 @@ module.exports = React.createClass({
 
 		var arc = d3.svg.arc()
 			.outerRadius(outerRadius)
-			.innerRadius(innerRadius)
-			// .startAngle(0); // https://bl.ocks.org/mbostock/5100636
+			.innerRadius(innerRadius);
 
 		var pie = d3.layout.pie()
 			.sort(null)
 			.value(function(d) { return d.votes; });
+
+		var tweenPie = function(finish) {
+			var start = {
+				startAngle: this._current.startAngle,
+				endAngle: this._current.startAngle
+			};
+			var interpolator = d3.interpolate(start, finish);
+			return function(d) { return arc(interpolator(d)); }
+		}
 
 		var chart = d3.select("#circle-chart-" + this.props.poll._id)
 			.attr("width", width)
@@ -47,9 +55,11 @@ module.exports = React.createClass({
 			.attr("class", "arc");
 
 		g.append("path")
-			//add tau?
-			.attr("d", arc)
 			.style("fill", function(d) { return colors(d.data.name); })
+		  .transition().delay(function(d, i) { return i * 315; })
+		    .duration(500)
+			.each(function(d) { this._current = d; })
+			.attrTween("d", tweenPie)
 
 		if (pollPage) {
 			g.append("text")
