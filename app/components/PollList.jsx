@@ -14,7 +14,7 @@ module.exports = React.createClass({
     },
 
     componentWillReceiveProps: function() {
-		this.setState({ startIndex: 0 });
+		// this.setState({ startIndex: 0 }); SORTING DOES NOT MOVE BACK TO BEGINNING;
     },
 
     previous: function() {
