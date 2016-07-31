@@ -35,7 +35,10 @@ module.exports = React.createClass({
 			.sort(null)
 			.value(function(d) { return d.votes; });
 
-		var chart = d3.select("#circle-chart-" + this.props.poll._id)
+			// TRIED APPENDING
+		var chart = d3.select("#poll-chart-" + this.props.poll._id)
+			.append("svg")
+			.attr("class", "circleChart")
 			.attr("width", width)
 			.attr("height", height)
 		  .append("g")
@@ -64,12 +67,12 @@ module.exports = React.createClass({
 
 	render: function() {
 		console.log("### RENDERING", this.props.poll.name);
-		this.renderChart();
+		if (this.props.poll.options.length > 0) {
+			this.renderChart();
+		}
 
         return (
-                <div className = "poll-chart">
-					<svg id = { "circle-chart-" + this.props.poll._id } className = "circleChart" />
-				</div>
+                <div id = { "poll-chart-" + this.props.poll._id } className = "poll-chart" />
         )
     }
 });
