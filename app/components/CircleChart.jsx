@@ -1,13 +1,14 @@
 var React = require('react');
 
 module.exports = React.createClass({
-	componentDidMount: function() {
+	/*componentDidMount: function() {
 		if (!this.props.pollPage) {
 			this.renderChart();
 		}
 	},
-
+*/
 	renderChart: function() {
+		console.log(" -- renderChart called for", this.props.poll.name);
 		var data = this.props.poll.options;
 		var pollPage = this.props.pollPage;
 		var totalVotes = 0;
@@ -34,15 +35,6 @@ module.exports = React.createClass({
 			.sort(null)
 			.value(function(d) { return d.votes; });
 
-		var tweenPie = function(finish) {
-			var start = {
-				startAngle: this._current.startAngle,
-				endAngle: this._current.startAngle
-			};
-			var interpolator = d3.interpolate(start, finish);
-			return function(d) { return arc(interpolator(d)); }
-		}
-
 		var chart = d3.select("#circle-chart-" + this.props.poll._id)
 			.attr("width", width)
 			.attr("height", height)
@@ -52,14 +44,11 @@ module.exports = React.createClass({
 		var g = chart.selectAll(".arc")
 			.data(pie(data))
 		  .enter().append("g")
-			.attr("class", "arc");
+			.attr("class", "arc")
 
 		g.append("path")
 			.style("fill", function(d) { return colors(d.data.name); })
-		  .transition().delay(function(d, i) { return i * 315; })
-		    .duration(500)
-			.each(function(d) { this._current = d; })
-			.attrTween("d", tweenPie)
+			.attr("d", arc)
 
 		if (pollPage) {
 			g.append("text")
@@ -74,7 +63,8 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		if (this.props.pollPage) { this.renderChart(); }
+		console.log("### RENDERING", this.props.poll.name);
+		this.renderChart();
 
         return (
                 <div className = "poll-chart">
