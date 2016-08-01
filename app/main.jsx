@@ -26,7 +26,6 @@ var getLoginCallback = function(_login) {
 var polls = [];
 var getPollsCallback = function(_polls) {
     polls = _polls;
-	console.log("polls from getPollsStoreCallback", polls);
     render();
 }
 
