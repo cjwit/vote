@@ -1,21 +1,21 @@
 var React = require('react');
 var Footer = require('./Footer.jsx');
+var UserInfo = require('./UserInfo.jsx');
+var NotLoggedIn = require('./NotLoggedIn.jsx');
 var Nav = require('./Nav.jsx');
 
 module.exports = React.createClass({
 	render: function() {
-		// get login info for navigation
-		var username = "";
-		if (this.props.login.status) {
-			username = this.props.login.user.username;
-		}
+		console.log("rendering userPage", this.props.login.status)
 		return (
 			<div>
 				<Nav active = { "user" } login = { this.props.login } />
 				<div className = "container">
-					<h1>User page</h1>
-					<p>Logged in? { this.props.login.status ? "Yes" : "No" }{ username !== "" ? ", " + username : null}</p>
-					<p>Polls: { this.props.polls.length }</p>
+					{ this.props.login.status ?
+						<UserInfo login = { this.props.login } polls = { this.props.polls } />
+						:
+						<NotLoggedIn />
+					}
 				</div>
 				<Footer />
 			</div>
