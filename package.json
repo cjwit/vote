@@ -1,17 +1,17 @@
 {
-  "name": "full-stack-template",
+  "name": "vote",
   "version": "1.0.0",
-  "description": "",
+  "description": "Next up:",
   "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node ./server/server.js"
+    "start": "node ./server/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cjwit/full-stack-template.git"
   },
-  "author": "",
+  "author": "cjwit",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cjwit/full-stack-template/issues"
@@ -44,5 +44,6 @@
     "run-sequence": "^1.2.2",
     "underscore": "^1.8.3",
     "vinyl-source-stream": "^1.1.0"
-  }
+  },
+  "devDependencies": {}
 }
