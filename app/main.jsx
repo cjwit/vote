@@ -29,7 +29,9 @@ var getPollsCallback = function(_polls) {
     render();
 }
 
-sessionStorage.setItem('voted', JSON.stringify([]));
+if (localStorage.getItem("voted") === null) {
+	localStorage.setItem('voted', JSON.stringify([]));
+}
 
 // ############################
 // functions to manipulate data

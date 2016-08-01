@@ -4,7 +4,7 @@ var actions = require('../actions/pollsActions.js');
 
 module.exports = React.createClass({
 	updateVoteStatus: function() {
-		var voted = JSON.parse(sessionStorage.voted);
+		var voted = JSON.parse(localStorage.voted);
 		if (voted.indexOf(this.props.poll._id) >= 0) {
 			return true;
 		}
@@ -13,9 +13,9 @@ module.exports = React.createClass({
 
 	addVote: function(e) {
 		e.preventDefault();
-		var voted = JSON.parse(sessionStorage.voted);
+		var voted = JSON.parse(localStorage.voted);
 		voted.push(this.props.poll._id);
-		sessionStorage.setItem('voted', JSON.stringify(voted));
+		localStorage.setItem('voted', JSON.stringify(voted));
 		actions.addVote({ poll: this.props.poll._id, option: e.target.id });
 	},
 
