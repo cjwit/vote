@@ -109,7 +109,7 @@ module.exports = React.createClass({
 			<div className="row">
 				<div className="col-sm-4 col-sm-offset-2">
 					{ this.props.creating ?
-						<CreatePollForm login = { this.props.login }/>
+						<CreatePollForm login = { this.props.login } pollNames = { this.props.polls.map(function(p) { return p.name.toLowerCase(); }) }/>
 						:
 						<div id = "searchAndSort">
 							<h2>Search</h2>

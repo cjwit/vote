@@ -81,11 +81,20 @@ module.exports = React.createClass({
     },
 
     validateForm: function() {
+		// check for errorMessage
+		var nameIsUnique = true;
+		if (this.props.pollNames.indexOf(this.state.name.trim().toLowerCase()) !== -1) {
+			$("#errorMessage").removeClass("hidden").text("Your poll's name must be unique.");
+			nameIsUnique = false;
+		} else {
+			$("#errorMessage").addClass("hidden").text("");
+		}
+
         // set submit button
         var submit = $('#submit'),
             name = this.state.name.length > 0,
             options = this.state.options.length > 0,
-            valid = name && options;
+            valid = name && options && nameIsUnique;
         if (valid) {
             submit.prop('disabled', false);
         } else {
@@ -96,8 +105,11 @@ module.exports = React.createClass({
     render: function() {
         return (
             <form onSubmit = { this.addPoll } id = "addPollForm">
-				<h2>Create a New Poll</h2>
-                <div className="form-group">
+				<h2>Create a Poll</h2>
+
+				<div id = "errorMessage" className = "alert alert-danger hidden" />
+
+				<div className="form-group">
                     <label className = 'control-label' htmlFor="title">New Poll Name</label>
                     <input type="text" className="form-control"
                            id="name"
