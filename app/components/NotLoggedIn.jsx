@@ -5,7 +5,7 @@ module.exports = React.createClass({
 		return (
 			<div>
 				<h1>User page</h1>
-				<p>Not Logged In</p>
+				<p><a href = "/login">Login</a> to access user information.</p>
 			</div>
         )
     }
