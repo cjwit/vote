@@ -2,7 +2,7 @@
 
 Next up:
 
-* Mongo authentication error when deployed to heroku
+* Nav bar does not work on mobile
 * Chart transitions, reconfigure to work with React updates, add transitions
 * Using localStorage prevents different users on one computer from voting on the same poll
 
