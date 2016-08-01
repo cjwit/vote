@@ -25,7 +25,7 @@ module.exports = React.createClass({
 					<div className = "row">
 						<div className = "col-sm-8 col-sm-offset-2">
 							<h1>{ poll.name } <DeleteButton poll = { poll } deleteFunction = { this.deletePoll } valueToDelete = { poll._id } /></h1>
-							<InputSubmit poll = { poll } login = { login } submitFunction = { actions.editPoll } name = "editPollButton" placeholder = "Edit" />
+							<InputSubmit poll = { poll } login = { login } submitFunction = { actions.editPoll } name = "editPollButton" placeholder = "Edit" duplicates = { this.props.pollNames } />
 							<p>{ login.status ? "Logged in as " + login.user.username : "Not logged in" }</p>
 							<p>Share: <a href = { pollUrl }>Link</a></p>
 						</div>
@@ -33,7 +33,7 @@ module.exports = React.createClass({
 							<Poll login = { login } poll = { poll } />
 						</div>
 						<div className = "col-sm-6 col-sm-offset-3 text-center">
-							<InputSubmit poll = { poll } login = { login } submitFunction = { actions.addOption } name = "addOptionButton" placeholder = "Add An Option" />
+							<InputSubmit poll = { poll } login = { login } submitFunction = { actions.addOption } name = "addOptionButton" placeholder = "Add An Option" duplicates = { poll.options.map(function(o) { return o.name.toLowerCase(); }) } />
 						</div>
 					</div>
 

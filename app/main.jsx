@@ -121,6 +121,7 @@ function renderPollPage(id) {
     ReactDOM.render(<PollPage
         login = { login }
 		poll = { poll }
+		pollNames = { polls.map(function(p) { return p.name.toLowerCase(); }) }
         />, document.getElementById('app'));
 }
 

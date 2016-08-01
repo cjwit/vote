@@ -37,12 +37,21 @@ module.exports = React.createClass({
     },
 
     validateForm: function() {
-        // set submit button
+		// check for errorMessage
+		var valueIsUnique = true;
+		if (this.props.duplicates.indexOf(this.state.value.trim().toLowerCase()) !== -1) {
+			$("#error_" + this.props.name).removeClass("hidden").text("Value must be unique.");
+			valueIsUnique = false;
+		} else {
+			$("#error_" + this.props.name).addClass("hidden").text("");
+		}
+
+		// set submit button
         var submit = $('#' + this.props.name),
             value = this.state.value.length > 0,
 			// login = this.props.login.status,
 			// valid = login && option, ADD THIS BACK IN TO CHECK LOGIN AGAINST POLL OWNER
-			valid = value;
+			valid = value && valueIsUnique;
         if (valid) {
             submit.prop('disabled', false);
         } else {
@@ -52,8 +61,10 @@ module.exports = React.createClass({
 
     render: function() {
 		var onClick = this.submitValue;
+		var errorDivId = "error_" + this.props.name;
 
         return (
+			<div>
                 <div className = "form-group">
 					<div className="input-group">
 	                    <input type="text" className="form-control"
@@ -67,6 +78,8 @@ module.exports = React.createClass({
 						   </span>
 	                </div>
                 </div>
+				<div id = { errorDivId } className="alert alert-danger hidden" />
+			</div>
         )
     }
 });
