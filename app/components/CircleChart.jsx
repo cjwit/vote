@@ -2,13 +2,14 @@ var React = require('react');
 
 module.exports = React.createClass({
 	componentDidMount: function() {
+		// For some reason, this is required to render the Poll version of the chart
+		// but does not work to render the PollMini version.
 		if (!this.props.pollPage) {
 			this.renderChart();
 		}
 	},
 
 	renderChart: function() {
-		console.log(" -- renderChart called for", this.props.poll.name);
 		var data = this.props.poll.options;
 		var pollPage = this.props.pollPage;
 		var totalVotes = 0;
@@ -35,7 +36,6 @@ module.exports = React.createClass({
 			.sort(null)
 			.value(function(d) { return d.votes; });
 
-			// TRIED APPENDING
 		var chart = d3.select("#poll-chart-" + this.props.poll._id)
 			.append("svg")
 			.attr("class", "circleChart")
@@ -66,11 +66,8 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		console.log("### RENDERING", this.props.poll.name);
-
 		var pollChartIdentifier = "#poll-chart-" + this.props.poll._id;
-		console.log($(pollChartIdentifier))
-		$(pollChartIdentifier).empty();
+		$("#poll-chart-" + this.props.poll._id).empty();
 
 		if (this.props.poll.options.length > 0) {
 			this.renderChart();
