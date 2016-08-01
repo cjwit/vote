@@ -38,7 +38,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // connect to database
 var dburl = process.env.DBURL;
-mongoose.connect(dburl)
+mongoose.connect(dburl);
 
 // passport requests
 app.post('/api/register', function(req, res) {
