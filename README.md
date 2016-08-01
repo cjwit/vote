@@ -2,13 +2,7 @@
 
 Next up:
 
-* Build D3 representations for PollMini and PollPage
-	* Circle Chart issues:
-		* Return to percentages on main poll and remove text from mini-poll (see commented out code)
-	* Bar Chart issues:
-		* Transition on update
-		* Thickness needs to update when adding option
-		* First/highest does not update
+* Chart transitions, reconfigure to work with React updates, add transitions
 * Require login for creating poll
 	* Add owner to schema, add login.status to form validation, add owner to addPoll
 	* Handle duplicate poll names, usernames
