@@ -2,6 +2,7 @@
 
 Next up:
 
+* Mongo authentication error when deployed to heroku
 * Chart transitions, reconfigure to work with React updates, add transitions
 * Using localStorage prevents different users on one computer from voting on the same poll
 

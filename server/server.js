@@ -36,10 +36,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// connect to database
-var dburl = process.env.DBURL;
-mongoose.connect(dburl);
-
 // passport requests
 app.post('/api/register', function(req, res) {
 	console.log('register called', req.body);
@@ -96,3 +92,7 @@ var port = process.env.PORT || 8080;
 app.listen(port, function() {
     console.log("   Listening on port ", port, "...");
 });
+
+// connect to database
+var dburl = process.env.DBURL;
+mongoose.connect(dburl);
