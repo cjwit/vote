@@ -26,6 +26,7 @@ module.exports = React.createClass({
 			options = poll.options,
 			optionButtons = [],
 			addVote = this.addVote,
+			login = this.props.login,
 			voted = this.updateVoteStatus();
 
 		options.map(function(option, index) {
@@ -37,7 +38,11 @@ module.exports = React.createClass({
 									<p>
 										{ voteButton }
 										{ optionName }
-										<DeleteButton poll = { poll } deleteFunction = { actions.deleteOption } valueToDelete = { option.name } />
+										{ login.status ?
+											<DeleteButton poll = { poll } deleteFunction = { actions.deleteOption } valueToDelete = { option.name } />
+											:
+											null
+										}
 									</p>
 								</div> )
 		});

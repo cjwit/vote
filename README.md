@@ -3,12 +3,7 @@
 Next up:
 
 * Chart transitions, reconfigure to work with React updates, add transitions
-* Require login for creating poll
-	* Add owner to schema, add login.status to form validation, add owner to addPoll
-	* Handle duplicate poll names, usernames
-* Set up individual user page
-	* Edit username and password
-	* Show my polls (after requiring login)
+* Using localStorage prevents different users on one computer from voting on the same poll
 
 Potential future projects:
 
