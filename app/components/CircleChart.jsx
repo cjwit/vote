@@ -1,12 +1,12 @@
 var React = require('react');
 
 module.exports = React.createClass({
-	/*componentDidMount: function() {
+	componentDidMount: function() {
 		if (!this.props.pollPage) {
 			this.renderChart();
 		}
 	},
-*/
+
 	renderChart: function() {
 		console.log(" -- renderChart called for", this.props.poll.name);
 		var data = this.props.poll.options;
@@ -67,6 +67,11 @@ module.exports = React.createClass({
 
 	render: function() {
 		console.log("### RENDERING", this.props.poll.name);
+
+		var pollChartIdentifier = "#poll-chart-" + this.props.poll._id;
+		console.log($(pollChartIdentifier))
+		$(pollChartIdentifier).empty();
+
 		if (this.props.poll.options.length > 0) {
 			this.renderChart();
 		}
