@@ -40,6 +40,7 @@ module.exports = React.createClass({
 			options.push(option);
 		});
 		info.options = options;
+		info.owner = this.props.login.user.username;
         actions.addPoll(info);
 		this.resetForm();
     },
@@ -94,7 +95,7 @@ module.exports = React.createClass({
         var submit = $('#submit'),
             name = this.state.name.length > 0,
             options = this.state.options.length > 0,
-            valid = name && options && nameIsUnique;
+            valid = name && options && nameIsUnique && this.props.login.status;
         if (valid) {
             submit.prop('disabled', false);
         } else {
@@ -130,7 +131,9 @@ module.exports = React.createClass({
 					<p className="help-block">Separate options with a comma.</p>
                 </div>
 
-                <button id = "submit" type="submit" className="btn btn-default">Submit</button>
+                <button id = "submit" type="submit" className="btn btn-default">
+					{ this.props.login.status ? "Submit" : "Login to create a poll" }
+				</button>
             </form>
         )
     }

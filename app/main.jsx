@@ -96,9 +96,17 @@ function renderHome() {
 
 function renderUser() {
 	// filter polls to those owned by the user
+	var userPolls = [];
+	if (login.status) {
+		polls.forEach(function(p) {
+			if (p.owner === login.user.username) {
+				userPolls.push(p);
+			}
+		});
+	}
     ReactDOM.render(<UserPage
         login = { login }
-        polls = { polls }
+        polls = { userPolls }
         />, document.getElementById('app'));
 }
 
