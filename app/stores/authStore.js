@@ -22,7 +22,11 @@ var LoginStore = function() {
 	var addUser = function(user) {
 		authService.addUser(user).then(function (res) {
 			console.log(res);
-			authActions.login(user);
+			if (res.message === "error") {
+				alert("This username is already in use.");
+			} else {
+				authActions.login(user);
+			}
 		});
 	}
 

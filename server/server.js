@@ -46,8 +46,9 @@ app.post('/api/register', function(req, res) {
 	User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
 		if (err) {
 			res.json({ message: 'error' });
+		} else {
+			res.json({ message: 'user created' });
 		}
-		res.json({ message: 'user created' });
 	});
 });
 

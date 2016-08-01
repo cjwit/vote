@@ -96,18 +96,10 @@ function renderHome() {
 
 function renderUser() {
 	// filter polls to those owned by the user
-    if (login.status === true) {
-        ReactDOM.render(<UserPage
-            login = { login }
-            polls = { polls }
-            />, document.getElementById('app'));
-    } else {
-		console.log("Attempted rendering /user, login = false");
-		ReactDOM.render(<UserErrorPage
-            login = { login }
-            polls = { polls }
-            />, document.getElementById('app'));
-	}
+    ReactDOM.render(<UserPage
+        login = { login }
+        polls = { polls }
+        />, document.getElementById('app'));
 }
 
 function renderLogin() {
