@@ -110,7 +110,7 @@ module.exports = {
 }
 
 },{"../dispatcher":22}],4:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 
 module.exports = React.createClass({displayName: "exports",
 	render: function() {
@@ -177,7 +177,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"react":201}],5:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 
 module.exports = React.createClass({displayName: "exports",
 	componentDidMount: function() {
@@ -259,7 +259,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"react":201}],6:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var actions = require('../actions/pollsActions');
 
 module.exports = React.createClass({displayName: "exports",
@@ -401,7 +401,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"../actions/pollsActions":2,"react":201}],7:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 
 module.exports = React.createClass({displayName: "exports",
 	deleteFunction: function(e) {
@@ -423,7 +423,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"react":201}],8:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 
 // ##########
 // Components
@@ -451,9 +451,9 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"react":201}],9:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var PollDisplay = require('./PollDisplay.jsx');
-var Footer = require('./Footer.jsx');
+import Footer from './Footer.jsx';
 var Nav = require('./Nav.jsx');
 
 module.exports = React.createClass({displayName: "exports",
@@ -506,7 +506,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"./Footer.jsx":8,"./Nav.jsx":13,"./PollDisplay.jsx":16,"react":201}],10:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 
 module.exports = React.createClass({displayName: "exports",
     getInitialState: function() {
@@ -593,7 +593,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"react":201}],11:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var authActions = require('../actions/authActions.js');
 var userActions = require('../actions/userActions.js');
 
@@ -723,8 +723,8 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"../actions/authActions.js":1,"../actions/userActions.js":3,"react":201}],12:[function(require,module,exports){
-var React = require('react');
-var Footer = require('./Footer.jsx');
+import React from 'react';
+import Footer from './Footer.jsx';
 var LoginForm = require('./LoginForm.jsx');
 var Nav = require('./Nav.jsx');
 
@@ -751,7 +751,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"./Footer.jsx":8,"./LoginForm.jsx":11,"./Nav.jsx":13,"react":201}],13:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var actions = require('../actions/authActions');
 
 module.exports = React.createClass({displayName: "exports",
@@ -815,7 +815,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"../actions/authActions":1,"react":201}],14:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 
 module.exports = React.createClass({displayName: "exports",
 	render: function() {
@@ -829,7 +829,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"react":201}],15:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var DeleteButton = require('./DeleteButton.jsx');
 var BarChart = require('./BarChart.jsx');
 var CircleChart = require('./CircleChart.jsx');
@@ -890,7 +890,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"../actions/pollsActions.js":2,"./BarChart.jsx":4,"./CircleChart.jsx":5,"./DeleteButton.jsx":7,"react":201}],16:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var PollList = require('./PollList.jsx');
 var CreatePollForm = require('./CreatePollForm.jsx');
 
@@ -1034,7 +1034,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"./CreatePollForm.jsx":6,"./PollList.jsx":17,"react":201}],17:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var PollMini = require('./PollMini.jsx');
 
 module.exports = React.createClass({displayName: "exports",
@@ -1127,7 +1127,7 @@ module.exports = React.createClass({displayName: "exports",
 })
 
 },{"./PollMini.jsx":18,"react":201}],18:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var CircleChart = require('./CircleChart.jsx');
 var actions = require('../actions/pollsActions.js');
 
@@ -1180,9 +1180,9 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"../actions/pollsActions.js":2,"./CircleChart.jsx":5,"react":201}],19:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var Poll = require('./Poll.jsx');
-var Footer = require('./Footer.jsx');
+import Footer from './Footer.jsx';
 var Nav = require('./Nav.jsx');
 var InputSubmit = require('./InputSubmit.jsx');
 var DeleteButton = require('./DeleteButton.jsx');
@@ -1237,7 +1237,7 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"../actions/pollsActions":2,"./DeleteButton.jsx":7,"./Footer.jsx":8,"./InputSubmit.jsx":10,"./Nav.jsx":13,"./Poll.jsx":15,"react":201}],20:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var PollDisplay = require('./PollDisplay.jsx');
 
 module.exports = React.createClass({displayName: "exports",
@@ -1271,8 +1271,8 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 },{"./PollDisplay.jsx":16,"react":201}],21:[function(require,module,exports){
-var React = require('react');
-var Footer = require('./Footer.jsx');
+import React from 'react';
+import Footer from './Footer.jsx';
 var UserInfo = require('./UserInfo.jsx');
 var NotLoggedIn = require('./NotLoggedIn.jsx');
 var Nav = require('./Nav.jsx');
@@ -1325,7 +1325,7 @@ module.exports = {
 }
 
 },{"guid":55}],23:[function(require,module,exports){
-var React = require('react');
+import React from 'react';
 var ReactDOM = require('react-dom');
 var auth = require('./actions/authActions.js')
 

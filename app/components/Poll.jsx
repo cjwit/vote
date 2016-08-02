@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var DeleteButton = require('./DeleteButton.jsx');
 var BarChart = require('./BarChart.jsx');
 var CircleChart = require('./CircleChart.jsx');

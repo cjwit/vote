@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 var PollDisplay = require('./PollDisplay.jsx');
-var Footer = require('./Footer.jsx');
+import Footer from './Footer.jsx';
 var Nav = require('./Nav.jsx');
 
 module.exports = React.createClass({

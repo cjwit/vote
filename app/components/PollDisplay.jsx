@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var PollList = require('./PollList.jsx');
 var CreatePollForm = require('./CreatePollForm.jsx');
 

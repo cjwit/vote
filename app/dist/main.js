@@ -118,9 +118,13 @@ module.exports = {
 },{"../dispatcher":22}],4:[function(require,module,exports){
 "use strict";
 
-var React = require('react');
+var _react = require("react");
 
-module.exports = React.createClass({
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = _react2.default.createClass({
 	displayName: "exports",
 
 	render: function render() {
@@ -170,10 +174,10 @@ module.exports = React.createClass({
 			return d.votes;
 		});
 
-		return React.createElement(
+		return _react2.default.createElement(
 			"div",
 			{ className: "poll-chart" },
-			React.createElement("svg", { className: "barChart" })
+			_react2.default.createElement("svg", { className: "barChart" })
 		);
 	}
 });
@@ -181,9 +185,13 @@ module.exports = React.createClass({
 },{"react":204}],5:[function(require,module,exports){
 "use strict";
 
-var React = require('react');
+var _react = require("react");
 
-module.exports = React.createClass({
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = _react2.default.createClass({
 	displayName: "exports",
 
 	componentDidMount: function componentDidMount() {
@@ -246,17 +254,22 @@ module.exports = React.createClass({
 			this.renderChart();
 		}
 
-		return React.createElement("div", { id: "poll-chart-" + this.props.poll._id, className: "poll-chart" });
+		return _react2.default.createElement("div", { id: "poll-chart-" + this.props.poll._id, className: "poll-chart" });
 	}
 });
 
 },{"react":204}],6:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var actions = require('../actions/pollsActions');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
     displayName: 'exports',
 
     getInitialState: function getInitialState() {
@@ -361,51 +374,51 @@ module.exports = React.createClass({
     },
 
     render: function render() {
-        return React.createElement(
+        return _react2.default.createElement(
             'form',
             { onSubmit: this.addPoll, id: 'addPollForm' },
-            React.createElement(
+            _react2.default.createElement(
                 'h2',
                 null,
                 'Create a Poll'
             ),
-            React.createElement('div', { id: 'errorMessage', className: 'alert alert-danger hidden' }),
-            React.createElement(
+            _react2.default.createElement('div', { id: 'errorMessage', className: 'alert alert-danger hidden' }),
+            _react2.default.createElement(
                 'div',
                 { className: 'form-group' },
-                React.createElement(
+                _react2.default.createElement(
                     'label',
                     { className: 'control-label', htmlFor: 'title' },
                     'New Poll Name'
                 ),
-                React.createElement('input', { type: 'text', className: 'form-control',
+                _react2.default.createElement('input', { type: 'text', className: 'form-control',
                     id: 'name',
                     name: 'name',
                     placeholder: 'Poll Name',
                     value: this.state.name,
                     onChange: this.handleInputChange })
             ),
-            React.createElement(
+            _react2.default.createElement(
                 'div',
                 { className: 'form-group' },
-                React.createElement(
+                _react2.default.createElement(
                     'label',
                     { className: 'control-label', htmlFor: 'author' },
                     'Options'
                 ),
-                React.createElement('input', { type: 'text', className: 'form-control',
+                _react2.default.createElement('input', { type: 'text', className: 'form-control',
                     id: 'options',
                     name: 'options',
                     placeholder: 'Options',
                     value: this.state.options,
                     onChange: this.handleInputChange }),
-                React.createElement(
+                _react2.default.createElement(
                     'p',
                     { className: 'help-block' },
                     'Separate options with a comma.'
                 )
             ),
-            React.createElement(
+            _react2.default.createElement(
                 'button',
                 { id: 'submit', type: 'submit', className: 'btn btn-default' },
                 this.props.login.status ? "Submit" : "Login to create a poll"
@@ -417,9 +430,13 @@ module.exports = React.createClass({
 },{"../actions/pollsActions":2,"react":204}],7:[function(require,module,exports){
 "use strict";
 
-var React = require('react');
+var _react = require("react");
 
-module.exports = React.createClass({
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = _react2.default.createClass({
 	displayName: "exports",
 
 	deleteFunction: function deleteFunction(e) {
@@ -432,7 +449,7 @@ module.exports = React.createClass({
 	render: function render() {
 		var onClick = this.deleteFunction;
 
-		return React.createElement(
+		return _react2.default.createElement(
 			"button",
 			{ id: this.props.valueToDelete,
 				className: "btn btn-danger btn-sm delete-button",
@@ -445,57 +462,84 @@ module.exports = React.createClass({
 },{"react":204}],8:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
-
-// ##########
-// Components
-
-// var Thing = require('./Thing.jsx');
-
-module.exports = React.createClass({
-	displayName: 'exports',
-
-	getInitialState: function getInitialState() {
-		return {
-			//            login: this.props.login
-		};
-	},
-
-	render: function render() {
-		return React.createElement(
-			'div',
-			{ id: 'footer' },
-			React.createElement(
-				'p',
-				null,
-				'Email ',
-				React.createElement(
-					'a',
-					{ href: 'mailto:chris.witulski@gmail.com' },
-					'chris.witulski@gmail.com'
-				),
-				' with any questions or comments.',
-				React.createElement('br', null),
-				'Website by ',
-				React.createElement(
-					'a',
-					{ href: 'http://cjwit.github.io', target: '_blank' },
-					'Christopher Witulski'
-				)
-			)
-		);
-	}
+Object.defineProperty(exports, "__esModule", {
+	value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_React$Component) {
+	_inherits(Footer, _React$Component);
+
+	function Footer() {
+		_classCallCheck(this, Footer);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(Footer).apply(this, arguments));
+	}
+
+	_createClass(Footer, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ id: 'footer' },
+				_react2.default.createElement(
+					'p',
+					null,
+					'Email ',
+					_react2.default.createElement(
+						'a',
+						{ href: 'mailto:chris.witulski@gmail.com' },
+						'chris.witulski@gmail.com'
+					),
+					' with any questions or comments.',
+					_react2.default.createElement('br', null),
+					'Website by ',
+					_react2.default.createElement(
+						'a',
+						{ href: 'http://cjwit.github.io', target: '_blank' },
+						'Christopher Witulski'
+					)
+				)
+			);
+		}
+	}]);
+
+	return Footer;
+}(_react2.default.Component);
+
+exports.default = Footer;
 
 },{"react":204}],9:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Footer = require('./Footer.jsx');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var PollDisplay = require('./PollDisplay.jsx');
-var Footer = require('./Footer.jsx');
+
 var Nav = require('./Nav.jsx');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
@@ -521,49 +565,49 @@ module.exports = React.createClass({
 			username = this.props.login.user.username;
 		}
 
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			null,
-			React.createElement(Nav, { active: "home", login: this.props.login }),
-			React.createElement(
+			_react2.default.createElement(Nav, { active: "home", login: this.props.login }),
+			_react2.default.createElement(
 				'div',
 				{ className: 'container' },
-				React.createElement(
+				_react2.default.createElement(
 					'div',
 					{ className: 'row text-center' },
-					React.createElement(
+					_react2.default.createElement(
 						'h1',
 						null,
 						'Vote!'
 					),
-					React.createElement(
+					_react2.default.createElement(
 						'h2',
 						null,
 						'Easily create, share, and vote in polls'
 					),
-					loggedIn ? React.createElement(
+					loggedIn ? _react2.default.createElement(
 						'p',
 						null,
 						'Logged in as ',
 						username
-					) : React.createElement(
+					) : _react2.default.createElement(
 						'p',
 						null,
 						'Not logged in'
 					),
-					React.createElement(
+					_react2.default.createElement(
 						'p',
 						null,
-						React.createElement(
+						_react2.default.createElement(
 							'span',
 							{ id: 'newPollButton', className: 'btn btn-primary btn-lg', role: 'button' },
 							this.state.creating ? 'Close Form' : 'Create a new poll'
 						)
 					)
 				),
-				React.createElement(PollDisplay, { creating: this.state.creating, login: this.props.login, polls: this.props.polls })
+				_react2.default.createElement(PollDisplay, { creating: this.state.creating, login: this.props.login, polls: this.props.polls })
 			),
-			React.createElement(Footer, null)
+			_react2.default.createElement(_Footer2.default, null)
 		);
 	}
 });
@@ -571,9 +615,13 @@ module.exports = React.createClass({
 },{"./Footer.jsx":8,"./Nav.jsx":13,"./PollDisplay.jsx":16,"react":204}],10:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
 
-module.exports = React.createClass({
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = _react2.default.createClass({
     displayName: 'exports',
 
     getInitialState: function getInitialState() {
@@ -639,25 +687,25 @@ module.exports = React.createClass({
         var onClick = this.submitValue;
         var errorDivId = "error_" + this.props.name;
 
-        return React.createElement(
+        return _react2.default.createElement(
             'div',
             null,
-            React.createElement(
+            _react2.default.createElement(
                 'div',
                 { className: 'form-group' },
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { className: 'input-group' },
-                    React.createElement('input', { type: 'text', className: 'form-control',
+                    _react2.default.createElement('input', { type: 'text', className: 'form-control',
                         id: 'value',
                         name: 'value',
                         placeholder: this.props.placeholder,
                         value: this.state.value,
                         onChange: this.handleInputChange }),
-                    React.createElement(
+                    _react2.default.createElement(
                         'span',
                         { className: 'input-group-btn' },
-                        React.createElement(
+                        _react2.default.createElement(
                             'button',
                             { id: this.props.name, className: 'btn btn-default', onClick: onClick, type: 'button' },
                             'Submit'
@@ -665,7 +713,7 @@ module.exports = React.createClass({
                     )
                 )
             ),
-            React.createElement('div', { id: errorDivId, className: 'alert alert-danger hidden' })
+            _react2.default.createElement('div', { id: errorDivId, className: 'alert alert-danger hidden' })
         );
     }
 });
@@ -673,11 +721,16 @@ module.exports = React.createClass({
 },{"react":204}],11:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var authActions = require('../actions/authActions.js');
 var userActions = require('../actions/userActions.js');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 	getInitialState: function getInitialState() {
 		return {
@@ -742,114 +795,114 @@ module.exports = React.createClass({
 	},
 
 	render: function render() {
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			{ className: 'container' },
-			React.createElement(
+			_react2.default.createElement(
 				'div',
 				{ className: 'row' },
-				React.createElement(
+				_react2.default.createElement(
 					'div',
 					{ className: 'col-sm-12 text-center' },
-					React.createElement(
+					_react2.default.createElement(
 						'div',
 						{ className: 'btn-group', role: 'group', 'aria-label': '...' },
-						React.createElement(
+						_react2.default.createElement(
 							'button',
 							{ type: 'button', id: 'signinSelector', className: 'btn btn-default', onClick: this.openSigninForm },
 							'Sign In'
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'button',
 							{ type: 'button', id: 'createAccountSelector', className: 'btn btn-default', onClick: this.openCreateAccountForm },
 							'Create Account'
 						)
 					)
 				),
-				React.createElement(
+				_react2.default.createElement(
 					'div',
 					{ id: 'signinForm', className: 'col-sm-6 col-sm-offset-3 loginForm' },
-					React.createElement(
+					_react2.default.createElement(
 						'form',
 						{ onSubmit: this.login },
-						React.createElement(
+						_react2.default.createElement(
 							'div',
 							{ className: 'form-group' },
-							React.createElement(
+							_react2.default.createElement(
 								'label',
 								{ htmlFor: 'username' },
 								'Username:'
 							),
 							' Hint: joe',
-							React.createElement('input', { type: 'text',
+							_react2.default.createElement('input', { type: 'text',
 								className: 'form-control',
 								id: 'username',
 								name: 'username',
 								value: this.state.username,
 								onChange: this.handleInputChange })
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'div',
 							{ className: 'form-group' },
-							React.createElement(
+							_react2.default.createElement(
 								'label',
 								{ htmlFor: 'password' },
 								'Password:'
 							),
 							' Hint: pwd',
-							React.createElement('input', { type: 'password',
+							_react2.default.createElement('input', { type: 'password',
 								className: 'form-control',
 								id: 'password',
 								name: 'password',
 								value: this.state.password,
 								onChange: this.handleInputChange })
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'button',
 							{ id: 'loginSubmit', type: 'submit', className: 'btn btn-default' },
 							'Login'
 						)
 					)
 				),
-				React.createElement(
+				_react2.default.createElement(
 					'div',
 					{ id: 'createAccountForm', className: 'col-sm-6 col-sm-offset-3 hidden loginForm' },
-					React.createElement(
+					_react2.default.createElement(
 						'form',
 						{ onSubmit: this.createAccount },
-						React.createElement(
+						_react2.default.createElement(
 							'div',
 							{ className: 'form-group' },
-							React.createElement(
+							_react2.default.createElement(
 								'label',
 								{ htmlFor: 'username' },
 								'Username:'
 							),
 							' Hint: joe',
-							React.createElement('input', { type: 'text',
+							_react2.default.createElement('input', { type: 'text',
 								className: 'form-control',
 								id: 'username',
 								name: 'username',
 								value: this.state.username,
 								onChange: this.handleInputChange })
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'div',
 							{ className: 'form-group' },
-							React.createElement(
+							_react2.default.createElement(
 								'label',
 								{ htmlFor: 'password' },
 								'Password:'
 							),
 							' Hint: pwd',
-							React.createElement('input', { type: 'password',
+							_react2.default.createElement('input', { type: 'password',
 								className: 'form-control',
 								id: 'password',
 								name: 'password',
 								value: this.state.password,
 								onChange: this.handleInputChange })
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'button',
 							{ id: 'createAccountSubmit', type: 'submit', className: 'btn btn-default' },
 							'Create Account'
@@ -864,22 +917,30 @@ module.exports = React.createClass({
 },{"../actions/authActions.js":1,"../actions/userActions.js":3,"react":204}],12:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
-var Footer = require('./Footer.jsx');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Footer = require('./Footer.jsx');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var LoginForm = require('./LoginForm.jsx');
 var Nav = require('./Nav.jsx');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 
 	render: function render() {
 		var err;
 		if (this.props.login.error) {
 			console.log(this.props.login.error);
-			err = React.createElement(
+			err = _react2.default.createElement(
 				'div',
 				{ className: 'col-sm-12 text-center' },
-				React.createElement(
+				_react2.default.createElement(
 					'div',
 					{ className: 'alert alert-danger' },
 					this.props.login.error
@@ -887,22 +948,22 @@ module.exports = React.createClass({
 			);
 		}
 
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			null,
-			React.createElement(Nav, { active: "login", login: this.props.login }),
-			React.createElement(
+			_react2.default.createElement(Nav, { active: "login", login: this.props.login }),
+			_react2.default.createElement(
 				'div',
 				{ className: 'container' },
-				React.createElement(
+				_react2.default.createElement(
 					'h1',
 					null,
 					'Login page'
 				),
-				React.createElement(LoginForm, null),
+				_react2.default.createElement(LoginForm, null),
 				err
 			),
-			React.createElement(Footer, null)
+			_react2.default.createElement(_Footer2.default, null)
 		);
 	}
 });
@@ -910,10 +971,15 @@ module.exports = React.createClass({
 },{"./Footer.jsx":8,"./LoginForm.jsx":11,"./Nav.jsx":13,"react":204}],13:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var actions = require('../actions/authActions');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 
 	componentDidMount: function componentDidMount() {
@@ -940,30 +1006,30 @@ module.exports = React.createClass({
 		    userButton = null;
 
 		if (loggedIn) {
-			logoutButton = React.createElement(
+			logoutButton = _react2.default.createElement(
 				'li',
 				{ className: 'navlink', id: 'logout' },
-				React.createElement(
+				_react2.default.createElement(
 					'a',
 					{ onClick: this.logout },
 					'Logout'
 				)
 			);
 			var userLinkString = "/user/" + username;
-			userButton = React.createElement(
+			userButton = _react2.default.createElement(
 				'li',
 				{ className: active === 'user' ? 'navlink active' : 'navlink', id: 'user' },
-				React.createElement(
+				_react2.default.createElement(
 					'a',
 					{ href: '/user' },
 					'My Polls'
 				)
 			);
 		} else {
-			loginButton = React.createElement(
+			loginButton = _react2.default.createElement(
 				'li',
 				{ className: active === 'login' ? 'navlink active' : 'navlink', id: 'login' },
-				React.createElement(
+				_react2.default.createElement(
 					'a',
 					{ href: '/login' },
 					'Login'
@@ -971,44 +1037,44 @@ module.exports = React.createClass({
 			);
 		}
 
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			null,
-			React.createElement(
+			_react2.default.createElement(
 				'nav',
 				{ className: 'navbar navbar-default' },
-				React.createElement(
+				_react2.default.createElement(
 					'div',
 					{ className: 'container-fluid' },
-					React.createElement(
+					_react2.default.createElement(
 						'div',
 						{ className: 'navbar-header' },
-						React.createElement(
+						_react2.default.createElement(
 							'button',
 							{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#nabvar-collapse', 'aria-expanded': 'false' },
-							React.createElement(
+							_react2.default.createElement(
 								'span',
 								{ className: 'sr-only' },
 								'Toggle navigation'
 							),
-							React.createElement('span', { className: 'icon-bar' }),
-							React.createElement('span', { className: 'icon-bar' }),
-							React.createElement('span', { className: 'icon-bar' })
+							_react2.default.createElement('span', { className: 'icon-bar' }),
+							_react2.default.createElement('span', { className: 'icon-bar' }),
+							_react2.default.createElement('span', { className: 'icon-bar' })
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'span',
 							{ className: active === 'home' ? 'navlink active' : 'navlink', id: 'home' },
-							React.createElement(
+							_react2.default.createElement(
 								'a',
 								{ className: 'navbar-brand', href: '/' },
 								'Vote!'
 							)
 						)
 					),
-					React.createElement(
+					_react2.default.createElement(
 						'div',
 						{ className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
-						React.createElement(
+						_react2.default.createElement(
 							'ul',
 							{ className: 'nav navbar-nav' },
 							userButton,
@@ -1025,24 +1091,28 @@ module.exports = React.createClass({
 },{"../actions/authActions":1,"react":204}],14:[function(require,module,exports){
 "use strict";
 
-var React = require('react');
+var _react = require("react");
 
-module.exports = React.createClass({
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = _react2.default.createClass({
 	displayName: "exports",
 
 	render: function render() {
-		return React.createElement(
+		return _react2.default.createElement(
 			"div",
 			null,
-			React.createElement(
+			_react2.default.createElement(
 				"h1",
 				null,
 				"User page"
 			),
-			React.createElement(
+			_react2.default.createElement(
 				"p",
 				null,
-				React.createElement(
+				_react2.default.createElement(
 					"a",
 					{ href: "/login" },
 					"Login"
@@ -1056,13 +1126,18 @@ module.exports = React.createClass({
 },{"react":204}],15:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var DeleteButton = require('./DeleteButton.jsx');
 var BarChart = require('./BarChart.jsx');
 var CircleChart = require('./CircleChart.jsx');
 var actions = require('../actions/pollsActions.js');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 
 	updateVoteStatus: function updateVoteStatus() {
@@ -1090,37 +1165,37 @@ module.exports = React.createClass({
 		    voted = this.updateVoteStatus();
 
 		options.map(function (option, index) {
-			var voteButton = React.createElement(
+			var voteButton = _react2.default.createElement(
 				'button',
 				{ id: option.name, className: 'btn btn-default btn-sm vote-button', onClick: addVote, disabled: voted },
 				option.votes
 			);
 			var optionStyle = { color: actions.pollColors(index) };
-			var optionName = React.createElement(
+			var optionName = _react2.default.createElement(
 				'span',
 				{ style: optionStyle },
 				option.name
 			);
 			// only show deleteButton if logged in
-			optionButtons.push(React.createElement(
+			optionButtons.push(_react2.default.createElement(
 				'div',
 				{ className: 'poll-option', key: 'option' + index },
-				React.createElement(
+				_react2.default.createElement(
 					'p',
 					null,
 					voteButton,
 					optionName,
-					login.status ? React.createElement(DeleteButton, { poll: poll, deleteFunction: actions.deleteOption, valueToDelete: option.name }) : null
+					login.status ? _react2.default.createElement(DeleteButton, { poll: poll, deleteFunction: actions.deleteOption, valueToDelete: option.name }) : null
 				)
 			));
 		});
 
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			null,
-			React.createElement('h1', null),
-			React.createElement(CircleChart, { poll: poll, pollPage: true }),
-			React.createElement(BarChart, { poll: poll }),
+			_react2.default.createElement('h1', null),
+			_react2.default.createElement(CircleChart, { poll: poll, pollPage: true }),
+			_react2.default.createElement(BarChart, { poll: poll }),
 			optionButtons
 		);
 	}
@@ -1129,11 +1204,16 @@ module.exports = React.createClass({
 },{"../actions/pollsActions.js":2,"./BarChart.jsx":4,"./CircleChart.jsx":5,"./DeleteButton.jsx":7,"react":204}],16:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var PollList = require('./PollList.jsx');
 var CreatePollForm = require('./CreatePollForm.jsx');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
@@ -1246,61 +1326,61 @@ module.exports = React.createClass({
 
 		var polls = this.sortPolls();
 
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			{ className: 'row' },
-			React.createElement(
+			_react2.default.createElement(
 				'div',
 				{ className: 'col-sm-4 col-sm-offset-2' },
-				this.props.creating ? React.createElement(CreatePollForm, { login: this.props.login, pollNames: this.props.polls.map(function (p) {
+				this.props.creating ? _react2.default.createElement(CreatePollForm, { login: this.props.login, pollNames: this.props.polls.map(function (p) {
 						return p.name.toLowerCase();
-					}) }) : React.createElement(
+					}) }) : _react2.default.createElement(
 					'div',
 					{ id: 'searchAndSort' },
-					React.createElement(
+					_react2.default.createElement(
 						'h2',
 						null,
 						'Search'
 					),
-					React.createElement(
+					_react2.default.createElement(
 						'div',
 						{ className: 'form-group' },
-						React.createElement('input', { type: 'text', className: 'form-control',
+						_react2.default.createElement('input', { type: 'text', className: 'form-control',
 							id: 'pollFilter',
 							name: 'pollFilter',
 							placeholder: 'Search',
 							value: this.state.pollFilter,
 							onChange: this.handleInputChange })
 					),
-					React.createElement(
+					_react2.default.createElement(
 						'h2',
 						null,
 						'Sort By'
 					),
-					React.createElement(
+					_react2.default.createElement(
 						'p',
 						null,
-						React.createElement(
+						_react2.default.createElement(
 							'span',
 							{ id: 'mostVotes', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
 							'Most Popular'
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'span',
 							{ id: 'dateRecent', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
 							'Newest'
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'span',
 							{ id: 'dateOldest', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
 							'Oldest'
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'span',
 							{ id: 'nameAZ', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
 							'A-Z'
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'span',
 							{ id: 'nameZA', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
 							'Z-A'
@@ -1308,15 +1388,15 @@ module.exports = React.createClass({
 					)
 				)
 			),
-			React.createElement(
+			_react2.default.createElement(
 				'div',
 				{ className: 'col-sm-4' },
-				React.createElement(
+				_react2.default.createElement(
 					'h2',
 					null,
 					'Recent Polls'
 				),
-				React.createElement(PollList, { polls: polls, login: this.props.login })
+				_react2.default.createElement(PollList, { polls: polls, login: this.props.login })
 			)
 		);
 	}
@@ -1325,10 +1405,15 @@ module.exports = React.createClass({
 },{"./CreatePollForm.jsx":6,"./PollList.jsx":17,"react":204}],17:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var PollMini = require('./PollMini.jsx');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
     displayName: 'exports',
 
     getInitialState: function getInitialState() {
@@ -1398,28 +1483,28 @@ module.exports = React.createClass({
 
         var polls = incomingPolls.slice(startIndex, endIndex);
 
-        return React.createElement(
+        return _react2.default.createElement(
             'div',
             { className: 'list' },
             polls.map(function (poll) {
-                return React.createElement(PollMini, { poll: poll, key: "poll" + poll._id });
+                return _react2.default.createElement(PollMini, { poll: poll, key: "poll" + poll._id });
             }),
-            incomingLength > this.state.listings ? React.createElement(
+            incomingLength > this.state.listings ? _react2.default.createElement(
                 'nav',
                 null,
-                React.createElement(
+                _react2.default.createElement(
                     'ul',
                     { className: 'pager' },
-                    React.createElement(
+                    _react2.default.createElement(
                         'li',
                         { className: 'disabled', id: 'previousPage' },
-                        React.createElement(
+                        _react2.default.createElement(
                             'a',
                             { onClick: this.previous },
                             '←'
                         )
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'span',
                         { className: 'currentPage' },
                         'Page ',
@@ -1427,10 +1512,10 @@ module.exports = React.createClass({
                         ' of ',
                         totalPages
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'li',
                         { id: 'nextPage' },
-                        React.createElement(
+                        _react2.default.createElement(
                             'a',
                             { onClick: this.next },
                             '→'
@@ -1445,11 +1530,16 @@ module.exports = React.createClass({
 },{"./PollMini.jsx":18,"react":204}],18:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var CircleChart = require('./CircleChart.jsx');
 var actions = require('../actions/pollsActions.js');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 
 	updateVoteStatus: function updateVoteStatus() {
@@ -1477,22 +1567,22 @@ module.exports = React.createClass({
 		    pollUrl = "/polls/" + poll._id;
 
 		options.map(function (option, index) {
-			var voteButton = React.createElement(
+			var voteButton = _react2.default.createElement(
 				'button',
 				{ id: option.name, className: 'btn btn-default btn-sm mini-vote-button', onClick: addVote, disabled: voted },
 				option.votes
 			);
 			var optionStyle = { color: actions.pollColors(index) };
-			var optionName = React.createElement(
+			var optionName = _react2.default.createElement(
 				'span',
 				{ style: optionStyle },
 				option.name
 			);
 			// only show deleteButton if logged in
-			optionButtons.push(React.createElement(
+			optionButtons.push(_react2.default.createElement(
 				'div',
 				{ className: 'mini-option', key: 'option' + index },
-				React.createElement(
+				_react2.default.createElement(
 					'p',
 					null,
 					voteButton,
@@ -1501,19 +1591,19 @@ module.exports = React.createClass({
 			));
 		});
 
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			{ className: 'mini-poll' },
-			React.createElement(
+			_react2.default.createElement(
 				'p',
 				{ className: 'mini-name' },
-				React.createElement(
+				_react2.default.createElement(
 					'a',
 					{ href: pollUrl },
 					poll.name
 				)
 			),
-			React.createElement(CircleChart, { poll: poll, pollPage: false }),
+			_react2.default.createElement(CircleChart, { poll: poll, pollPage: false }),
 			optionButtons
 		);
 	}
@@ -1522,15 +1612,24 @@ module.exports = React.createClass({
 },{"../actions/pollsActions.js":2,"./CircleChart.jsx":5,"react":204}],19:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Footer = require('./Footer.jsx');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var Poll = require('./Poll.jsx');
-var Footer = require('./Footer.jsx');
+
 var Nav = require('./Nav.jsx');
 var InputSubmit = require('./InputSubmit.jsx');
 var DeleteButton = require('./DeleteButton.jsx');
 var actions = require('../actions/pollsActions');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 
 	deletePoll: function deletePoll(poll) {
@@ -1545,59 +1644,59 @@ module.exports = React.createClass({
 		    login = this.props.login,
 		    username = login.status ? login.user.username : "";
 
-		var editPollInput = username === poll.owner ? React.createElement(InputSubmit, { poll: poll, login: login, submitFunction: actions.editPoll, name: 'editPollButton', placeholder: 'Edit', duplicates: this.props.pollNames }) : null;
+		var editPollInput = username === poll.owner ? _react2.default.createElement(InputSubmit, { poll: poll, login: login, submitFunction: actions.editPoll, name: 'editPollButton', placeholder: 'Edit', duplicates: this.props.pollNames }) : null;
 
-		var addOptionInput = username === poll.owner ? React.createElement(InputSubmit, { poll: poll, login: login, submitFunction: actions.addOption, name: 'addOptionButton', placeholder: 'Add An Option', duplicates: poll.options.map(function (o) {
+		var addOptionInput = username === poll.owner ? _react2.default.createElement(InputSubmit, { poll: poll, login: login, submitFunction: actions.addOption, name: 'addOptionButton', placeholder: 'Add An Option', duplicates: poll.options.map(function (o) {
 				return o.name.toLowerCase();
 			}) }) : null;
 
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			null,
-			React.createElement(Nav, { active: "poll", login: login }),
-			React.createElement(
+			_react2.default.createElement(Nav, { active: "poll", login: login }),
+			_react2.default.createElement(
 				'div',
 				{ className: 'container' },
-				React.createElement(
+				_react2.default.createElement(
 					'div',
 					{ className: 'row' },
-					React.createElement(
+					_react2.default.createElement(
 						'div',
 						{ className: 'col-sm-8 col-sm-offset-2' },
-						React.createElement(
+						_react2.default.createElement(
 							'h1',
 							null,
 							poll.name,
 							' ',
-							React.createElement(DeleteButton, { poll: poll, deleteFunction: this.deletePoll, valueToDelete: poll._id })
+							_react2.default.createElement(DeleteButton, { poll: poll, deleteFunction: this.deletePoll, valueToDelete: poll._id })
 						),
 						editPollInput,
-						React.createElement(
+						_react2.default.createElement(
 							'p',
 							null,
 							login.status ? "Logged in as " + login.user.username : "Not logged in"
 						),
-						React.createElement(
+						_react2.default.createElement(
 							'p',
 							null,
 							'Share: ',
-							React.createElement(
+							_react2.default.createElement(
 								'a',
 								{ href: pollUrl },
 								'Link'
 							)
 						)
 					),
-					React.createElement(
+					_react2.default.createElement(
 						'div',
 						{ className: 'text-center' },
-						React.createElement(Poll, { login: login, poll: poll })
+						_react2.default.createElement(Poll, { login: login, poll: poll })
 					),
-					React.createElement('div', { className: 'col-sm-6 col-sm-offset-3 text-center' })
+					_react2.default.createElement('div', { className: 'col-sm-6 col-sm-offset-3 text-center' })
 				),
 				addOptionInput
 			),
-			React.createElement(Footer, null)
+			_react2.default.createElement(_Footer2.default, null)
 		);
 	}
 });
@@ -1605,10 +1704,15 @@ module.exports = React.createClass({
 },{"../actions/pollsActions":2,"./DeleteButton.jsx":7,"./Footer.jsx":8,"./InputSubmit.jsx":10,"./Nav.jsx":13,"./Poll.jsx":15,"react":204}],20:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var PollDisplay = require('./PollDisplay.jsx');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
@@ -1627,33 +1731,33 @@ module.exports = React.createClass({
 
 	render: function render() {
 		var username = this.props.login.user.username;
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			null,
-			React.createElement(
+			_react2.default.createElement(
 				'div',
 				{ className: 'row text-center' },
-				React.createElement(
+				_react2.default.createElement(
 					'h1',
 					null,
 					username
 				),
-				React.createElement(
+				_react2.default.createElement(
 					'h2',
 					null,
 					'View and edit your polls'
 				),
-				React.createElement(
+				_react2.default.createElement(
 					'p',
 					null,
-					React.createElement(
+					_react2.default.createElement(
 						'span',
 						{ id: 'newPollButton', className: 'btn btn-primary btn-lg', role: 'button' },
 						this.state.creating ? 'Close Form' : 'Create a new poll'
 					)
 				)
 			),
-			React.createElement(PollDisplay, { creating: this.state.creating, login: this.props.login, polls: this.props.polls })
+			_react2.default.createElement(PollDisplay, { creating: this.state.creating, login: this.props.login, polls: this.props.polls })
 		);
 	}
 });
@@ -1661,27 +1765,35 @@ module.exports = React.createClass({
 },{"./PollDisplay.jsx":16,"react":204}],21:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
-var Footer = require('./Footer.jsx');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Footer = require('./Footer.jsx');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var UserInfo = require('./UserInfo.jsx');
 var NotLoggedIn = require('./NotLoggedIn.jsx');
 var Nav = require('./Nav.jsx');
 
-module.exports = React.createClass({
+module.exports = _react2.default.createClass({
 	displayName: 'exports',
 
 	render: function render() {
 		console.log("rendering userPage", this.props.login.status);
-		return React.createElement(
+		return _react2.default.createElement(
 			'div',
 			null,
-			React.createElement(Nav, { active: "user", login: this.props.login }),
-			React.createElement(
+			_react2.default.createElement(Nav, { active: "user", login: this.props.login }),
+			_react2.default.createElement(
 				'div',
 				{ className: 'container' },
-				this.props.login.status ? React.createElement(UserInfo, { login: this.props.login, polls: this.props.polls }) : React.createElement(NotLoggedIn, null)
+				this.props.login.status ? _react2.default.createElement(UserInfo, { login: this.props.login, polls: this.props.polls }) : _react2.default.createElement(NotLoggedIn, null)
 			),
-			React.createElement(Footer, null)
+			_react2.default.createElement(_Footer2.default, null)
 		);
 	}
 });
@@ -1719,7 +1831,12 @@ module.exports = {
 },{"guid":55}],23:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var ReactDOM = require('react-dom');
 var auth = require('./actions/authActions.js');
 
@@ -1811,7 +1928,7 @@ function render() {
 }
 
 function renderHome() {
-    ReactDOM.render(React.createElement(Home, {
+    ReactDOM.render(_react2.default.createElement(Home, {
         login: login,
         polls: polls
     }), document.getElementById('app'));
@@ -1827,21 +1944,21 @@ function renderUser() {
             }
         });
     }
-    ReactDOM.render(React.createElement(UserPage, {
+    ReactDOM.render(_react2.default.createElement(UserPage, {
         login: login,
         polls: userPolls
     }), document.getElementById('app'));
 }
 
 function renderLogin() {
-    ReactDOM.render(React.createElement(LoginPage, {
+    ReactDOM.render(_react2.default.createElement(LoginPage, {
         login: login
     }), document.getElementById('app'));
 }
 
 function renderPollPage(id) {
     var poll = getPollById(id);
-    ReactDOM.render(React.createElement(PollPage, {
+    ReactDOM.render(_react2.default.createElement(PollPage, {
         login: login,
         poll: poll,
         pollNames: polls.map(function (p) {

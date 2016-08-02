@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var router = require('react-router');
 var auth = require('../actions/authActions.js')
 var browserHistory = router.browserHistory;

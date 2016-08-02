@@ -1,5 +1,5 @@
-var React = require('react');
-var Footer = require('./Footer.jsx');
+import React from 'react';
+import Footer from './Footer.jsx';
 var LoginForm = require('./LoginForm.jsx');
 var Nav = require('./Nav.jsx');
 

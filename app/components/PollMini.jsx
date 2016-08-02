@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var CircleChart = require('./CircleChart.jsx');
 var actions = require('../actions/pollsActions.js');
 

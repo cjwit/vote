@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var authActions = require('../actions/authActions.js');
 var userActions = require('../actions/userActions.js');
 

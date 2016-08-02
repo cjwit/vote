@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var PollDisplay = require('./PollDisplay.jsx');
 
 module.exports = React.createClass({

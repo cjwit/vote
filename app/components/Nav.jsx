@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var actions = require('../actions/authActions');
 
 module.exports = React.createClass({
