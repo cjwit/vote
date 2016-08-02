@@ -33,7 +33,7 @@ module.exports = React.createClass({
 				<div className = "container">
 					<div className = "row text-center">
 						<h1>Vote!</h1>
-						<h2>Easily create, share, and vote in polls</h2>
+						<h2>Easily create, share, and vote in polls (edited)</h2>
 
 						{ loggedIn ?
 							<p>Logged in as { username }</p>
