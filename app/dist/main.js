@@ -539,7 +539,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'h2',
 						null,
-						'Easily create, share, and vote in polls (edited)'
+						'Easily create, share, and vote in polls'
 					),
 					loggedIn ? React.createElement(
 						'p',
