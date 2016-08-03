@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 var actions = require('../actions/pollsActions');
 
-module.exports = React.createClass({
-    getInitialState: function() {
-        return {
-            name: "",
-            options: "",
-            date: null
-        };
-    },
+export default class CreatePollForm extends Component {
+	static propTypes = {
+		login: PropTypes.object.isRequired,
+		pollNames: PropTypes.array.isRequired
+	}
 
-    componentDidMount: function () {
-        // validation setup
-        var submit = $('#submit');
-        submit.prop('disabled', true)
-    },
+	state = {
+		name: "",
+		options: "",
+		date: null
+	}
 
-	resetForm: function() {
+	componentDidMount() {
+		// validation setup
+		const submit = $('#submit');
+		submit.prop('disabled', true)
+	}
+
+	resetForm = () => {
 		this.setState({
 			name: "",
 			options: "",
@@ -24,16 +27,16 @@ module.exports = React.createClass({
 		});
 		$(".form-group").removeClass("has-error has-success");
 		$('#submit').prop('disabled', true);
-	},
+	}
 
-    addPoll: function(e) {
+	addPoll = (e) => {
         e.preventDefault();
-        var info = this.state;
-        var now = new Date(Date.now());
+        const info = this.state;
+        const now = new Date(Date.now());
         info.date = now;
-		var options = [];
-		info.options.split(',').forEach(function(o) {
-			var option = {
+		let options = [];
+		info.options.split(',').forEach((o) => {
+			const option = {
 				name: o.trim(),
 				votes: 0
 			}
@@ -43,20 +46,21 @@ module.exports = React.createClass({
 		info.owner = this.props.login.user.username;
         actions.addPoll(info);
 		this.resetForm();
-    },
+    }
 
-    handleInputChange: function(e) {
+	handleInputChange = (e) => {
         e.preventDefault();
-        var name = e.target.name;
-        var value = e.target.value;
-        var state = this.state;
-        state[name] = value;
+        const name = e.target.name,
+			value = e.target.value,
+			state = this.state;
+
+		state[name] = value;
         this.setState(state);
 
         // validate element to set class
-        var element = $("#" + name);
-        var condition = false;
-        var toValidate = false;
+        const element = $("#" + name);
+     	let condition = false,
+			toValidate = false;
 
         switch (name) {
             case "name":
@@ -79,11 +83,11 @@ module.exports = React.createClass({
             }
         }
         this.validateForm();
-    },
+    }
 
-    validateForm: function() {
+	validateForm() {
 		// check for errorMessage
-		var nameIsUnique = true;
+		let nameIsUnique = true;
 		if (this.props.pollNames.indexOf(this.state.name.trim().toLowerCase()) !== -1) {
 			$("#errorMessage").removeClass("hidden").text("Your poll's name must be unique.");
 			nameIsUnique = false;
@@ -91,19 +95,19 @@ module.exports = React.createClass({
 			$("#errorMessage").addClass("hidden").text("");
 		}
 
-        // set submit button
-        var submit = $('#submit'),
-            name = this.state.name.length > 0,
-            options = this.state.options.length > 0,
-            valid = name && options && nameIsUnique && this.props.login.status;
-        if (valid) {
-            submit.prop('disabled', false);
-        } else {
-            submit.prop('disabled', true);
-        }
-    },
+		// set submit button
+		const submit = $('#submit'),
+			name = this.state.name.length > 0,
+			options = this.state.options.length > 0,
+			valid = name && options && nameIsUnique && this.props.login.status;
+		if (valid) {
+			submit.prop('disabled', false);
+		} else {
+			submit.prop('disabled', true);
+		}
+	}
 
-    render: function() {
+	render() {
         return (
             <form onSubmit = { this.addPoll } id = "addPollForm">
 				<h2>Create a Poll</h2>
@@ -137,4 +141,4 @@ module.exports = React.createClass({
             </form>
         )
     }
-});
+}

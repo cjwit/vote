@@ -1,5 +1,5 @@
 import React from 'react';
-var PollDisplay = require('./PollDisplay.jsx');
+import PollDisplay from './PollDisplay.jsx';
 
 module.exports = React.createClass({
 	getInitialState: function() {

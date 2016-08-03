@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-module.exports = React.createClass({
-	deleteFunction: function(e) {
+export default class DeleteButton extends Component {
+	static propTypes = {
+		poll: PropTypes.object.isRequired,
+		deleteFunction: PropTypes.func.isRequired,
+		valueToDelete: PropTypes.string.isRequired
+	}
+
+	deleteFunction = (e) => {
 		e.preventDefault();
-		var toDelete = { id: this.props.poll._id, value: e.target.id }
-		var deleteFunction = this.props.deleteFunction;
+		const toDelete = { id: this.props.poll._id, value: e.target.id }
+		const deleteFunction = this.props.deleteFunction;
 		deleteFunction(toDelete);
-	},
+	}
 
-    render: function() {
-		var onClick = this.deleteFunction;
+    render() {
+		const onClick = this.deleteFunction;
 
         return (
                 <button id = { this.props.valueToDelete }
@@ -17,4 +23,4 @@ module.exports = React.createClass({
 						onClick = { onClick } >&#10006;</button>
         )
     }
-});
+}

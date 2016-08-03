@@ -4,8 +4,8 @@ var auth = require('./actions/authActions.js')
 
 // ################
 // React Components
-var Home = require('./components/Home.jsx');
-var LoginPage = require('./components/LoginPage.jsx');
+import Home from './components/Home.jsx';
+import LoginPage from './components/LoginPage.jsx';
 var UserPage = require('./components/UserPage.jsx');
 var PollPage = require('./components/PollPage.jsx');
 
@@ -29,8 +29,8 @@ var getPollsCallback = function(_polls) {
     render();
 }
 
-if (localStorage.getItem("voted") === null) {
-	localStorage.setItem('voted', JSON.stringify([]));
+if (sessionStorage.getItem("voted") === null) {
+	sessionStorage.setItem('voted', JSON.stringify([]));
 }
 
 // ############################

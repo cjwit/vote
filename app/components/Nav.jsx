@@ -1,33 +1,38 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 var actions = require('../actions/authActions');
 
-module.exports = React.createClass({
-	componentDidMount: function() {
-		actions.getLoginStatus();
-	},
+export default class Nav extends Component {
+	static propTypes = {
+		active: PropTypes.string.isRequired,
+		login: PropTypes.object.isRequired
+	}
 
-	logout: function(e) {
+	componentDidMount() {
+		actions.getLoginStatus();
+	}
+
+	logout = (e) => {
 		e.preventDefault();
 		actions.logout();
-	},
+	}
 
-	render: function() {
+	render() {
 		// get login info for navigation
-		var loggedIn = this.props.login.status;
-		var username;
+		const loggedIn = this.props.login.status;
+		let username = "";
 		if (loggedIn) {
 			username = this.props.login.user.username;
 		}
-		var active = this.props.active;
+		const active = this.props.active;
 
 		// build login buttons
-		var loginButton = null,
+		let loginButton = null,
 			logoutButton = null,
 			userButton = null;
 
 		if (loggedIn) {
 			logoutButton = <li className= 'navlink' id = 'logout'><a onClick = { this.logout }>Logout</a></li>
-			var userLinkString = "/user/" + username;
+			const userLinkString = "/user/" + username;
 			userButton = <li className= { active === 'user' ? 'navlink active' : 'navlink' } id = 'user'><a href="/user">My Polls</a></li>
 		} else {
 			loginButton = <li className= { active === 'login' ? 'navlink active' : 'navlink' } id = 'login'><a href="/login">Login</a></li>
@@ -59,4 +64,4 @@ module.exports = React.createClass({
 			</div>
         )
     }
-});
+}

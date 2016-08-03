@@ -1,8 +1,8 @@
 import React from 'react';
 import Footer from './Footer.jsx';
 var UserInfo = require('./UserInfo.jsx');
-var NotLoggedIn = require('./NotLoggedIn.jsx');
-var Nav = require('./Nav.jsx');
+import NotLoggedIn from './NotLoggedIn.jsx';
+import Nav from './Nav.jsx';
 
 module.exports = React.createClass({
 	render: function() {

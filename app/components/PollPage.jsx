@@ -1,9 +1,9 @@
 import React from 'react';
-var Poll = require('./Poll.jsx');
+import Poll from './Poll.jsx';
 import Footer from './Footer.jsx';
-var Nav = require('./Nav.jsx');
-var InputSubmit = require('./InputSubmit.jsx');
-var DeleteButton = require('./DeleteButton.jsx');
+import Nav from './Nav.jsx';
+import InputSubmit from './InputSubmit.jsx';
+import DeleteButton from './DeleteButton.jsx';
 var actions = require('../actions/pollsActions');
 
 module.exports = React.createClass({

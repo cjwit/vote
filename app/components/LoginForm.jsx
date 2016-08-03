@@ -1,55 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 var authActions = require('../actions/authActions.js');
 var userActions = require('../actions/userActions.js');
 
-module.exports = React.createClass({
-	getInitialState() {
-		return {
-			username: "",
-			password: ""
-		}
-	},
+export default class LoginForm extends Component {
+	state = {
+		username: "",
+		password: ""
+	}
 
-	componentDidMount: function() {
+	componentDidMount() {
 		$('#loginSubmit').prop('disabled', true);
 		$('#createAccountSubmit').prop('disabled', true);
-	},
+	}
 
-	openSigninForm: function() {
+	openSigninForm() {
 		$("#createAccountForm").addClass('hidden');
 		$("#signinForm").removeClass('hidden');
-	},
+	}
 
-	openCreateAccountForm: function() {
+	openCreateAccountForm() {
 		$("#signinForm").addClass('hidden');
 		$("#createAccountForm").removeClass('hidden');
-	},
+	}
 
-	createAccount: function(e) {
+	createAccount = (e) => {
 		e.preventDefault();
-		var user = this.state;
+		const user = this.state;
 		authActions.addUser(user);
-	},
+	}
 
-	login: function(e) {
+	login = (e) => {
 		e.preventDefault();
-		var user = this.state;
+		const user = this.state;
 		authActions.login(user);
-	},
+	}
 
-	handleInputChange: function(e) {
+	handleInputChange = (e) => {
 		e.preventDefault();
-		var name = e.target.name;
-		var value = e.target.value;
-		var state = this.state;
+		const name = e.target.name;
+		const value = e.target.value;
+		const state = this.state;
 		state[name] = value;
 		this.setState(state);
 
 		this.validateForm();
-	},
+	}
 
-	validateForm: function() {
-		var loginSubmit = $('#loginSubmit'),
+	validateForm() {
+		const loginSubmit = $('#loginSubmit'),
 			createAccountSubmit = $('#createAccountSubmit'),
 			validUsername = this.state.username.length > 0,
 			validPassword = this.state.password.length > 0,
@@ -62,9 +60,9 @@ module.exports = React.createClass({
 			loginSubmit.prop('disabled', true);
 			createAccountSubmit.prop('disabled', true);
 		}
-	},
+	}
 
-    render: function() {
+    render() {
 		return (
 			<div className="container">
 
@@ -125,4 +123,4 @@ module.exports = React.createClass({
 		    </div>
         )
     }
-});
+}

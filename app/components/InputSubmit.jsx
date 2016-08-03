@@ -1,44 +1,51 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 
-module.exports = React.createClass({
-    getInitialState: function() {
-        return {
-            value: ""
-        };
-    },
+export default class InputSubmit extends Component {
+	static propTypes = {
+		poll: PropTypes.object.isRequired,
+		login: PropTypes.object.isRequired,
+		submitFunction: PropTypes.func.isRequired,
+		name: PropTypes.string.isRequired,
+		placeholder: PropTypes.string.isRequired,
+		duplicates: PropTypes.array.isRequired
+	}
 
-    componentDidMount: function () {
+	state = {
+        value: ""
+    }
+
+    componentDidMount() {
 		$('#' + this.props.name).prop('disabled', true);
-    },
+    }
 
-	resetForm: function() {
+	resetForm() {
 		this.setState({ value: "" });
 		$('#' + this.props.name).prop('disabled', true);
-	},
+	}
 
-    submitValue: function(e) {
+    submitValue = (e) => {
         e.preventDefault();
-        var info = this.state,
+        const info = this.state,
 			submitFunction = this.props.submitFunction;
 
 		info.id = this.props.poll._id;
         submitFunction(info);
 		this.resetForm();
-    },
+    }
 
-    handleInputChange: function(e) {
+    handleInputChange = (e) => {
         e.preventDefault();
-        var name = e.target.name;
-        var value = e.target.value;
-        var state = this.state;
+        const name = e.target.name;
+        const value = e.target.value;
+        const state = this.state;
         state[name] = value;
         this.setState(state);
         this.validateForm();
-    },
+    }
 
-    validateForm: function() {
+    validateForm() {
 		// check for errorMessage
-		var valueIsUnique = true;
+		let valueIsUnique = true;
 		if (this.props.duplicates.indexOf(this.state.value.trim().toLowerCase()) !== -1) {
 			$("#error_" + this.props.name).removeClass("hidden").text("Value must be unique.");
 			valueIsUnique = false;
@@ -47,7 +54,7 @@ module.exports = React.createClass({
 		}
 
 		// set submit button
-        var submit = $('#' + this.props.name),
+        const submit = $('#' + this.props.name),
             value = this.state.value.length > 0,
 			// login = this.props.login.status,
 			// valid = login && option, ADD THIS BACK IN TO CHECK LOGIN AGAINST POLL OWNER
@@ -57,11 +64,11 @@ module.exports = React.createClass({
         } else {
             submit.prop('disabled', true);
         }
-    },
+    }
 
-    render: function() {
-		var onClick = this.submitValue;
-		var errorDivId = "error_" + this.props.name;
+    render() {
+		const onClick = this.submitValue;
+		const errorDivId = "error_" + this.props.name;
 
         return (
 			<div>
@@ -82,4 +89,4 @@ module.exports = React.createClass({
 			</div>
         )
     }
-});
+}

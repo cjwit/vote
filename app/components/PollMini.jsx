@@ -1,10 +1,10 @@
 import React from 'react';
-var CircleChart = require('./CircleChart.jsx');
+import CircleChart from './CircleChart.jsx';
 var actions = require('../actions/pollsActions.js');
 
 module.exports = React.createClass({
 	updateVoteStatus: function() {
-		var voted = JSON.parse(localStorage.voted);
+		var voted = JSON.parse(sessionStorage.voted);
 		if (voted.indexOf(this.props.poll._id) >= 0) {
 			return true;
 		}
@@ -13,9 +13,9 @@ module.exports = React.createClass({
 
 	addVote: function(e) {
 		e.preventDefault();
-		var voted = JSON.parse(localStorage.voted);
+		var voted = JSON.parse(sessionStorage.voted);
 		voted.push(this.props.poll._id);
-		localStorage.setItem('voted', JSON.stringify(voted));
+		sessionStorage.setItem('voted', JSON.stringify(voted));
 		actions.addVote({ poll: this.props.poll._id, option: e.target.id });
 	},
 

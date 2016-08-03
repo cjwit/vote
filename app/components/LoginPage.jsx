@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 import Footer from './Footer.jsx';
-var LoginForm = require('./LoginForm.jsx');
-var Nav = require('./Nav.jsx');
+import LoginForm from './LoginForm.jsx';
+import Nav from './Nav.jsx';
 
-module.exports = React.createClass({
-	render: function() {
-		var err;
+export default class LoginPage extends Component {
+	static propTypes = {
+		login: PropTypes.object.isRequired
+	}
+
+	render() {
+		let err;
 		if (this.props.login.error) {
 			console.log(this.props.login.error);
 			err = <div className="col-sm-12 text-center"><div className="alert alert-danger">{ this.props.login.error }</div></div>
@@ -23,4 +27,4 @@ module.exports = React.createClass({
 			</div>
         )
     }
-});
+}

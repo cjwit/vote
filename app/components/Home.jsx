@@ -1,31 +1,28 @@
-import React from 'react';
-var PollDisplay = require('./PollDisplay.jsx');
+import React, { PropTypes, Component } from 'react';
+import PollDisplay from './PollDisplay.jsx';
 import Footer from './Footer.jsx';
-var Nav = require('./Nav.jsx');
+import Nav from './Nav.jsx';
 
-module.exports = React.createClass({
-	getInitialState: function() {
-		return {
-			creating: false,
-			pollSorting: 'dateRecent'
-		}
-	},
+export default class Home extends Component {
+	static propTypes = {
+		polls: PropTypes.array.isRequired,
+		login: PropTypes.object.isRequired
+	}
 
-	componentDidMount: function() {
-		var _this = this;
-		$("#newPollButton").click(function() {
-			_this.setState({ creating: !_this.state.creating });
+	state = {
+		creating: false,
+		pollSorting: 'dateRecent'
+	}
+
+	componentDidMount() {
+		$("#newPollButton").click(() => {
+			this.setState({ creating: !_this.state.creating });
 		});
-	},
+	}
 
-	render: function() {
+	render() {
 		// get login info for navigation
-		var username = "",
-			loggedIn = this.props.login.status;
-
-		if (loggedIn) {
-			username = this.props.login.user.username;
-		}
+		const username = this.props.login.status ? this.props.login.user.username : "";
 
 		return (
 			<div>
@@ -35,7 +32,7 @@ module.exports = React.createClass({
 						<h1>Vote!</h1>
 						<h2>Easily create, share, and vote in polls</h2>
 
-						{ loggedIn ?
+						{ this.props.login.status ?
 							<p>Logged in as { username }</p>
 							:
 							<p>Not logged in</p>
@@ -50,4 +47,4 @@ module.exports = React.createClass({
 			</div>
         )
     }
-});
+}

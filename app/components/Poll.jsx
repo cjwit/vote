@@ -1,35 +1,40 @@
-import React from 'react';
-var DeleteButton = require('./DeleteButton.jsx');
-var BarChart = require('./BarChart.jsx');
-var CircleChart = require('./CircleChart.jsx');
+import React, { PropTypes, Component } from 'react';
+import DeleteButton from './DeleteButton.jsx';
+import BarChart from './BarChart.jsx';
+import CircleChart from './CircleChart.jsx';
 var actions = require('../actions/pollsActions.js');
 
-module.exports = React.createClass({
-	updateVoteStatus: function() {
-		var voted = JSON.parse(localStorage.voted);
+export default class Poll extends Component {
+	static propTypes = {
+		login: PropTypes.object.isRequired,
+		poll: PropTypes.object.isRequired
+	}
+
+	updateVoteStatus() {
+		const voted = JSON.parse(sessionStorage.voted);
 		if (voted.indexOf(this.props.poll._id) >= 0) {
 			return true;
 		}
 		return false;
-	},
+	}
 
-	addVote: function(e) {
+	addVote = (e) => {
 		e.preventDefault();
-		var voted = JSON.parse(localStorage.voted);
+		const voted = JSON.parse(sessionStorage.voted);
 		voted.push(this.props.poll._id);
-		localStorage.setItem('voted', JSON.stringify(voted));
+		sessionStorage.setItem('voted', JSON.stringify(voted));
 		actions.addVote({ poll: this.props.poll._id, option: e.target.id });
-	},
+	}
 
-    render: function() {
-		var poll = this.props.poll,
+    render() {
+		const poll = this.props.poll,
 			options = poll.options,
 			optionButtons = [],
 			addVote = this.addVote,
 			login = this.props.login,
 			voted = this.updateVoteStatus();
 
-		options.map(function(option, index) {
+		options.map((option, index) => {
 			var voteButton = <button id = { option.name } className = "btn btn-default btn-sm vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
 			var optionStyle = { color: actions.pollColors(index) };
 			var optionName = <span style = { optionStyle }>{ option.name }</span>
@@ -56,4 +61,4 @@ module.exports = React.createClass({
 			</div>
 		)
     }
-});
+}

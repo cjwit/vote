@@ -454,7 +454,7 @@ module.exports = React.createClass({displayName: "exports",
 import React from 'react';
 var PollDisplay = require('./PollDisplay.jsx');
 import Footer from './Footer.jsx';
-var Nav = require('./Nav.jsx');
+import Nav from './Nav.jsx';
 
 module.exports = React.createClass({displayName: "exports",
 	getInitialState: function() {
@@ -726,7 +726,7 @@ module.exports = React.createClass({displayName: "exports",
 import React from 'react';
 import Footer from './Footer.jsx';
 var LoginForm = require('./LoginForm.jsx');
-var Nav = require('./Nav.jsx');
+import Nav from './Nav.jsx';
 
 module.exports = React.createClass({displayName: "exports",
 	render: function() {
@@ -830,14 +830,14 @@ module.exports = React.createClass({displayName: "exports",
 
 },{"react":201}],15:[function(require,module,exports){
 import React from 'react';
-var DeleteButton = require('./DeleteButton.jsx');
+import DeleteButton from './DeleteButton.jsx';
 var BarChart = require('./BarChart.jsx');
-var CircleChart = require('./CircleChart.jsx');
+import CircleChart from './CircleChart.jsx';
 var actions = require('../actions/pollsActions.js');
 
 module.exports = React.createClass({displayName: "exports",
 	updateVoteStatus: function() {
-		var voted = JSON.parse(localStorage.voted);
+		var voted = JSON.parse(sessionStorage.voted);
 		if (voted.indexOf(this.props.poll._id) >= 0) {
 			return true;
 		}
@@ -846,9 +846,9 @@ module.exports = React.createClass({displayName: "exports",
 
 	addVote: function(e) {
 		e.preventDefault();
-		var voted = JSON.parse(localStorage.voted);
+		var voted = JSON.parse(sessionStorage.voted);
 		voted.push(this.props.poll._id);
-		localStorage.setItem('voted', JSON.stringify(voted));
+		sessionStorage.setItem('voted', JSON.stringify(voted));
 		actions.addVote({ poll: this.props.poll._id, option: e.target.id });
 	},
 
@@ -892,7 +892,7 @@ module.exports = React.createClass({displayName: "exports",
 },{"../actions/pollsActions.js":2,"./BarChart.jsx":4,"./CircleChart.jsx":5,"./DeleteButton.jsx":7,"react":201}],16:[function(require,module,exports){
 import React from 'react';
 var PollList = require('./PollList.jsx');
-var CreatePollForm = require('./CreatePollForm.jsx');
+import CreatePollForm from './CreatePollForm.jsx';
 
 module.exports = React.createClass({displayName: "exports",
 	getInitialState: function() {
@@ -1128,12 +1128,12 @@ module.exports = React.createClass({displayName: "exports",
 
 },{"./PollMini.jsx":18,"react":201}],18:[function(require,module,exports){
 import React from 'react';
-var CircleChart = require('./CircleChart.jsx');
+import CircleChart from './CircleChart.jsx';
 var actions = require('../actions/pollsActions.js');
 
 module.exports = React.createClass({displayName: "exports",
 	updateVoteStatus: function() {
-		var voted = JSON.parse(localStorage.voted);
+		var voted = JSON.parse(sessionStorage.voted);
 		if (voted.indexOf(this.props.poll._id) >= 0) {
 			return true;
 		}
@@ -1142,9 +1142,9 @@ module.exports = React.createClass({displayName: "exports",
 
 	addVote: function(e) {
 		e.preventDefault();
-		var voted = JSON.parse(localStorage.voted);
+		var voted = JSON.parse(sessionStorage.voted);
 		voted.push(this.props.poll._id);
-		localStorage.setItem('voted', JSON.stringify(voted));
+		sessionStorage.setItem('voted', JSON.stringify(voted));
 		actions.addVote({ poll: this.props.poll._id, option: e.target.id });
 	},
 
@@ -1183,9 +1183,9 @@ module.exports = React.createClass({displayName: "exports",
 import React from 'react';
 var Poll = require('./Poll.jsx');
 import Footer from './Footer.jsx';
-var Nav = require('./Nav.jsx');
+import Nav from './Nav.jsx';
 var InputSubmit = require('./InputSubmit.jsx');
-var DeleteButton = require('./DeleteButton.jsx');
+import DeleteButton from './DeleteButton.jsx';
 var actions = require('../actions/pollsActions');
 
 module.exports = React.createClass({displayName: "exports",
@@ -1275,7 +1275,7 @@ import React from 'react';
 import Footer from './Footer.jsx';
 var UserInfo = require('./UserInfo.jsx');
 var NotLoggedIn = require('./NotLoggedIn.jsx');
-var Nav = require('./Nav.jsx');
+import Nav from './Nav.jsx';
 
 module.exports = React.createClass({displayName: "exports",
 	render: function() {
@@ -1356,8 +1356,8 @@ var getPollsCallback = function(_polls) {
     render();
 }
 
-if (localStorage.getItem("voted") === null) {
-	localStorage.setItem('voted', JSON.stringify([]));
+if (sessionStorage.getItem("voted") === null) {
+	sessionStorage.setItem('voted', JSON.stringify([]));
 }
 
 // ############################

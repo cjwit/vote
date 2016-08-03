@@ -1,43 +1,39 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 var PollList = require('./PollList.jsx');
-var CreatePollForm = require('./CreatePollForm.jsx');
+import CreatePollForm from './CreatePollForm.jsx';
 
-module.exports = React.createClass({
-	getInitialState: function() {
-		return {
-			pollSorting: 'dateRecent',
-			pollFilter: ""
-		}
-	},
+export default class PollDisplay extends Component {
+	state = {
+		pollSorting: 'dateRecent',
+		pollFilter: ""
+	}
 
-	sortSelector: function(e) {
+	sortSelector = (e) => {
 		e.preventDefault();
 		this.setState({ pollSorting: e.target.id });
-	},
+	}
 
-	filterPolls: function(obj) {
-		var filter = this.state.pollFilter.toLowerCase();
-		var foundFilter = false;
-		var name = obj.name.toLowerCase();
-		if (name.indexOf(filter) > -1) {
+	filterPolls = (obj) => {
+		const filter = this.state.pollFilter.toLowerCase();
+		let foundFilter = false;
+		const name = obj.name.toLowerCase();
+		if (name.includes(filter)) {
 			foundFilter = true;
 		}
-		obj.options.forEach(function(option) {
-			var optionName = option.name.toLowerCase();
-			if (optionName.indexOf(filter) > -1) {
+		obj.options.forEach((option) => {
+			const optionName = option.name.toLowerCase();
+			if (optionName.includes(filter)) {
 				foundFilter = true;
 			}
 		})
 		return foundFilter;
-	},
+	}
 
-	sortPolls: function() {
-		var polls = this.props.polls;
-		var filterPolls = this.filterPolls;
-		var filteredPolls = polls.filter(filterPolls);
+	sortPolls() {
+		const filteredPolls = this.props.polls.filter(this.filterPolls);
 		switch(this.state.pollSorting) {
 			case 'dateRecent':
-				filteredPolls.sort(function(a, b) {
+				filteredPolls.sort((a, b) => {
 					var aDate = new Date(a.date);
 					var bDate = new Date(b.date);
 					return bDate - aDate;
@@ -45,7 +41,7 @@ module.exports = React.createClass({
 				return filteredPolls;
 				break;
 			case 'dateOldest':
-				filteredPolls.sort(function(a, b) {
+				filteredPolls.sort((a, b) => {
 					var aDate = new Date(a.date);
 					var bDate = new Date(b.date);
 					return aDate - bDate;
@@ -53,7 +49,7 @@ module.exports = React.createClass({
 				return filteredPolls;
 				break;
 			case 'nameAZ':
-				filteredPolls.sort(function(a, b) {
+				filteredPolls.sort((a, b) => {
 					if (a.name < b.name) { return -1; }
 					if (a.name > b.name) { return 1; }
 					return 0;
@@ -61,7 +57,7 @@ module.exports = React.createClass({
 				return filteredPolls;
 				break;
 			case 'nameZA':
-				filteredPolls.sort(function(a, b) {
+				filteredPolls.sort((a, b) => {
 					if (a.name > b.name) { return -1; }
 					if (a.name < b.name) { return 1; }
 					return 0;
@@ -69,34 +65,30 @@ module.exports = React.createClass({
 				return filteredPolls;
 				break;
 			case 'mostVotes':
-				filteredPolls.sort(function(a, b) {
+				filteredPolls.sort((a, b) => {
 					var aVotes = 0;
 					var bVotes = 0;
-					a.options.forEach(function(option) {
-						aVotes += option.votes;
-					})
-					b.options.forEach(function(option) {
-						bVotes += option.votes;
-					})
+					a.options.forEach((option) => aVotes += option.votes)
+					b.options.forEach((option) => bVotes += option.votes)
 					return bVotes - aVotes;
 				});
 				return filteredPolls;
 				break;
 		}
-	},
+	}
 
-	handleInputChange: function(e) {
+	handleInputChange = (e) => {
         e.preventDefault();
-        var name = e.target.name;
-        var value = e.target.value;
-        var state = this.state;
+        const name = e.target.name;
+        const value = e.target.value;
+        const state = this.state;
         state[name] = value;
         this.setState(state);
-	},
+	}
 
-	render: function() {
+	render() {
 		// get login info for navigation
-		var username = "",
+		let username = "",
 			loggedIn = this.props.login.status;
 
 		if (loggedIn) {
@@ -109,7 +101,7 @@ module.exports = React.createClass({
 			<div className="row">
 				<div className="col-sm-4 col-sm-offset-2">
 					{ this.props.creating ?
-						<CreatePollForm login = { this.props.login } pollNames = { this.props.polls.map(function(p) { return p.name.toLowerCase(); }) }/>
+						<CreatePollForm login = { this.props.login } pollNames = { this.props.polls.map((p) => p.name.toLowerCase()) }/>
 						:
 						<div id = "searchAndSort">
 							<h2>Search</h2>
@@ -139,4 +131,4 @@ module.exports = React.createClass({
 			</div>
         )
     }
-});
+}

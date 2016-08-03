@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-module.exports = React.createClass({
-	render: function() {
+export default class NotLoggedIn extends Component {
+	render() {
 		return (
 			<div>
 				<h1>User page</h1>
@@ -9,4 +9,4 @@ module.exports = React.createClass({
 			</div>
         )
     }
-});
+}
