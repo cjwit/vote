@@ -2,8 +2,6 @@
 
 Next up:
 
-* Finish conversion to ES6
-	* Begin with actions?
 * Delete buttons on poll options should not be there if you are not poll owner
 * Nav bar does not work on mobile
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 var authActions = require('../actions/authActions.js');
-var userActions = require('../actions/userActions.js');
 
 export default class LoginForm extends Component {
 	state = {
