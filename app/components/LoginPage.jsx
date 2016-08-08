@@ -9,19 +9,12 @@ export default class LoginPage extends Component {
 	}
 
 	render() {
-		let err;
-		if (this.props.login.error) {
-			console.log(this.props.login.error);
-			err = <div className="col-sm-12 text-center"><div className="alert alert-danger">{ this.props.login.error }</div></div>
-		}
-
 		return (
 			<div>
 				<Nav active = { "login" } login = { this.props.login } />
 				<div className = "container">
 					<h1>Login page</h1>
-					<LoginForm />
-					{ err }
+					<LoginForm login = { this.props.login } />
 				</div>
 				<Footer />
 			</div>

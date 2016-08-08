@@ -67,8 +67,7 @@ app.post('/api/auth/login',
 		console.log('login called');
 		console.log('  -- user from authenticate:', req.user.username, '\n');
 		var result = {
-			username: req.user.username,
-			err: null
+			username: req.user.username
 		}
 		res.json(result);
 	});

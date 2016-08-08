@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import ErrorMessage from './ErrorMessage.jsx';
 var authActions = require('../actions/authActions.js');
 
 export default class LoginForm extends Component {
+	static propTypes = {
+		login: PropTypes.object.isRequired
+	}
+
 	state = {
 		username: "",
 		password: ""
@@ -62,6 +67,11 @@ export default class LoginForm extends Component {
 	}
 
     render() {
+		let err = null;
+		if (this.props.login.error !== null) {
+			err = <ErrorMessage message = { this.props.login.error } />
+		}
+
 		return (
 			<div className="container">
 
@@ -119,6 +129,7 @@ export default class LoginForm extends Component {
 		                </form>
 		            </div>
 		        </div>
+				{ err }
 		    </div>
         )
     }

@@ -17,7 +17,7 @@ module.exports = {
     },
 
 	// currently handling erroneous login info with alert, could be fancier
-	login: function(user) {	
+	login: function(user) {
 		var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -27,11 +27,7 @@ module.exports = {
                 dataType: 'json',
                 contentType: 'application/json',
                 success: resolve,
-                error: function(httpObject, exception) {
-					if (httpObject.status == 401) {
-						alert("Login failed, try again");
-					}
-				}
+                error: reject
             });
 		});
     },

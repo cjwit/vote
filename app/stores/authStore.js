@@ -20,10 +20,15 @@ var LoginStore = function() {
     }
 
 	var addUser = function(user) {
-		authService.addUser(user).then(function (res) {
+		authService.addUser(user).then((res) => {
 			console.log(res);
 			if (res.message === "error") {
-				alert("This username is already in use.");
+				currentUser = {
+	                status: false,
+	                user: null,
+					error: "Username is taken, try again."
+	            };
+				triggerListeners();
 			} else {
 				authActions.login(user);
 			}
@@ -31,20 +36,25 @@ var LoginStore = function() {
 	}
 
 	var login = function(loginObject) {
-		authService.login(loginObject).then(function (res) {
+		authService.login(loginObject).then((res) => {
             console.log(res);
             currentUser = {
                 status: true,
                 user: {
 					username: res.username
 				},
-				error: res.err
+				error: null
             };
             triggerListeners();
-			if (currentUser.error === null) {
-				window.location.href = "/user";
-			}
-        })
+			window.location.href = "/user";
+        }).catch(() => {
+			currentUser = {
+                status: false,
+                user: null,
+				error: "Invalid login information. Try again or create a new account."
+            };
+			triggerListeners();
+		})
     }
 
 	var getLoginStatus = function(loginObject) {
