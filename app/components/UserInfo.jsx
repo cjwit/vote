@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 import PollDisplay from './PollDisplay.jsx';
 
-module.exports = React.createClass({
-	getInitialState: function() {
-		return {
-			creating: false,
-			pollSorting: 'dateRecent'
-		}
-	},
+export default class UserInfo extends Component {
+	static propTypes = {
+		login: PropTypes.object.isRequired,
+		polls: PropTypes.array.isRequired
+	}
 
-	componentDidMount: function() {
-		var _this = this;
-		$("#newPollButton").click(function() {
-			_this.setState({ creating: !_this.state.creating });
+	state = {
+		creating: false,
+		pollSorting: 'dateRecent'
+	}
+
+	componentDidMount() {
+		$("#newPollButton").click(() => {
+			this.setState({ creating: !this.state.creating });
 		});
-	},
+	}
 
-	render: function() {
-		var username = this.props.login.user.username;
+	render() {
+		const username = this.props.login.user.username;
 		return (
 			<div>
 				<div className = "row text-center">
@@ -29,4 +31,4 @@ module.exports = React.createClass({
 			</div>
         )
     }
-});
+}

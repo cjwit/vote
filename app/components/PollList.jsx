@@ -1,26 +1,32 @@
-import React from 'react';
-var PollMini = require('./PollMini.jsx');
+import React, { PropTypes, Component } from 'react';
+import PollMini from './PollMini.jsx';
 
-module.exports = React.createClass({
-    getInitialState: function() {
-        return ({
-            listings: 2,
-            startIndex: 0
-        })
-    },
+export default class PollList extends Component {
+	static propTypes = {
+		polls: PropTypes.array.isRequired,
+		login: PropTypes.object.isRequired
+	}
 
-    componentDidMount: function() {
-        $("#previousPage").addClass("disabled");
-    },
+	state = {
+		listings: 2,
+		startIndex: 0
+	}
 
-    componentWillReceiveProps: function() {
+	componentDidMount() {
+		$("#previousPage").addClass("disabled");
+	}
+
+/*
+	componentWillReceiveProps() {
 		// this.setState({ startIndex: 0 }); SORTING DOES NOT MOVE BACK TO BEGINNING;
-    },
+    }
+*/
 
-    previous: function() {
-        var previous = $("#previousPage"),
-            next = $("#nextPage"),
-            startIndex = this.state.startIndex,
+	previous = () => {
+        const previous = $("#previousPage"),
+            next = $("#nextPage");
+
+        let startIndex = this.state.startIndex,
             listings = this.state.listings;
 
         startIndex -= listings;
@@ -33,47 +39,47 @@ module.exports = React.createClass({
         } else {
             next.removeClass("disabled");
         }
-    },
+    }
 
-    next: function() {
-        var previous = $("#previousPage"),
-            next = $("#nextPage"),
-            startIndex = this.state.startIndex,
-            listings = this.state.listings;
+	next = () => {
+		const previous = $("#previousPage"),
+			next = $("#nextPage");
 
-        if (startIndex + listings < this.props.polls.length) {
-            startIndex += listings
-            this.setState({ startIndex: startIndex })
-        };
+		let startIndex = this.state.startIndex,
+			listings = this.state.listings;
 
-        previous.removeClass("disabled")
-        if (startIndex + listings >= this.props.polls.length) {
-            next.addClass("disabled");
-        } else {
-            next.removeClass("disabled");
-        }
-    },
+		if (startIndex + listings < this.props.polls.length) {
+			startIndex += listings
+			this.setState({ startIndex: startIndex })
+		};
 
-    render: function() {
-        var incomingPolls = this.props.polls,
-            incomingLength = incomingPolls.length,
-            startIndex = this.state.startIndex,
+		previous.removeClass("disabled")
+		if (startIndex + listings >= this.props.polls.length) {
+			next.addClass("disabled");
+		} else {
+			next.removeClass("disabled");
+		}
+	}
+
+	render() {
+        const login = this.props.login,
+			incomingPolls = this.props.polls,
+            incomingLength = incomingPolls.length;
+
+        let startIndex = this.state.startIndex,
             endIndex = startIndex + this.state.listings,
             currentPage = startIndex / this.state.listings + 1,
-            login = this.props.login,
 			totalPages;
 
 		incomingLength % this.state.listings === 0 ?
 			totalPages = incomingLength / this.state.listings :
 			totalPages = Math.floor(incomingLength / this.state.listings) + 1;
 
-        var polls = incomingPolls.slice(startIndex, endIndex);
+        let polls = incomingPolls.slice(startIndex, endIndex);
 
         return (
             <div className = 'list'>
-                { polls.map(function(poll) {
-					return <PollMini poll = { poll } key = { "poll" + poll._id } />;
-				}) }
+                { polls.map((poll) => { return <PollMini poll = { poll } key = { "poll" + poll._id } /> }) }
                 {
                     incomingLength > this.state.listings ?
                     <nav>
@@ -88,4 +94,4 @@ module.exports = React.createClass({
             </div>
         )
     }
-})
+}

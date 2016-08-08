@@ -1575,6 +1575,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _PollList = require('./PollList.jsx');
+
+var _PollList2 = _interopRequireDefault(_PollList);
+
 var _CreatePollForm = require('./CreatePollForm.jsx');
 
 var _CreatePollForm2 = _interopRequireDefault(_CreatePollForm);
@@ -1586,8 +1590,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var PollList = require('./PollList.jsx');
 
 var PollDisplay = function (_Component) {
 	_inherits(PollDisplay, _Component);
@@ -1777,7 +1779,7 @@ var PollDisplay = function (_Component) {
 						null,
 						'Recent Polls'
 					),
-					_react2.default.createElement(PollList, { polls: polls, login: this.props.login })
+					_react2.default.createElement(_PollList2.default, { polls: polls, login: this.props.login })
 				)
 			);
 		}
@@ -1786,135 +1788,184 @@ var PollDisplay = function (_Component) {
 	return PollDisplay;
 }(_react.Component);
 
+PollDisplay.propTypes = {
+	creating: _react.PropTypes.bool.isRequired,
+	login: _react.PropTypes.object.isRequired,
+	polls: _react.PropTypes.array.isRequired
+};
 exports.default = PollDisplay;
 
 },{"./CreatePollForm.jsx":6,"./PollList.jsx":17,"react":204}],17:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _PollMini = require('./PollMini.jsx');
+
+var _PollMini2 = _interopRequireDefault(_PollMini);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var PollMini = require('./PollMini.jsx');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-module.exports = _react2.default.createClass({
-    displayName: 'exports',
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    getInitialState: function getInitialState() {
-        return {
-            listings: 2,
-            startIndex: 0
-        };
-    },
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    componentDidMount: function componentDidMount() {
-        $("#previousPage").addClass("disabled");
-    },
+var PollList = function (_Component) {
+  _inherits(PollList, _Component);
 
-    componentWillReceiveProps: function componentWillReceiveProps() {
-        // this.setState({ startIndex: 0 }); SORTING DOES NOT MOVE BACK TO BEGINNING;
-    },
+  function PollList() {
+    var _Object$getPrototypeO;
 
-    previous: function previous() {
-        var previous = $("#previousPage"),
-            next = $("#nextPage"),
-            startIndex = this.state.startIndex,
-            listings = this.state.listings;
+    var _temp, _this, _ret;
 
-        startIndex -= listings;
-        if (startIndex < 0) {
-            startIndex = 0;
-        }
-        this.setState({ startIndex: startIndex });
+    _classCallCheck(this, PollList);
 
-        next.removeClass("disabled");
-        if (startIndex === 0) {
-            previous.addClass("disabled");
-        } else {
-            next.removeClass("disabled");
-        }
-    },
-
-    next: function next() {
-        var previous = $("#previousPage"),
-            next = $("#nextPage"),
-            startIndex = this.state.startIndex,
-            listings = this.state.listings;
-
-        if (startIndex + listings < this.props.polls.length) {
-            startIndex += listings;
-            this.setState({ startIndex: startIndex });
-        };
-
-        previous.removeClass("disabled");
-        if (startIndex + listings >= this.props.polls.length) {
-            next.addClass("disabled");
-        } else {
-            next.removeClass("disabled");
-        }
-    },
-
-    render: function render() {
-        var incomingPolls = this.props.polls,
-            incomingLength = incomingPolls.length,
-            startIndex = this.state.startIndex,
-            endIndex = startIndex + this.state.listings,
-            currentPage = startIndex / this.state.listings + 1,
-            login = this.props.login,
-            totalPages;
-
-        incomingLength % this.state.listings === 0 ? totalPages = incomingLength / this.state.listings : totalPages = Math.floor(incomingLength / this.state.listings) + 1;
-
-        var polls = incomingPolls.slice(startIndex, endIndex);
-
-        return _react2.default.createElement(
-            'div',
-            { className: 'list' },
-            polls.map(function (poll) {
-                return _react2.default.createElement(PollMini, { poll: poll, key: "poll" + poll._id });
-            }),
-            incomingLength > this.state.listings ? _react2.default.createElement(
-                'nav',
-                null,
-                _react2.default.createElement(
-                    'ul',
-                    { className: 'pager' },
-                    _react2.default.createElement(
-                        'li',
-                        { className: 'disabled', id: 'previousPage' },
-                        _react2.default.createElement(
-                            'a',
-                            { onClick: this.previous },
-                            '←'
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'currentPage' },
-                        'Page ',
-                        currentPage,
-                        ' of ',
-                        totalPages
-                    ),
-                    _react2.default.createElement(
-                        'li',
-                        { id: 'nextPage' },
-                        _react2.default.createElement(
-                            'a',
-                            { onClick: this.next },
-                            '→'
-                        )
-                    )
-                )
-            ) : null
-        );
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-});
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PollList)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
+      listings: 2,
+      startIndex: 0
+    }, _this.previous = function () {
+      var previous = $("#previousPage"),
+          next = $("#nextPage");
+
+      var startIndex = _this.state.startIndex,
+          listings = _this.state.listings;
+
+      startIndex -= listings;
+      if (startIndex < 0) {
+        startIndex = 0;
+      }
+      _this.setState({ startIndex: startIndex });
+
+      next.removeClass("disabled");
+      if (startIndex === 0) {
+        previous.addClass("disabled");
+      } else {
+        next.removeClass("disabled");
+      }
+    }, _this.next = function () {
+      var previous = $("#previousPage"),
+          next = $("#nextPage");
+
+      var startIndex = _this.state.startIndex,
+          listings = _this.state.listings;
+
+      if (startIndex + listings < _this.props.polls.length) {
+        startIndex += listings;
+        _this.setState({ startIndex: startIndex });
+      };
+
+      previous.removeClass("disabled");
+      if (startIndex + listings >= _this.props.polls.length) {
+        next.addClass("disabled");
+      } else {
+        next.removeClass("disabled");
+      }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(PollList, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      $("#previousPage").addClass("disabled");
+    }
+
+    /*
+    	componentWillReceiveProps() {
+    		// this.setState({ startIndex: 0 }); SORTING DOES NOT MOVE BACK TO BEGINNING;
+        }
+    */
+
+  }, {
+    key: 'render',
+    value: function render() {
+      var login = this.props.login,
+          incomingPolls = this.props.polls,
+          incomingLength = incomingPolls.length;
+
+      var startIndex = this.state.startIndex,
+          endIndex = startIndex + this.state.listings,
+          currentPage = startIndex / this.state.listings + 1,
+          totalPages = void 0;
+
+      incomingLength % this.state.listings === 0 ? totalPages = incomingLength / this.state.listings : totalPages = Math.floor(incomingLength / this.state.listings) + 1;
+
+      var polls = incomingPolls.slice(startIndex, endIndex);
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'list' },
+        polls.map(function (poll) {
+          return _react2.default.createElement(_PollMini2.default, { poll: poll, key: "poll" + poll._id });
+        }),
+        incomingLength > this.state.listings ? _react2.default.createElement(
+          'nav',
+          null,
+          _react2.default.createElement(
+            'ul',
+            { className: 'pager' },
+            _react2.default.createElement(
+              'li',
+              { className: 'disabled', id: 'previousPage' },
+              _react2.default.createElement(
+                'a',
+                { onClick: this.previous },
+                '←'
+              )
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'currentPage' },
+              'Page ',
+              currentPage,
+              ' of ',
+              totalPages
+            ),
+            _react2.default.createElement(
+              'li',
+              { id: 'nextPage' },
+              _react2.default.createElement(
+                'a',
+                { onClick: this.next },
+                '→'
+              )
+            )
+          )
+        ) : null
+      );
+    }
+  }]);
+
+  return PollList;
+}(_react.Component);
+
+PollList.propTypes = {
+  polls: _react.PropTypes.array.isRequired,
+  login: _react.PropTypes.object.isRequired
+};
+exports.default = PollList;
 
 },{"./PollMini.jsx":18,"react":204}],18:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -1926,80 +1977,114 @@ var _CircleChart2 = _interopRequireDefault(_CircleChart);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var actions = require('../actions/pollsActions.js');
 
-module.exports = _react2.default.createClass({
-	displayName: 'exports',
+var PollMini = function (_Component) {
+	_inherits(PollMini, _Component);
 
-	updateVoteStatus: function updateVoteStatus() {
-		var voted = JSON.parse(sessionStorage.voted);
-		if (voted.indexOf(this.props.poll._id) >= 0) {
-			return true;
+	function PollMini() {
+		var _Object$getPrototypeO;
+
+		var _temp, _this, _ret;
+
+		_classCallCheck(this, PollMini);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
 		}
-		return false;
-	},
 
-	addVote: function addVote(e) {
-		e.preventDefault();
-		var voted = JSON.parse(sessionStorage.voted);
-		voted.push(this.props.poll._id);
-		sessionStorage.setItem('voted', JSON.stringify(voted));
-		actions.addVote({ poll: this.props.poll._id, option: e.target.id });
-	},
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(PollMini)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.addVote = function (e) {
+			e.preventDefault();
+			var voted = JSON.parse(sessionStorage.voted);
+			voted.push(_this.props.poll._id);
+			sessionStorage.setItem('voted', JSON.stringify(voted));
+			actions.addVote({ poll: _this.props.poll._id, option: e.target.id });
+		}, _temp), _possibleConstructorReturn(_this, _ret);
+	}
 
-	render: function render() {
-		var poll = this.props.poll,
-		    options = poll.options,
-		    optionButtons = [],
-		    addVote = this.addVote,
-		    voted = this.updateVoteStatus(),
-		    pollUrl = "/polls/" + poll._id;
+	_createClass(PollMini, [{
+		key: 'updateVoteStatus',
+		value: function updateVoteStatus() {
+			var voted = JSON.parse(sessionStorage.voted);
+			if (voted.indexOf(this.props.poll._id) >= 0) {
+				return true;
+			}
+			return false;
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var poll = this.props.poll,
+			    options = poll.options,
+			    optionButtons = [],
+			    addVote = this.addVote,
+			    voted = this.updateVoteStatus(),
+			    pollUrl = "/polls/" + poll._id;
 
-		options.map(function (option, index) {
-			var voteButton = _react2.default.createElement(
-				'button',
-				{ id: option.name, className: 'btn btn-default btn-sm mini-vote-button', onClick: addVote, disabled: voted },
-				option.votes
-			);
-			var optionStyle = { color: actions.pollColors(index) };
-			var optionName = _react2.default.createElement(
-				'span',
-				{ style: optionStyle },
-				option.name
-			);
-			// only show deleteButton if logged in
-			optionButtons.push(_react2.default.createElement(
+			options.map(function (option, index) {
+				var voteButton = _react2.default.createElement(
+					'button',
+					{ id: option.name, className: 'btn btn-default btn-sm mini-vote-button', onClick: addVote, disabled: voted },
+					option.votes
+				);
+				var optionStyle = { color: actions.pollColors(index) };
+				var optionName = _react2.default.createElement(
+					'span',
+					{ style: optionStyle },
+					option.name
+				);
+				optionButtons.push(_react2.default.createElement(
+					'div',
+					{ className: 'mini-option', key: 'option' + index },
+					_react2.default.createElement(
+						'p',
+						null,
+						voteButton,
+						optionName
+					)
+				));
+			});
+
+			return _react2.default.createElement(
 				'div',
-				{ className: 'mini-option', key: 'option' + index },
+				{ className: 'mini-poll' },
 				_react2.default.createElement(
 					'p',
-					null,
-					voteButton,
-					optionName
-				)
-			));
-		});
+					{ className: 'mini-name' },
+					_react2.default.createElement(
+						'a',
+						{ href: pollUrl },
+						poll.name
+					)
+				),
+				_react2.default.createElement(_CircleChart2.default, { poll: poll, pollPage: false }),
+				optionButtons
+			);
+		}
+	}]);
 
-		return _react2.default.createElement(
-			'div',
-			{ className: 'mini-poll' },
-			_react2.default.createElement(
-				'p',
-				{ className: 'mini-name' },
-				_react2.default.createElement(
-					'a',
-					{ href: pollUrl },
-					poll.name
-				)
-			),
-			_react2.default.createElement(_CircleChart2.default, { poll: poll, pollPage: false }),
-			optionButtons
-		);
-	}
-});
+	return PollMini;
+}(_react.Component);
+
+PollMini.propTypes = {
+	poll: _react.PropTypes.object.isRequired
+};
+exports.default = PollMini;
 
 },{"../actions/pollsActions.js":2,"./CircleChart.jsx":5,"react":204}],19:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -2027,82 +2112,115 @@ var _DeleteButton2 = _interopRequireDefault(_DeleteButton);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var actions = require('../actions/pollsActions');
 
-module.exports = _react2.default.createClass({
-	displayName: 'exports',
+var PollPage = function (_Component) {
+	_inherits(PollPage, _Component);
 
-	deletePoll: function deletePoll(poll) {
-		actions.deletePoll(poll);
-		window.location.href = '/';
-	},
+	function PollPage() {
+		_classCallCheck(this, PollPage);
 
-	render: function render() {
-		// get login info for navigation: add edit button if user is the owner
-		var poll = this.props.poll,
-		    pollUrl = window.location.href,
-		    login = this.props.login,
-		    username = login.status ? login.user.username : "";
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(PollPage).apply(this, arguments));
+	}
 
-		var editPollInput = username === poll.owner ? _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.editPoll, name: 'editPollButton', placeholder: 'Edit', duplicates: this.props.pollNames }) : null;
+	_createClass(PollPage, [{
+		key: 'deletePoll',
+		value: function deletePoll(poll) {
+			actions.deletePoll(poll);
+			window.location.href = '/';
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			// get login info for navigation: add edit button if user is the owner
+			var poll = this.props.poll,
+			    pollUrl = window.location.href,
+			    login = this.props.login,
+			    username = login.status ? login.user.username : "";
 
-		var addOptionInput = username === poll.owner ? _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.addOption, name: 'addOptionButton', placeholder: 'Add An Option', duplicates: poll.options.map(function (o) {
-				return o.name.toLowerCase();
-			}) }) : null;
+			var editPollInput = username === poll.owner ? _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.editPoll, name: 'editPollButton', placeholder: 'Edit', duplicates: this.props.pollNames }) : null;
 
-		return _react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement(_Nav2.default, { active: "poll", login: login }),
-			_react2.default.createElement(
+			var addOptionInput = username === poll.owner ? _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.addOption, name: 'addOptionButton', placeholder: 'Add An Option', duplicates: poll.options.map(function (o) {
+					return o.name.toLowerCase();
+				}) }) : null;
+
+			var deleteButton = username === poll.owner ? _react2.default.createElement(_DeleteButton2.default, { poll: poll, deleteFunction: this.deletePoll, valueToDelete: poll._id }) : null;
+
+			return _react2.default.createElement(
 				'div',
-				{ className: 'container' },
+				null,
+				_react2.default.createElement(_Nav2.default, { active: "poll", login: login }),
 				_react2.default.createElement(
 					'div',
-					{ className: 'row' },
+					{ className: 'container' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'col-sm-8 col-sm-offset-2' },
+						{ className: 'row' },
 						_react2.default.createElement(
-							'h1',
-							null,
-							poll.name,
-							' ',
-							_react2.default.createElement(_DeleteButton2.default, { poll: poll, deleteFunction: this.deletePoll, valueToDelete: poll._id })
-						),
-						editPollInput,
-						_react2.default.createElement(
-							'p',
-							null,
-							login.status ? "Logged in as " + login.user.username : "Not logged in"
-						),
-						_react2.default.createElement(
-							'p',
-							null,
-							'Share: ',
+							'div',
+							{ className: 'col-sm-8 col-sm-offset-2' },
 							_react2.default.createElement(
-								'a',
-								{ href: pollUrl },
-								'Link'
+								'h1',
+								null,
+								poll.name,
+								' ',
+								deleteButton
+							),
+							editPollInput,
+							_react2.default.createElement(
+								'p',
+								null,
+								login.status ? "Logged in as " + login.user.username : "Not logged in"
+							),
+							_react2.default.createElement(
+								'p',
+								null,
+								'Share: ',
+								_react2.default.createElement(
+									'a',
+									{ href: pollUrl },
+									'Link'
+								)
 							)
-						)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'text-center' },
+							_react2.default.createElement(_Poll2.default, { login: login, poll: poll })
+						),
+						_react2.default.createElement('div', { className: 'col-sm-6 col-sm-offset-3 text-center' })
 					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'text-center' },
-						_react2.default.createElement(_Poll2.default, { login: login, poll: poll })
-					),
-					_react2.default.createElement('div', { className: 'col-sm-6 col-sm-offset-3 text-center' })
+					addOptionInput
 				),
-				addOptionInput
-			),
-			_react2.default.createElement(_Footer2.default, null)
-		);
-	}
-});
+				_react2.default.createElement(_Footer2.default, null)
+			);
+		}
+	}]);
+
+	return PollPage;
+}(_react.Component);
+
+PollPage.propTypes = {
+	login: _react.PropTypes.object.isRequired,
+	poll: _react.PropTypes.object.isRequired,
+	pollNames: _react.PropTypes.array.isRequired
+};
+exports.default = PollPage;
 
 },{"../actions/pollsActions":2,"./DeleteButton.jsx":7,"./Footer.jsx":8,"./InputSubmit.jsx":10,"./Nav.jsx":13,"./Poll.jsx":15,"react":204}],20:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -2114,58 +2232,93 @@ var _PollDisplay2 = _interopRequireDefault(_PollDisplay);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-module.exports = _react2.default.createClass({
-	displayName: 'exports',
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	getInitialState: function getInitialState() {
-		return {
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserInfo = function (_Component) {
+	_inherits(UserInfo, _Component);
+
+	function UserInfo() {
+		var _Object$getPrototypeO;
+
+		var _temp, _this, _ret;
+
+		_classCallCheck(this, UserInfo);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(UserInfo)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
 			creating: false,
 			pollSorting: 'dateRecent'
-		};
-	},
-
-	componentDidMount: function componentDidMount() {
-		var _this = this;
-		$("#newPollButton").click(function () {
-			_this.setState({ creating: !_this.state.creating });
-		});
-	},
-
-	render: function render() {
-		var username = this.props.login.user.username;
-		return _react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement(
-				'div',
-				{ className: 'row text-center' },
-				_react2.default.createElement(
-					'h1',
-					null,
-					username
-				),
-				_react2.default.createElement(
-					'h2',
-					null,
-					'View and edit your polls'
-				),
-				_react2.default.createElement(
-					'p',
-					null,
-					_react2.default.createElement(
-						'span',
-						{ id: 'newPollButton', className: 'btn btn-primary btn-lg', role: 'button' },
-						this.state.creating ? 'Close Form' : 'Create a new poll'
-					)
-				)
-			),
-			_react2.default.createElement(_PollDisplay2.default, { creating: this.state.creating, login: this.props.login, polls: this.props.polls })
-		);
+		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
-});
+
+	_createClass(UserInfo, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var _this2 = this;
+
+			$("#newPollButton").click(function () {
+				_this2.setState({ creating: !_this2.state.creating });
+			});
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var username = this.props.login.user.username;
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					'div',
+					{ className: 'row text-center' },
+					_react2.default.createElement(
+						'h1',
+						null,
+						username
+					),
+					_react2.default.createElement(
+						'h2',
+						null,
+						'View and edit your polls'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						_react2.default.createElement(
+							'span',
+							{ id: 'newPollButton', className: 'btn btn-primary btn-lg', role: 'button' },
+							this.state.creating ? 'Close Form' : 'Create a new poll'
+						)
+					)
+				),
+				_react2.default.createElement(_PollDisplay2.default, { creating: this.state.creating, login: this.props.login, polls: this.props.polls })
+			);
+		}
+	}]);
+
+	return UserInfo;
+}(_react.Component);
+
+UserInfo.propTypes = {
+	login: _react.PropTypes.object.isRequired,
+	polls: _react.PropTypes.array.isRequired
+};
+exports.default = UserInfo;
 
 },{"./PollDisplay.jsx":16,"react":204}],21:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -2174,6 +2327,10 @@ var _react2 = _interopRequireDefault(_react);
 var _Footer = require('./Footer.jsx');
 
 var _Footer2 = _interopRequireDefault(_Footer);
+
+var _UserInfo = require('./UserInfo.jsx');
+
+var _UserInfo2 = _interopRequireDefault(_UserInfo);
 
 var _NotLoggedIn = require('./NotLoggedIn.jsx');
 
@@ -2185,27 +2342,46 @@ var _Nav2 = _interopRequireDefault(_Nav);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var UserInfo = require('./UserInfo.jsx');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-module.exports = _react2.default.createClass({
-	displayName: 'exports',
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	render: function render() {
-		console.log("rendering userPage", this.props.login.status);
-		return _react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement(_Nav2.default, { active: "user", login: this.props.login }),
-			_react2.default.createElement(
-				'div',
-				{ className: 'container' },
-				this.props.login.status ? _react2.default.createElement(UserInfo, { login: this.props.login, polls: this.props.polls }) : _react2.default.createElement(_NotLoggedIn2.default, null)
-			),
-			_react2.default.createElement(_Footer2.default, null)
-		);
+var UserPage = function (_Component) {
+	_inherits(UserPage, _Component);
+
+	function UserPage() {
+		_classCallCheck(this, UserPage);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(UserPage).apply(this, arguments));
 	}
-});
+
+	_createClass(UserPage, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(_Nav2.default, { active: "user", login: this.props.login }),
+				_react2.default.createElement(
+					'div',
+					{ className: 'container' },
+					this.props.login.status ? _react2.default.createElement(_UserInfo2.default, { login: this.props.login, polls: this.props.polls }) : _react2.default.createElement(_NotLoggedIn2.default, null)
+				),
+				_react2.default.createElement(_Footer2.default, null)
+			);
+		}
+	}]);
+
+	return UserPage;
+}(_react.Component);
+
+UserPage.propTypes = {
+	login: _react.PropTypes.object.isRequired,
+	polls: _react.PropTypes.array.isRequired
+};
+exports.default = UserPage;
 
 },{"./Footer.jsx":8,"./Nav.jsx":13,"./NotLoggedIn.jsx":14,"./UserInfo.jsx":20,"react":204}],22:[function(require,module,exports){
 'use strict';
@@ -2252,6 +2428,14 @@ var _LoginPage = require('./components/LoginPage.jsx');
 
 var _LoginPage2 = _interopRequireDefault(_LoginPage);
 
+var _UserPage = require('./components/UserPage.jsx');
+
+var _UserPage2 = _interopRequireDefault(_UserPage);
+
+var _PollPage = require('./components/PollPage.jsx');
+
+var _PollPage2 = _interopRequireDefault(_PollPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ReactDOM = require('react-dom');
@@ -2260,8 +2444,6 @@ var auth = require('./actions/authActions.js');
 // ################
 // React Components
 
-var UserPage = require('./components/UserPage.jsx');
-var PollPage = require('./components/PollPage.jsx');
 
 // #################
 // React/Flux Stores
@@ -2360,7 +2542,7 @@ function renderUser() {
             }
         });
     }
-    ReactDOM.render(_react2.default.createElement(UserPage, {
+    ReactDOM.render(_react2.default.createElement(_UserPage2.default, {
         login: login,
         polls: userPolls
     }), document.getElementById('app'));
@@ -2374,7 +2556,7 @@ function renderLogin() {
 
 function renderPollPage(id) {
     var poll = getPollById(id);
-    ReactDOM.render(_react2.default.createElement(PollPage, {
+    ReactDOM.render(_react2.default.createElement(_PollPage2.default, {
         login: login,
         poll: poll,
         pollNames: polls.map(function (p) {

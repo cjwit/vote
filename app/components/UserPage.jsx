@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { PropTypes, Component } from 'react';
 import Footer from './Footer.jsx';
-var UserInfo = require('./UserInfo.jsx');
+import UserInfo from './UserInfo.jsx';
 import NotLoggedIn from './NotLoggedIn.jsx';
 import Nav from './Nav.jsx';
 
-module.exports = React.createClass({
-	render: function() {
-		console.log("rendering userPage", this.props.login.status)
+export default class UserPage extends Component {
+	static propTypes = {
+		login: PropTypes.object.isRequired,
+		polls: PropTypes.array.isRequired
+	}
+
+	render() {
 		return (
 			<div>
 				<Nav active = { "user" } login = { this.props.login } />
@@ -21,4 +25,4 @@ module.exports = React.createClass({
 			</div>
         )
     }
-});
+}

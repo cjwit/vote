@@ -1,11 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-var PollList = require('./PollList.jsx');
+import PollList from './PollList.jsx';
 import CreatePollForm from './CreatePollForm.jsx';
 
 export default class PollDisplay extends Component {
 	state = {
 		pollSorting: 'dateRecent',
 		pollFilter: ""
+	}
+
+	static propTypes = {
+		creating: PropTypes.bool.isRequired,
+		login: PropTypes.object.isRequired,
+		polls: PropTypes.array.isRequired
 	}
 
 	sortSelector = (e) => {
@@ -34,16 +40,16 @@ export default class PollDisplay extends Component {
 		switch(this.state.pollSorting) {
 			case 'dateRecent':
 				filteredPolls.sort((a, b) => {
-					var aDate = new Date(a.date);
-					var bDate = new Date(b.date);
+					const aDate = new Date(a.date);
+					const bDate = new Date(b.date);
 					return bDate - aDate;
 				});
 				return filteredPolls;
 				break;
 			case 'dateOldest':
 				filteredPolls.sort((a, b) => {
-					var aDate = new Date(a.date);
-					var bDate = new Date(b.date);
+					const aDate = new Date(a.date);
+					const bDate = new Date(b.date);
 					return aDate - bDate;
 				});
 				return filteredPolls;
@@ -66,8 +72,8 @@ export default class PollDisplay extends Component {
 				break;
 			case 'mostVotes':
 				filteredPolls.sort((a, b) => {
-					var aVotes = 0;
-					var bVotes = 0;
+					let aVotes = 0;
+					let bVotes = 0;
 					a.options.forEach((option) => aVotes += option.votes)
 					b.options.forEach((option) => bVotes += option.votes)
 					return bVotes - aVotes;

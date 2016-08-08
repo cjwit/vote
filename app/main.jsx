@@ -6,8 +6,8 @@ var auth = require('./actions/authActions.js')
 // React Components
 import Home from './components/Home.jsx';
 import LoginPage from './components/LoginPage.jsx';
-var UserPage = require('./components/UserPage.jsx');
-var PollPage = require('./components/PollPage.jsx');
+import UserPage from './components/UserPage.jsx';
+import PollPage from './components/PollPage.jsx';
 
 // #################
 // React/Flux Stores

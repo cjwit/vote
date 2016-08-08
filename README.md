@@ -3,17 +3,12 @@
 Next up:
 
 * Finish conversion to ES6
-
-	* Begin with PollList.jsx
-
+	* Begin with actions?
+* Delete buttons on poll options should not be there if you are not poll owner
 * Nav bar does not work on mobile
-
-* Chart transitions, reconfigure to work with React updates, add transitions
-
-* Using sessionStorage allows user to reload to vote
 
 Potential future projects:
 
+* Chart transitions, reconfigure to work with React updates, add transitions
+* Using sessionStorage allows user to reload to vote
 * Catch 401 error on failed login (instead of using alert)
-
-* Move disable voting logic from sessionStorage to sessionStorage or require login for voting and keep an array of voted polls in the user info
