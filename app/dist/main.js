@@ -686,7 +686,7 @@ var Home = function (_Component) {
 	function Home() {
 		var _Object$getPrototypeO;
 
-		var _temp, _this2, _ret;
+		var _temp, _this, _ret;
 
 		_classCallCheck(this, Home);
 
@@ -694,19 +694,19 @@ var Home = function (_Component) {
 			args[_key] = arguments[_key];
 		}
 
-		return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Home)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this2), _this2.state = {
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Home)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
 			creating: false,
 			pollSorting: 'dateRecent'
-		}, _temp), _possibleConstructorReturn(_this2, _ret);
+		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
 
 	_createClass(Home, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			var _this3 = this;
+			var _this2 = this;
 
 			$("#newPollButton").click(function () {
-				_this3.setState({ creating: !_this.state.creating });
+				_this2.setState({ creating: !_this2.state.creating });
 			});
 		}
 	}, {

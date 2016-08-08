@@ -16,7 +16,7 @@ export default class Home extends Component {
 
 	componentDidMount() {
 		$("#newPollButton").click(() => {
-			this.setState({ creating: !_this.state.creating });
+			this.setState({ creating: !this.state.creating });
 		});
 	}
 
