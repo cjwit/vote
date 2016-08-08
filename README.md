@@ -3,6 +3,8 @@
 Next up:
 
 * Nav bar does not work on mobile
+* Remove login notfications
+* Work on UI
 
 Potential future projects:
 
