@@ -1,10 +1,8 @@
 var $ = require('jquery');
-var promise = require('es6-promise');
 var resourceURL = location.protocol + '//' + location.host + '/api/polls';
 
 module.exports = {
     getPolls: function() {
-        var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL,
@@ -16,10 +14,7 @@ module.exports = {
         });
     },
 
-	// getPoll?
-
     addPoll: function (poll) {
-        var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL,
@@ -34,7 +29,6 @@ module.exports = {
     },
 
     editPoll: function (poll) {
-        var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + "/" + poll.id,
@@ -49,7 +43,6 @@ module.exports = {
     },
 
     deletePoll: function(poll) {
-        var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + "/" + poll.id,
@@ -62,7 +55,6 @@ module.exports = {
     },
 
 	addVote: function (vote) {
-        var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + "/vote/" + vote.poll,
@@ -77,7 +69,6 @@ module.exports = {
     },
 
 	addOption: function (option) {
-		var Promise = promise.Promise;
 		return new Promise(function (resolve, reject) {
 			$.ajax({
 				url: resourceURL + "/option/" + option.id,
@@ -92,7 +83,6 @@ module.exports = {
 	},
 
 	deleteOption: function (option) {
-		var Promise = promise.Promise;
 		return new Promise(function (resolve, reject) {
 			$.ajax({
 				url: resourceURL + "/option/" + option.id,

@@ -58,7 +58,7 @@ var LoginStore = function() {
     }
 
 	var getLoginStatus = function(loginObject) {
-		authService.getLoginStatus(loginObject).then(function (res) {
+		authService.getLoginStatus(loginObject).then((res) => {
             console.log(res);
 			if (res === false) {
 				currentUser = {
@@ -80,7 +80,7 @@ var LoginStore = function() {
     }
 
     var logout = function() {
-		authService.logout().then(function (res) {
+		authService.logout().then((res) => {
 			console.log(res);
 			currentUser = {
 				status: false,
@@ -93,14 +93,14 @@ var LoginStore = function() {
     }
 
     var triggerListeners = function() {
-        getUser(function (res) {
-            listeners.forEach(function(listener) {
+        getUser((res) => {
+            listeners.forEach((listener) => {
                 listener(res);
             });
         });
     }
 
-    dispatcher.register(function (payload) {
+    dispatcher.register((payload) => {
         var split = payload.type.split(':');
         if (split[0] === 'auth') {
             switch (split[1]) {

@@ -1,10 +1,8 @@
 var $ = require('jquery');
-var promise = require('es6-promise');
 var resourceURL = location.protocol + '//' + location.host + '/api/';
 
 module.exports = {
     getLoginStatus: function() {
-        var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + 'auth',
@@ -18,7 +16,6 @@ module.exports = {
 
 	// currently handling erroneous login info with alert, could be fancier
 	login: function(user) {
-		var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + 'auth/login',
@@ -33,7 +30,6 @@ module.exports = {
     },
 
 	logout: function() {
-		var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + 'auth/logout',
@@ -46,7 +42,6 @@ module.exports = {
     },
 
     addUser: function (user) {
-        var Promise = promise.Promise;
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + 'register',

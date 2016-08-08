@@ -5,7 +5,7 @@ var store = function() {
     var listeners = [];             // collection of functions
 
     var getPolls = function(cb) {
-        pollService.getPolls().then(function (res) {
+        pollService.getPolls().then((res) => {
             cb(res);
         })
     }
@@ -16,56 +16,56 @@ var store = function() {
     }
 
     var addPoll = function(poll) {
-        pollService.addPoll(poll).then(function (res) {
+        pollService.addPoll(poll).then((res) => {
             console.log(res);
             triggerListeners();
         })
     }
 
     var editPoll = function(poll) {
-        pollService.editPoll(poll).then(function (res) {
+        pollService.editPoll(poll).then((res) => {
             console.log(res);
             triggerListeners();
         })
     }
 
     var deletePoll = function(poll) {
-        pollService.deletePoll(poll).then(function(res) {
+        pollService.deletePoll(poll).then((res) => {
             console.log(res);
             triggerListeners();
         });
     }
 
 	var addVote = function(vote) {
-        pollService.addVote(vote).then(function (res) {
+        pollService.addVote(vote).then((res) => {
             console.log(res);
             triggerListeners();
         })
     }
 
 	var addOption = function(option) {
-        pollService.addOption(option).then(function (res) {
+        pollService.addOption(option).then((res) => {
             console.log(res);
             triggerListeners();
         })
     }
 
 	var deleteOption = function(option) {
-        pollService.deleteOption(option).then(function (res) {
+        pollService.deleteOption(option).then((res) => {
             console.log(res);
             triggerListeners();
         })
     }
 
     var triggerListeners = function() {
-        getPolls(function (res) {
-            listeners.forEach(function(listener) {
+        getPolls((res) => {
+            listeners.forEach((listener) => {
                 listener(res);
             });
         });
     }
 
-    dispatcher.register(function (payload) {
+    dispatcher.register((payload) => {
         var split = payload.type.split(':');
         if (split[0] === 'poll') {
             switch (split[1]) {
