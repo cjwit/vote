@@ -35,19 +35,24 @@ export default class Poll extends Component {
 			voted = this.updateVoteStatus();
 
 		options.map((option, index) => {
-			var voteButton = <button id = { option.name } className = "btn btn-default btn-sm vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
-			var optionStyle = { color: actions.pollColors(index) };
-			var optionName = <span style = { optionStyle }>{ option.name }</span>
-			// only show deleteButton if logged in
+			const voteButton = <button id = { option.name } className = "btn btn-default btn-sm vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
+			const optionStyle = { color: actions.pollColors(index) };
+			const optionName = <span style = { optionStyle }>{ option.name }</span>
+
+			// create delete button only if current user is the poll's owner
+			let deleteButton;
+			if (login.status === true) {
+				deleteButton = login.user.username === poll.owner ?
+					<DeleteButton poll = { poll } deleteFunction = { actions.deleteOption } valueToDelete = { option.name } />
+					:
+					null;
+			}
+			
 			optionButtons.push( <div className = "poll-option" key = { 'option' + index }>
 									<p>
 										{ voteButton }
 										{ optionName }
-										{ login.status ?
-											<DeleteButton poll = { poll } deleteFunction = { actions.deleteOption } valueToDelete = { option.name } />
-											:
-											null
-										}
+										{ deleteButton }
 									</p>
 								</div> )
 		});

@@ -1499,7 +1499,13 @@ var Poll = function (_Component) {
 					{ style: optionStyle },
 					option.name
 				);
-				// only show deleteButton if logged in
+
+				// create delete button only if current user is the poll's owner
+				var deleteButton = void 0;
+				if (login.status === true) {
+					deleteButton = login.user.username === poll.owner ? _react2.default.createElement(_DeleteButton2.default, { poll: poll, deleteFunction: actions.deleteOption, valueToDelete: option.name }) : null;
+				}
+
 				optionButtons.push(_react2.default.createElement(
 					'div',
 					{ className: 'poll-option', key: 'option' + index },
@@ -1508,7 +1514,7 @@ var Poll = function (_Component) {
 						null,
 						voteButton,
 						optionName,
-						login.status ? _react2.default.createElement(_DeleteButton2.default, { poll: poll, deleteFunction: actions.deleteOption, valueToDelete: option.name }) : null
+						deleteButton
 					)
 				));
 			});

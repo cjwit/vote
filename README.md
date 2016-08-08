@@ -2,7 +2,6 @@
 
 Next up:
 
-* Delete buttons on poll options should not be there if you are not poll owner
 * Nav bar does not work on mobile
 
 Potential future projects:
