@@ -652,14 +652,6 @@ var Footer = function (_Component) {
 				_react2.default.createElement(
 					'p',
 					null,
-					'Email ',
-					_react2.default.createElement(
-						'a',
-						{ href: 'mailto:chris.witulski@gmail.com' },
-						'chris.witulski@gmail.com'
-					),
-					' with any questions or comments.',
-					_react2.default.createElement('br', null),
 					'Website by ',
 					_react2.default.createElement(
 						'a',
