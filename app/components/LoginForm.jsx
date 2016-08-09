@@ -74,7 +74,6 @@ export default class LoginForm extends Component {
 
 		return (
 			<div className="container">
-
 		        <div className="row">
 					<div className="col-sm-12 text-center">
 						<div className="btn-group" role="group" aria-label="...">
@@ -85,7 +84,7 @@ export default class LoginForm extends Component {
 		            <div id="signinForm" className="col-sm-6 col-sm-offset-3 loginForm">
 		                <form onSubmit= { this.login } >
 		                    <div className="form-group">
-		                        <label htmlFor="username">Username:</label> Hint: joe
+		                        <label htmlFor="username">Username:</label> <small>Hint: joe</small>
 		                        <input type="text"
 									   className="form-control"
 									   id="username"
@@ -94,7 +93,7 @@ export default class LoginForm extends Component {
 									   onChange = { this.handleInputChange } />
 		                    </div>
 							<div className="form-group">
-		                        <label htmlFor="password">Password:</label> Hint: pwd
+		                        <label htmlFor="password">Password:</label> <small>Hint: pwd</small>
 								<input type="password"
 									   className="form-control"
 									   id="password"

@@ -45,9 +45,16 @@ export default class PollPage extends Component {
 						</div>
 					</div>
 					<div className = "row">
-						<div className = "col-sm-4 col-sm-offset-4">
+						<div className = "col-sm-6 col-sm-offset-3">
 							{ editPollInput }
-							<p className = "text-center">Share: <a href = { pollUrl } >Link</a></p>
+							<div className = "form-group">
+								<label htmlFor="shareLink">Share:</label> <small>Use Cntl+C to copy the following link</small>
+								<input type="text" className="form-control"
+									   id="shareLink"
+									   name = "shareLink"
+									   readOnly
+									   value = { pollUrl } />
+							</div>
 						</div>
 					</div>
 					<div className = "row">

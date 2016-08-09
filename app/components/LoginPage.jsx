@@ -13,7 +13,7 @@ export default class LoginPage extends Component {
 			<div>
 				<Nav active = { "login" } login = { this.props.login } />
 				<div className = "container">
-					<h1>Login page</h1>
+					<h1 className = "text-center">Login</h1>
 					<LoginForm login = { this.props.login } />
 				</div>
 				<Footer />

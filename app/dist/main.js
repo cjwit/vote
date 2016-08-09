@@ -1077,7 +1077,12 @@ var LoginForm = function (_Component) {
 									{ htmlFor: 'username' },
 									'Username:'
 								),
-								' Hint: joe',
+								' ',
+								_react2.default.createElement(
+									'small',
+									null,
+									'Hint: joe'
+								),
 								_react2.default.createElement('input', { type: 'text',
 									className: 'form-control',
 									id: 'username',
@@ -1093,7 +1098,12 @@ var LoginForm = function (_Component) {
 									{ htmlFor: 'password' },
 									'Password:'
 								),
-								' Hint: pwd',
+								' ',
+								_react2.default.createElement(
+									'small',
+									null,
+									'Hint: pwd'
+								),
 								_react2.default.createElement('input', { type: 'password',
 									className: 'form-control',
 									id: 'password',
@@ -1221,8 +1231,8 @@ var LoginPage = function (_Component) {
 					{ className: 'container' },
 					_react2.default.createElement(
 						'h1',
-						null,
-						'Login page'
+						{ className: 'text-center' },
+						'Login'
 					),
 					_react2.default.createElement(_LoginForm2.default, { login: this.props.login })
 				),
@@ -2224,17 +2234,27 @@ var PollPage = function (_Component) {
 						{ className: 'row' },
 						_react2.default.createElement(
 							'div',
-							{ className: 'col-sm-4 col-sm-offset-4' },
+							{ className: 'col-sm-6 col-sm-offset-3' },
 							editPollInput,
 							_react2.default.createElement(
-								'p',
-								{ className: 'text-center' },
-								'Share: ',
+								'div',
+								{ className: 'form-group' },
 								_react2.default.createElement(
-									'a',
-									{ href: pollUrl },
-									'Link'
-								)
+									'label',
+									{ htmlFor: 'shareLink' },
+									'Share:'
+								),
+								' ',
+								_react2.default.createElement(
+									'small',
+									null,
+									'Use Cntl+C to copy the following link'
+								),
+								_react2.default.createElement('input', { type: 'text', className: 'form-control',
+									id: 'shareLink',
+									name: 'shareLink',
+									readOnly: true,
+									value: pollUrl })
 							)
 						)
 					),
