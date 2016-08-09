@@ -4,7 +4,7 @@
     margin-top: 20px; } }
 
 @media screen and (max-width: 768px) {
-  .circleChart {
+  .poll-chart-display .circleChart {
     margin-bottom: 40px; } }
 
 body {

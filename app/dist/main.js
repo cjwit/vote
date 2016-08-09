@@ -1289,7 +1289,8 @@ var Nav = function (_Component) {
 			// build login buttons
 			var loginButton = null,
 			    logoutButton = null,
-			    userButton = null;
+			    userButton = null,
+			    signedInText = null;
 
 			if (loggedIn) {
 				logoutButton = _react2.default.createElement(
@@ -1301,11 +1302,6 @@ var Nav = function (_Component) {
 						'Logout'
 					)
 				);
-				loginButton = _react2.default.createElement(
-					'p',
-					{ className: 'navbar-text' },
-					"Signed in as " + username
-				);
 				var userLinkString = "/user/" + username;
 				userButton = _react2.default.createElement(
 					'li',
@@ -1315,6 +1311,11 @@ var Nav = function (_Component) {
 						{ href: '/user' },
 						'My Polls'
 					)
+				);
+				signedInText = _react2.default.createElement(
+					'p',
+					{ className: 'navbar-text navbar-right' },
+					"Signed in as " + username
 				);
 			} else {
 				loginButton = _react2.default.createElement(
@@ -1342,7 +1343,7 @@ var Nav = function (_Component) {
 							{ className: 'navbar-header' },
 							_react2.default.createElement(
 								'button',
-								{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navigation-collapse', 'aria-expanded': 'false' },
+								{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navigationbar', 'aria-expanded': 'false' },
 								_react2.default.createElement(
 									'span',
 									{ className: 'sr-only' },
@@ -1360,13 +1361,14 @@ var Nav = function (_Component) {
 						),
 						_react2.default.createElement(
 							'div',
-							{ className: 'collapse navbar-collapse', id: 'navigation-collapse' },
+							{ className: 'collapse navbar-collapse', id: 'navigationbar' },
 							_react2.default.createElement(
 								'ul',
 								{ className: 'nav navbar-nav' },
 								loginButton,
 								userButton,
-								logoutButton
+								logoutButton,
+								signedInText
 							)
 						)
 					)
