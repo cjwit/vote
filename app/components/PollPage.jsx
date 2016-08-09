@@ -48,7 +48,7 @@ export default class PollPage extends Component {
 						<div className = "col-sm-6 col-sm-offset-3">
 							{ editPollInput }
 							<div className = "form-group">
-								<label htmlFor="shareLink">Share:</label> <small>Use Cntl+C to copy the following link</small>
+								<label htmlFor="shareLink">Share:</label> <small>Use Ctrl+C to copy the following link</small>
 								<input type="text" className="form-control"
 									   id="shareLink"
 									   name = "shareLink"

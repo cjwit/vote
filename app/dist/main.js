@@ -2226,7 +2226,7 @@ var PollPage = function (_Component) {
 								_react2.default.createElement(
 									'small',
 									null,
-									'Use Cntl+C to copy the following link'
+									'Use Ctrl+C to copy the following link'
 								),
 								_react2.default.createElement('input', { type: 'text', className: 'form-control',
 									id: 'shareLink',
