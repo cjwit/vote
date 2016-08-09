@@ -35,19 +35,23 @@ export default class PollMini extends Component {
 				const voteButton = <button id = { option.name } className = "btn btn-default btn-sm mini-vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
 				const optionStyle = { color: actions.pollColors(index) };
 				const optionName = <span style = { optionStyle }>{ option.name }</span>
-				optionButtons.push( <div className = "mini-option" key = { 'option' + index }>
-										<p>
+				optionButtons.push( <p className = "mini-option" key = { 'option' + index }>
 											{ voteButton }
 											{ optionName }
-										</p>
-									</div> )
+									</p> )
 		});
 
 		return (
 			<div className = "mini-poll">
 				<p className = "mini-name"><a href = { pollUrl }>{ poll.name }</a></p>
-				<CircleChart poll = { poll } pollPage = { false } />
-				{ optionButtons }
+				<div className = "row">
+					<div className = "col-sm-3">
+						<CircleChart poll = { poll } pollPage = { false } />
+					</div>
+					<div className = "col-sm-8 col-sm-offset-1 mini-option-buttons">
+						{ optionButtons }
+					</div>
+				</div>
 			</div>
 		)
 	}

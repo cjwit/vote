@@ -41,7 +41,7 @@ export default class Nav extends Component {
 
 		return (
 			<div>
-				<nav className="navbar navbar-default">
+				<nav className="navbar navbar-inverse">
 					<div className="container-fluid">
 						<div className="navbar-header">
 							<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation-collapse" aria-expanded="false">

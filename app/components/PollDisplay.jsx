@@ -16,6 +16,15 @@ export default class PollDisplay extends Component {
 
 	sortSelector = (e) => {
 		e.preventDefault();
+		const pollHeader = $("#poll-list-header");
+		switch(e.target.id) {
+			case 'dateRecent':
+				pollHeader.text("Recent Polls");
+				break;
+			case 'mostVotes':
+				pollHeader.text("Popular Polls");
+				break;
+		}
 		this.setState({ pollSorting: e.target.id });
 	}
 
@@ -37,6 +46,7 @@ export default class PollDisplay extends Component {
 
 	sortPolls() {
 		const filteredPolls = this.props.polls.filter(this.filterPolls);
+
 		switch(this.state.pollSorting) {
 			case 'dateRecent':
 				filteredPolls.sort((a, b) => {
@@ -105,7 +115,7 @@ export default class PollDisplay extends Component {
 
 		return (
 			<div className="row">
-				<div className="col-sm-4 col-sm-offset-2">
+				<div className="col-sm-6">
 					{ this.props.creating ?
 						<CreatePollForm login = { this.props.login } pollNames = { this.props.polls.map((p) => p.name.toLowerCase()) }/>
 						:
@@ -121,17 +131,14 @@ export default class PollDisplay extends Component {
 			                </div>
 							<h2>Sort By</h2>
 							<p>
-								<span id = "mostVotes" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Most Popular</span>
-								<span id = "dateRecent" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Newest</span>
-								<span id = "dateOldest" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Oldest</span>
-								<span id = "nameAZ" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">A-Z</span>
-								<span id = "nameZA" onClick = { this.sortSelector } className="btn btn-default btn-xs sort-selector" role="button">Z-A</span>
+								<span id = "mostVotes" onClick = { this.sortSelector } className="btn btn-default btn-sm sort-selector" role="button">Most Popular</span>
+								<span id = "dateRecent" onClick = { this.sortSelector } className="btn btn-default btn-sm sort-selector" role="button">Newest</span>
 							</p>
 						</div>
 					}
 				</div>
-				<div className="col-sm-4">
-					<h2>Recent Polls</h2>
+				<div className="col-sm-6">
+					<h2 id = "poll-list-header">Recent Polls</h2>
 					<PollList polls = { polls } login = { this.props.login } />
 				</div>
 			</div>

@@ -1345,7 +1345,7 @@ var Nav = function (_Component) {
 				null,
 				_react2.default.createElement(
 					'nav',
-					{ className: 'navbar navbar-default' },
+					{ className: 'navbar navbar-inverse' },
 					_react2.default.createElement(
 						'div',
 						{ className: 'container-fluid' },
@@ -1648,6 +1648,15 @@ var PollDisplay = function (_Component) {
 			pollFilter: ""
 		}, _this.sortSelector = function (e) {
 			e.preventDefault();
+			var pollHeader = $("#poll-list-header");
+			switch (e.target.id) {
+				case 'dateRecent':
+					pollHeader.text("Recent Polls");
+					break;
+				case 'mostVotes':
+					pollHeader.text("Popular Polls");
+					break;
+			}
 			_this.setState({ pollSorting: e.target.id });
 		}, _this.filterPolls = function (obj) {
 			var filter = _this.state.pollFilter.toLowerCase();
@@ -1677,6 +1686,7 @@ var PollDisplay = function (_Component) {
 		key: 'sortPolls',
 		value: function sortPolls() {
 			var filteredPolls = this.props.polls.filter(this.filterPolls);
+
 			switch (this.state.pollSorting) {
 				case 'dateRecent':
 					filteredPolls.sort(function (a, b) {
@@ -1752,7 +1762,7 @@ var PollDisplay = function (_Component) {
 				{ className: 'row' },
 				_react2.default.createElement(
 					'div',
-					{ className: 'col-sm-4 col-sm-offset-2' },
+					{ className: 'col-sm-6' },
 					this.props.creating ? _react2.default.createElement(_CreatePollForm2.default, { login: this.props.login, pollNames: this.props.polls.map(function (p) {
 							return p.name.toLowerCase();
 						}) }) : _react2.default.createElement(
@@ -1783,38 +1793,23 @@ var PollDisplay = function (_Component) {
 							null,
 							_react2.default.createElement(
 								'span',
-								{ id: 'mostVotes', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
+								{ id: 'mostVotes', onClick: this.sortSelector, className: 'btn btn-default btn-sm sort-selector', role: 'button' },
 								'Most Popular'
 							),
 							_react2.default.createElement(
 								'span',
-								{ id: 'dateRecent', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
+								{ id: 'dateRecent', onClick: this.sortSelector, className: 'btn btn-default btn-sm sort-selector', role: 'button' },
 								'Newest'
-							),
-							_react2.default.createElement(
-								'span',
-								{ id: 'dateOldest', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
-								'Oldest'
-							),
-							_react2.default.createElement(
-								'span',
-								{ id: 'nameAZ', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
-								'A-Z'
-							),
-							_react2.default.createElement(
-								'span',
-								{ id: 'nameZA', onClick: this.sortSelector, className: 'btn btn-default btn-xs sort-selector', role: 'button' },
-								'Z-A'
 							)
 						)
 					)
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'col-sm-4' },
+					{ className: 'col-sm-6' },
 					_react2.default.createElement(
 						'h2',
-						null,
+						{ id: 'poll-list-header' },
 						'Recent Polls'
 					),
 					_react2.default.createElement(_PollList2.default, { polls: polls, login: this.props.login })
@@ -2078,14 +2073,10 @@ var PollMini = function (_Component) {
 					option.name
 				);
 				optionButtons.push(_react2.default.createElement(
-					'div',
+					'p',
 					{ className: 'mini-option', key: 'option' + index },
-					_react2.default.createElement(
-						'p',
-						null,
-						voteButton,
-						optionName
-					)
+					voteButton,
+					optionName
 				));
 			});
 
@@ -2101,8 +2092,20 @@ var PollMini = function (_Component) {
 						poll.name
 					)
 				),
-				_react2.default.createElement(_CircleChart2.default, { poll: poll, pollPage: false }),
-				optionButtons
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-sm-3' },
+						_react2.default.createElement(_CircleChart2.default, { poll: poll, pollPage: false })
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-sm-8 col-sm-offset-1 mini-option-buttons' },
+						optionButtons
+					)
+				)
 			);
 		}
 	}]);

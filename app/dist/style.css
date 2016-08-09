@@ -1,3 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:200|Rock+Salt);
+body {
+  padding: 10px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 200; }
+
+h1 {
+  font-family: "Rock Salt", cursive;
+  font-weight: 400; }
+
+#newPollButton {
+  margin: 20px; }
+
 .header {
   padding-top: 20px;
   padding-bottom: 20px; }
@@ -14,9 +27,7 @@
   font-weight: 200; }
 
 .mini-option {
-  width: 60%;
-  font-weight: 200;
-  margin-left: 20px; }
+  font-weight: 200; }
 
 .mini-vote-button {
   margin-right: 20px; }
