@@ -1323,6 +1323,11 @@ var Nav = function (_Component) {
 						'Logout'
 					)
 				);
+				loginButton = _react2.default.createElement(
+					'p',
+					{ className: 'navbar-text' },
+					"Signed in as " + username
+				);
 				var userLinkString = "/user/" + username;
 				userButton = _react2.default.createElement(
 					'li',
@@ -1359,7 +1364,7 @@ var Nav = function (_Component) {
 							{ className: 'navbar-header' },
 							_react2.default.createElement(
 								'button',
-								{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#nabvar-collapse', 'aria-expanded': 'false' },
+								{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navigation-collapse', 'aria-expanded': 'false' },
 								_react2.default.createElement(
 									'span',
 									{ className: 'sr-only' },
@@ -1370,23 +1375,19 @@ var Nav = function (_Component) {
 								_react2.default.createElement('span', { className: 'icon-bar' })
 							),
 							_react2.default.createElement(
-								'span',
-								{ className: active === 'home' ? 'navlink active' : 'navlink', id: 'home' },
-								_react2.default.createElement(
-									'a',
-									{ className: 'navbar-brand', href: '/' },
-									'Vote!'
-								)
+								'a',
+								{ className: 'navbar-brand', href: '/' },
+								'Vote!'
 							)
 						),
 						_react2.default.createElement(
 							'div',
-							{ className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
+							{ className: 'collapse navbar-collapse', id: 'navigation-collapse' },
 							_react2.default.createElement(
 								'ul',
 								{ className: 'nav navbar-nav' },
-								userButton,
 								loginButton,
+								userButton,
 								logoutButton
 							)
 						)

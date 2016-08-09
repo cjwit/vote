@@ -32,6 +32,7 @@ export default class Nav extends Component {
 
 		if (loggedIn) {
 			logoutButton = <li className= 'navlink' id = 'logout'><a onClick = { this.logout }>Logout</a></li>
+			loginButton = <p className = 'navbar-text'>{ "Signed in as " + username }</p>
 			const userLinkString = "/user/" + username;
 			userButton = <li className= { active === 'user' ? 'navlink active' : 'navlink' } id = 'user'><a href="/user">My Polls</a></li>
 		} else {
@@ -43,19 +44,19 @@ export default class Nav extends Component {
 				<nav className="navbar navbar-default">
 					<div className="container-fluid">
 						<div className="navbar-header">
-							<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#nabvar-collapse" aria-expanded="false">
+							<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation-collapse" aria-expanded="false">
 								<span className="sr-only">Toggle navigation</span>
 								<span className="icon-bar"></span>
 								<span className="icon-bar"></span>
 								<span className="icon-bar"></span>
 							</button>
-							<span className= { active === 'home' ? 'navlink active' : 'navlink' } id = 'home'><a className="navbar-brand" href="/">Vote!</a></span>
+							<a className="navbar-brand" href="/">Vote!</a>
 						</div>
 
-						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<div className="collapse navbar-collapse" id="navigation-collapse">
 							<ul className="nav navbar-nav">
-								{ userButton }
 								{ loginButton }
+								{ userButton }
 								{ logoutButton }
 							</ul>
 						</div>
