@@ -764,16 +764,6 @@ var Home = function (_Component) {
 							null,
 							'Easily create, share, and vote in polls'
 						),
-						this.props.login.status ? _react2.default.createElement(
-							'p',
-							null,
-							'Logged in as ',
-							username
-						) : _react2.default.createElement(
-							'p',
-							null,
-							'Not logged in'
-						),
 						_react2.default.createElement(
 							'p',
 							null,
@@ -2177,13 +2167,17 @@ var PollPage = function (_Component) {
 			    login = this.props.login,
 			    username = login.status ? login.user.username : "";
 
-			var editPollInput = username === poll.owner ? _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.editPoll, name: 'editPollButton', placeholder: 'Edit', duplicates: this.props.pollNames }) : null;
+			var editPollInput = null,
+			    addOptionInput = null,
+			    deleteButton = null;
 
-			var addOptionInput = username === poll.owner ? _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.addOption, name: 'addOptionButton', placeholder: 'Add An Option', duplicates: poll.options.map(function (o) {
-					return o.name.toLowerCase();
-				}) }) : null;
-
-			var deleteButton = username === poll.owner ? _react2.default.createElement(_DeleteButton2.default, { poll: poll, deleteFunction: this.deletePoll, valueToDelete: poll._id }) : null;
+			if (username === poll.owner) {
+				editPollInput = _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.editPoll, name: 'editPollButton', placeholder: 'Edit', duplicates: this.props.pollNames });
+				addOptionInput = _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.addOption, name: 'addOptionButton', placeholder: 'Add An Option', duplicates: poll.options.map(function (o) {
+						return o.name.toLowerCase();
+					}) });
+				deleteButton = _react2.default.createElement(_DeleteButton2.default, { poll: poll, deleteFunction: this.deletePoll, valueToDelete: poll._id });
+			}
 
 			return _react2.default.createElement(
 				'div',
@@ -2206,11 +2200,6 @@ var PollPage = function (_Component) {
 								deleteButton
 							),
 							editPollInput,
-							_react2.default.createElement(
-								'p',
-								null,
-								login.status ? "Logged in as " + login.user.username : "Not logged in"
-							),
 							_react2.default.createElement(
 								'p',
 								null,

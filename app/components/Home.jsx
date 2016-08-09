@@ -31,14 +31,11 @@ export default class Home extends Component {
 					<div className = "row text-center">
 						<h1>Vote!</h1>
 						<h2>Easily create, share, and vote in polls</h2>
-
-						{ this.props.login.status ?
-							<p>Logged in as { username }</p>
-							:
-							<p>Not logged in</p>
-						}
-
-						<p><span id = "newPollButton" className="btn btn-primary btn-lg" role="button">{ this.state.creating ? 'Close Form' : 'Create a new poll' }</span></p>
+						<p>
+							<span id = "newPollButton" className="btn btn-primary btn-lg" role="button">
+								{ this.state.creating ? 'Close Form' : 'Create a new poll' }
+							</span>
+						</p>
 					</div>
 					<PollDisplay creating = { this.state.creating } login = { this.props.login } polls = { this.props.polls } />
 				</div>

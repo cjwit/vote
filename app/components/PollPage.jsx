@@ -25,20 +25,15 @@ export default class PollPage extends Component {
 			login = this.props.login,
 			username = login.status ? login.user.username : "";
 
-		const editPollInput = username === poll.owner ?
-			<InputSubmit poll = { poll } login = { login } submitFunction = { actions.editPoll } name = "editPollButton" placeholder = "Edit" duplicates = { this.props.pollNames } />
-			:
-			null;
+		let editPollInput = null,
+			addOptionInput = null,
+			deleteButton = null;
 
-		const addOptionInput = username === poll.owner ?
-			<InputSubmit poll = { poll } login = { login } submitFunction = { actions.addOption } name = "addOptionButton" placeholder = "Add An Option" duplicates = { poll.options.map(function(o) { return o.name.toLowerCase(); }) } />
-			:
-			null;
-
-		const deleteButton = username === poll.owner ?
-			<DeleteButton poll = { poll } deleteFunction = { this.deletePoll } valueToDelete = { poll._id } />
-			:
-			null;
+		if (username === poll.owner) {
+			editPollInput = <InputSubmit poll = { poll } login = { login } submitFunction = { actions.editPoll } name = "editPollButton" placeholder = "Edit" duplicates = { this.props.pollNames } />
+			addOptionInput = <InputSubmit poll = { poll } login = { login } submitFunction = { actions.addOption } name = "addOptionButton" placeholder = "Add An Option" duplicates = { poll.options.map(function(o) { return o.name.toLowerCase(); }) } />
+			deleteButton = <DeleteButton poll = { poll } deleteFunction = { this.deletePoll } valueToDelete = { poll._id } />
+		}
 
 		return (
 			<div>
@@ -48,7 +43,6 @@ export default class PollPage extends Component {
 						<div className = "col-sm-8 col-sm-offset-2">
 							<h1>{ poll.name } { deleteButton }</h1>
 							{ editPollInput }
-							<p>{ login.status ? "Logged in as " + login.user.username : "Not logged in" }</p>
 							<p>Share: <a href = { pollUrl }>Link</a></p>
 						</div>
 						<div className = "text-center">
