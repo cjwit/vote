@@ -47,7 +47,7 @@ export default class Poll extends Component {
 					:
 					null;
 			}
-			
+
 			optionButtons.push( <div className = "poll-option" key = { 'option' + index }>
 									<p>
 										{ voteButton }
@@ -59,10 +59,17 @@ export default class Poll extends Component {
 
 		return (
 			<div>
-				<h1></h1>
-				<CircleChart poll = { poll } pollPage = { true } />
-				<BarChart poll = { poll } />
-				{ optionButtons }
+				<div className = "row">
+					<div className = "poll-chart-display">
+						<CircleChart poll = { poll } pollPage = { true } />
+						<BarChart poll = { poll } />
+					</div>
+				</div>
+				<div className = "row">
+					<div className = "option-buttons">
+						{ optionButtons }
+					</div>
+				</div>
 			</div>
 		)
     }

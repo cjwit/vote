@@ -1568,10 +1568,25 @@ var Poll = function (_Component) {
 			return _react2.default.createElement(
 				'div',
 				null,
-				_react2.default.createElement('h1', null),
-				_react2.default.createElement(_CircleChart2.default, { poll: poll, pollPage: true }),
-				_react2.default.createElement(_BarChart2.default, { poll: poll }),
-				optionButtons
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'poll-chart-display' },
+						_react2.default.createElement(_CircleChart2.default, { poll: poll, pollPage: true }),
+						_react2.default.createElement(_BarChart2.default, { poll: poll })
+					)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'option-buttons' },
+						optionButtons
+					)
+				)
 			);
 		}
 	}]);
@@ -2191,18 +2206,26 @@ var PollPage = function (_Component) {
 						{ className: 'row' },
 						_react2.default.createElement(
 							'div',
-							{ className: 'col-sm-8 col-sm-offset-2' },
+							{ className: 'col-sm-8 col-sm-offset-2 text-center' },
 							_react2.default.createElement(
 								'h1',
 								null,
 								poll.name,
 								' ',
 								deleteButton
-							),
+							)
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'row' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-4 col-sm-offset-4' },
 							editPollInput,
 							_react2.default.createElement(
 								'p',
-								null,
+								{ className: 'text-center' },
 								'Share: ',
 								_react2.default.createElement(
 									'a',
@@ -2210,15 +2233,26 @@ var PollPage = function (_Component) {
 									'Link'
 								)
 							)
-						),
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'row' },
 						_react2.default.createElement(
 							'div',
 							{ className: 'text-center' },
 							_react2.default.createElement(_Poll2.default, { login: login, poll: poll })
-						),
-						_react2.default.createElement('div', { className: 'col-sm-6 col-sm-offset-3 text-center' })
+						)
 					),
-					addOptionInput
+					_react2.default.createElement(
+						'div',
+						{ className: 'row' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-4 col-sm-offset-4' },
+							addOptionInput
+						)
+					)
 				),
 				_react2.default.createElement(_Footer2.default, null)
 			);

@@ -40,18 +40,26 @@ export default class PollPage extends Component {
 				<Nav active = { "poll" } login = { login } />
 				<div className = "container">
 					<div className = "row">
-						<div className = "col-sm-8 col-sm-offset-2">
+						<div className = "col-sm-8 col-sm-offset-2 text-center">
 							<h1>{ poll.name } { deleteButton }</h1>
-							{ editPollInput }
-							<p>Share: <a href = { pollUrl }>Link</a></p>
 						</div>
+					</div>
+					<div className = "row">
+						<div className = "col-sm-4 col-sm-offset-4">
+							{ editPollInput }
+							<p className = "text-center">Share: <a href = { pollUrl } >Link</a></p>
+						</div>
+					</div>
+					<div className = "row">
 						<div className = "text-center">
 							<Poll login = { login } poll = { poll } />
 						</div>
-						<div className = "col-sm-6 col-sm-offset-3 text-center">
+					</div>
+					<div className = "row">
+						<div className = "col-sm-4 col-sm-offset-4">
+							{ addOptionInput }
 						</div>
 					</div>
-					{ addOptionInput }
 				</div>
 				<Footer />
 			</div>
