@@ -2,6 +2,7 @@
 
 Next up:
 
+* Google Fonts not working in Sass
 * Nav bar does not work on mobile
 * Remove login notfications
 * Work on UI
