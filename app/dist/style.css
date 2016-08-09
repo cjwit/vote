@@ -1,4 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:200,400|Rock+Salt);
+@media screen and (max-width: 768px) {
+  .mini-option-buttons {
+    margin-top: 20px; } }
+
+@media screen and (max-width: 768px) {
+  .circleChart {
+    margin-bottom: 40px; } }
+
 body {
   padding: 10px;
   color: #15141f;

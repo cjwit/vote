@@ -1,9 +1,19 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:200,400|Rock+Salt)
 $raleway: 'Raleway', sans-serif
 $rocksalt: 'Rock Salt', cursive
+$small: 768px
 
 $gray: rgb(170, 170, 170)
 $text: rgb(21, 20, 31)
+
+// formatting for mobile
+.mini-option-buttons
+  @media screen and (max-width: $small)
+    margin-top: 20px
+
+.circleChart
+  @media screen and (max-width: $small)
+    margin-bottom: 40px
 
 body
   padding: 10px
