@@ -84,7 +84,7 @@ export default class LoginForm extends Component {
 		            <div id="signinForm" className="col-sm-6 col-sm-offset-3 loginForm">
 		                <form onSubmit= { this.login } >
 		                    <div className="form-group">
-		                        <label htmlFor="username">Username:</label> <small>Hint: joe</small>
+		                        <label htmlFor="username">Username:</label>
 		                        <input type="text"
 									   className="form-control"
 									   id="username"
@@ -93,7 +93,7 @@ export default class LoginForm extends Component {
 									   onChange = { this.handleInputChange } />
 		                    </div>
 							<div className="form-group">
-		                        <label htmlFor="password">Password:</label> <small>Hint: pwd</small>
+		                        <label htmlFor="password">Password:</label>
 								<input type="password"
 									   className="form-control"
 									   id="password"
@@ -107,7 +107,7 @@ export default class LoginForm extends Component {
 		            <div id="createAccountForm" className="col-sm-6 col-sm-offset-3 hidden loginForm">
 		                <form onSubmit = { this.createAccount }>
 							<div className="form-group">
-		                        <label htmlFor="username">Username:</label> Hint: joe
+		                        <label htmlFor="username">Username:</label>
 		                        <input type="text"
 									   className="form-control"
 									   id="username"
@@ -116,7 +116,7 @@ export default class LoginForm extends Component {
 									   onChange = { this.handleInputChange } />
 		                    </div>
 							<div className="form-group">
-		                        <label htmlFor="password">Password:</label> Hint: pwd
+		                        <label htmlFor="password">Password:</label>
 								<input type="password"
 									   className="form-control"
 									   id="password"

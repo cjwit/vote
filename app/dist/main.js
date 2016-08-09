@@ -1069,12 +1069,6 @@ var LoginForm = function (_Component) {
 									{ htmlFor: 'username' },
 									'Username:'
 								),
-								' ',
-								_react2.default.createElement(
-									'small',
-									null,
-									'Hint: joe'
-								),
 								_react2.default.createElement('input', { type: 'text',
 									className: 'form-control',
 									id: 'username',
@@ -1089,12 +1083,6 @@ var LoginForm = function (_Component) {
 									'label',
 									{ htmlFor: 'password' },
 									'Password:'
-								),
-								' ',
-								_react2.default.createElement(
-									'small',
-									null,
-									'Hint: pwd'
 								),
 								_react2.default.createElement('input', { type: 'password',
 									className: 'form-control',
@@ -1124,7 +1112,6 @@ var LoginForm = function (_Component) {
 									{ htmlFor: 'username' },
 									'Username:'
 								),
-								' Hint: joe',
 								_react2.default.createElement('input', { type: 'text',
 									className: 'form-control',
 									id: 'username',
@@ -1140,7 +1127,6 @@ var LoginForm = function (_Component) {
 									{ htmlFor: 'password' },
 									'Password:'
 								),
-								' Hint: pwd',
 								_react2.default.createElement('input', { type: 'password',
 									className: 'form-control',
 									id: 'password',
