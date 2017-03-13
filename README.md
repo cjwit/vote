@@ -4,7 +4,7 @@ Vote! is an application that allows you to create, edit, share, and participate 
 
 Known issues:
 
-* Nav bar does not work on mobile
+* Nav bar does not work on mobile (remove collapse?)
 * Remove login notifications and other console.logs
 
 Potential future developments:
