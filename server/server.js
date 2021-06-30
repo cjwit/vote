@@ -2,9 +2,9 @@
 // require NODE_ENV, DBURL, and PORT
 // DBURL and PORT are in .env in development
 if (process.env.NODE_ENV !== 'production') {
-	console.log("NODE_ENV:", process.env.NODE_ENV)
-	console.log("Loading environemnt variables from .env:")
-	require('dotenv').config();
+    console.log("NODE_ENV:", process.env.NODE_ENV)
+    console.log("Loading environemnt variables from .env:")
+    require('dotenv').config();
 }
 
 // app requirements and config
@@ -24,9 +24,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('express-session')({
-	secret: 'keyboard cat',
- 	resave: false,
-	saveUninitialized: false
+    secret: 'keyboard cat',
+     resave: false,
+    saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -47,48 +47,48 @@ passport.deserializeUser(User.deserializeUser());
 
 // passport requests
 app.post('/api/register', function(req, res) {
-	console.log('register called', req.body);
-	User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
-		if (err) {
-			res.json({ message: 'error' });
-		} else {
-			res.json({ message: 'user created' });
-		}
-	});
+    console.log('register called', req.body);
+    User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
+        if (err) {
+            res.json({ message: 'error' });
+        } else {
+            res.json({ message: 'user created' });
+        }
+    });
 });
 
 app.get('/api/auth', function(req, res) {
-	console.log('checking login status')
-	if (req.user) {
-		console.log('  -- user:', req.user.username, '\n');
-		res.json(req.user.username);
-	}
-	else {
-		console.log('  -- not logged in\n');
-		res.send(false);
-	}
+    console.log('checking login status')
+    if (req.user) {
+        console.log('  -- user:', req.user.username, '\n');
+        res.json(req.user.username);
+    }
+    else {
+        console.log('  -- not logged in\n');
+        res.send(false);
+    }
 })
 
 // incorrect login results in 401 error, needs to be caught somewhere
 app.post('/api/auth/login',
-	passport.authenticate('local'),
-	function(req, res) {
-		console.log('login called');
-		console.log('  -- user from authenticate:', req.user.username, '\n');
-		var result = {
-			username: req.user.username
-		}
-		res.json(result);
-	});
+    passport.authenticate('local'),
+    function(req, res) {
+        console.log('login called');
+        console.log('  -- user from authenticate:', req.user.username, '\n');
+        var result = {
+            username: req.user.username
+        }
+        res.json(result);
+    });
 
 app.get('/api/auth/logout', function(req, res) {
-	console.log('logged out\n');
-	req.logout();
-	res.send(false);
+    console.log('logged out\n');
+    req.logout();
+    res.send(false);
 });
 
 app.get('/ping', function(req, res) {
-	res.status(200).send("pong!");
+    res.status(200).send("pong!");
 })
 
 app.get('/*', function(req, res) {
