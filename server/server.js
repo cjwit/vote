@@ -1,4 +1,16 @@
-// process.env requires PORT and DBURL
+/* 
+ * environment variables
+ * require NODE_ENV, DBURL, and PORT
+ * DBURL and PORT are in .env in development
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+	console.log("NODE_ENV:", process.env.NODE_ENV)
+	console.log("Loading environemnt variables from .env:")
+	require('dotenv').config();
+}
+
+
 var express = require('express');
 var path = require('path');
 var compress = require('compression');
@@ -93,5 +105,6 @@ app.listen(port, function() {
 });
 
 // connect to database
-var dburl = process.env.DBURL;
-mongoose.connect(dburl);
+console.log("DBURL: ", process.env.DBURL)
+// var dburl = process.env.DBURL;
+// mongoose.connect(dburl);
