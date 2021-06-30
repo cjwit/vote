@@ -1,16 +1,13 @@
-/* 
- * environment variables
- * require NODE_ENV, DBURL, and PORT
- * DBURL and PORT are in .env in development
- */
-
+// environment variables
+// require NODE_ENV, DBURL, and PORT
+// DBURL and PORT are in .env in development
 if (process.env.NODE_ENV !== 'production') {
 	console.log("NODE_ENV:", process.env.NODE_ENV)
 	console.log("Loading environemnt variables from .env:")
 	require('dotenv').config();
 }
 
-
+// app requirements and config
 var express = require('express');
 var path = require('path');
 var compress = require('compression');
