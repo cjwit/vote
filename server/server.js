@@ -1,9 +1,10 @@
 // environment variables
 // require NODE_ENV, DBURL, and PORT
 // DBURL and PORT are in .env in development
+NODE_ENV = process.env.NODE_ENV || 'development'
 if (process.env.NODE_ENV !== 'production') {
-    console.log("NODE_ENV:", process.env.NODE_ENV)
-    console.log("Loading environemnt variables from .env:")
+    console.log('NODE_ENV:', NODE_ENV)
+    console.log('Loading environment variables from .env\n')
     require('dotenv').config();
 }
 
@@ -30,14 +31,14 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, "../app/dist")));
+app.use(express.static(path.join(__dirname, '../app/dist')));
 
 // controllers
 // Polls
 var pollController = require('./controllers/pollController');
-app.use("/api/polls", pollController);
+app.use('/api/polls', pollController);
 var userController = require('./controllers/userController');
-app.use("/api/user", userController);
+app.use('/api/user', userController);
 
 // passport config
 var User = require('./data/user.js');
@@ -88,7 +89,7 @@ app.get('/api/auth/logout', function(req, res) {
 });
 
 app.get('/ping', function(req, res) {
-    res.status(200).send("pong!");
+    res.status(200).send('pong!');
 })
 
 app.get('/*', function(req, res) {
@@ -98,10 +99,13 @@ app.get('/*', function(req, res) {
 // listen
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
-    console.log("   Listening on port ", port, "...");
+    console.log('Listening on port', port, '...');
 });
 
-// connect to database
-console.log("DBURL: ", process.env.DBURL)
-// var dburl = process.env.DBURL;
-// mongoose.connect(dburl);
+// connect to the database
+mongoose.connect(process.env.DBURL, {useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    // we're connected!
+});
