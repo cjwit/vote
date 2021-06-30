@@ -11,3 +11,5 @@ Potential future developments:
 
 * Chart transitions, reconfigure to work with React updates, add transitions
 * Consider different options than Session Storage to collect voting histories
+
+**Note: this isn't currently working and I'm in the process of making some updates.**
