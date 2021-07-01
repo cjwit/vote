@@ -1509,6 +1509,10 @@ var Poll = function (_Component) {
 
 	_createClass(Poll, [{
 		key: 'updateVoteStatus',
+
+
+		// use session storage to determine voting status
+		// return true if able to vote (not voted)
 		value: function updateVoteStatus() {
 			var voted = JSON.parse(sessionStorage.voted);
 			if (voted.indexOf(this.props.poll._id) >= 0) {
@@ -1527,9 +1531,10 @@ var Poll = function (_Component) {
 			    voted = this.updateVoteStatus();
 
 			options.map(function (option, index) {
+				// const voteButton = <button id = { option.name } className = "btn btn-default btn-sm vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button> // FIXME remove comment after debug
 				var voteButton = _react2.default.createElement(
 					'button',
-					{ id: option.name, className: 'btn btn-default btn-sm vote-button', onClick: addVote, disabled: voted },
+					{ id: option.name, className: 'btn btn-default btn-sm vote-button', onClick: addVote, disabled: false },
 					option.votes
 				);
 				var optionStyle = { color: actions.pollColors(index) };
@@ -1589,8 +1594,7 @@ var Poll = function (_Component) {
 
 Poll.propTypes = {
 	login: _react.PropTypes.object.isRequired,
-	poll: _react.PropTypes.object.isRequired
-};
+	poll: _react.PropTypes.object.isRequired };
 exports.default = Poll;
 
 },{"../actions/pollsActions.js":2,"./BarChart.jsx":3,"./CircleChart.jsx":4,"./DeleteButton.jsx":6,"react":215}],16:[function(require,module,exports){
@@ -2054,11 +2058,12 @@ var PollMini = function (_Component) {
 			    pollUrl = "/polls/" + poll._id;
 
 			options.map(function (option, index) {
+				// const voteButton = <button id = { option.name } className = "btn btn-default btn-sm mini-vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
 				var voteButton = _react2.default.createElement(
 					'button',
-					{ id: option.name, className: 'btn btn-default btn-sm mini-vote-button', onClick: addVote, disabled: voted },
+					{ id: option.name, className: 'btn btn-default btn-sm mini-vote-button', onClick: addVote, disabled: false },
 					option.votes
-				);
+				); // FIXME replace with commented after debugging
 				var optionStyle = { color: actions.pollColors(index) };
 				var optionName = _react2.default.createElement(
 					'span',

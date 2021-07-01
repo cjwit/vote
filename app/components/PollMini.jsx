@@ -32,7 +32,8 @@ export default class PollMini extends Component {
 			pollUrl = "/polls/" + poll._id;
 
 			options.map((option, index) => {
-				const voteButton = <button id = { option.name } className = "btn btn-default btn-sm mini-vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
+				// const voteButton = <button id = { option.name } className = "btn btn-default btn-sm mini-vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
+				const voteButton = <button id = { option.name } className = "btn btn-default btn-sm mini-vote-button" onClick = { addVote } disabled = { false }>{ option.votes }</button> // FIXME replace with commented after debugging
 				const optionStyle = { color: actions.pollColors(index) };
 				const optionName = <span style = { optionStyle }>{ option.name }</span>
 				optionButtons.push( <p className = "mini-option" key = { 'option' + index }>

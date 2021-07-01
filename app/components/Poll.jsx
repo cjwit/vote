@@ -10,12 +10,14 @@ export default class Poll extends Component {
 		poll: PropTypes.object.isRequired
 	}
 
+	// use session storage to determine voting status
+	// return true if able to vote (not voted)
 	updateVoteStatus() {
 		const voted = JSON.parse(sessionStorage.voted);
 		if (voted.indexOf(this.props.poll._id) >= 0) {
 			return true;
-		}
-		return false;
+		} 
+		return false; 
 	}
 
 	addVote = (e) => {
@@ -35,7 +37,8 @@ export default class Poll extends Component {
 			voted = this.updateVoteStatus();
 
 		options.map((option, index) => {
-			const voteButton = <button id = { option.name } className = "btn btn-default btn-sm vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button>
+			// const voteButton = <button id = { option.name } className = "btn btn-default btn-sm vote-button" onClick = { addVote } disabled = { voted }>{ option.votes }</button> // FIXME remove comment after debug
+			const voteButton = <button id = { option.name } className = "btn btn-default btn-sm vote-button" onClick = { addVote } disabled = { false }>{ option.votes }</button>
 			const optionStyle = { color: actions.pollColors(index) };
 			const optionName = <span style = { optionStyle }>{ option.name }</span>
 
