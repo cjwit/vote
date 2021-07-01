@@ -11,7 +11,8 @@ function getPoll(req, res) {
 	console.log("get poll called")
 }
 
-// Use this one as a model for others
+// receive all polls in the database
+// FIXME add private option for overall listing and filter for public
 function getPolls(req, res) {
     console.log('CALLING getPolls from pollController')
     const polls = req.app.locals.polls;
@@ -21,6 +22,7 @@ function getPolls(req, res) {
         }).catch(err => console.log(err));
 }
 
+// add a new poll to the database
 function addPoll(req, res) {
     const polls = req.app.locals.polls;
     const poll = req.body;
@@ -31,6 +33,7 @@ function addPoll(req, res) {
         }).catch(err => console.log(err));
 }
 
+// changes a poll's name and updates lastModified
 function editPoll(req, res) {
     const polls = req.app.locals.polls;
     const newPollName = req.body.value;
@@ -47,12 +50,16 @@ function editPoll(req, res) {
     }).catch(err => console.log(err));
 }
 
+// pretty obvious: delete a poll from the database
 function deletePoll(req, res) {
-    var id = req.params.id;
-    Poll.remove({ _id: id }, function (err, removed) {
-        if (err) res.send(err);
-        else res.json(removed);
-    });
+    const polls = req.app.locals.polls;
+    const idToDelete = ObjectId(req.body.id);
+    console.log(`Deleting ${idToDelete}`)
+    polls.deleteOne(
+        { _id: idToDelete }
+    ).then(result => {
+            res.json(idToDelete)
+    }).catch(err => console.log(err));
 }
 
 function addVote(req, res) {
