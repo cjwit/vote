@@ -2641,7 +2641,6 @@ var resourceURL = location.protocol + '//' + location.host + '/api/';
 
 module.exports = {
     getLoginStatus: function getLoginStatus() {
-        console.log("getLoginStatus");
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + 'auth',
