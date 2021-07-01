@@ -1,5 +1,5 @@
+var ObjectId = require('mongodb').ObjectId;
 var _ = require('underscore');
-
 var router = require('express').Router();
 router.route('/vote/:id').post(addVote);
 router.route('/option/:id').post(addOption).delete(deleteOption);
@@ -24,30 +24,27 @@ function getPolls(req, res) {
 function addPoll(req, res) {
     const polls = req.app.locals.polls;
     const poll = req.body;
-    console.log(poll);
+    console.log(`Adding new poll named ${poll.name}: ${poll}`);
     polls.insertOne(poll)
         .then(result => {
             res.json(poll)
         }).catch(err => console.log(err));
-    // var poll = new Poll(_.extend({}, req.body));
-    // poll.save(function (err) {
-    //     if (err) res.send(err);
-    //     else res.json(poll);
-    // });
 }
 
 function editPoll(req, res) {
-    var id = req.params.id;
-    var info = req.body;
-    var query = { _id: id },
-        update = { $set: {
-            name: info.value
-        }};
-	console.log("editPoll:", update);
-    Poll.update(query, update, function (err, updated) {
-        if (err) res.send(err);
-        else res.json(updated);
-    });
+    const polls = req.app.locals.polls;
+    const newPollName = req.body.value;
+    const pollId = ObjectId(req.body.id);
+    console.log(`Updating poll id ${pollId} name to ${newPollName}`);
+    polls.updateOne(
+        { _id: pollId },
+        {
+            $set: { "name": newPollName },
+            $currentDate: { lastModified: true }
+        }
+    ).then(result => {
+        res.json(newPollName);
+    }).catch(err => console.log(err));
 }
 
 function deletePoll(req, res) {
