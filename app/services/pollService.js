@@ -11,6 +11,8 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
+        }).catch(function(rejected) {
+            console.log(rejected);
         });
     },
 
@@ -25,6 +27,8 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
+        }).catch(function(rejected) {
+            console.log(rejected);
         });
     },
 
@@ -39,6 +43,8 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
+        }).catch(function(rejected) {
+            console.log(rejected);
         });
     },
 
@@ -51,6 +57,8 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
+        }).catch(function(rejected) {
+            console.log(rejected);
         });
     },
 
@@ -65,6 +73,8 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
+        }).catch(function(rejected) {
+            console.log(rejected);
         });
     },
 
@@ -79,7 +89,9 @@ module.exports = {
 				success: resolve,
 				error: reject
 			});
-		});
+		}).catch(function(rejected) {
+            console.log(rejected);
+        });
 	},
 
 	deleteOption: function (option) {
@@ -93,6 +105,8 @@ module.exports = {
 				success: resolve,
 				error: reject
 			});
-		});
+		}).catch(function(rejected) {
+            console.log(rejected);
+        });
 	}
 }
