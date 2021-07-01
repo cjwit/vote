@@ -16,7 +16,7 @@ router.route('/').get(getUsers) //.post(addUser);
 
 // getUsers is not likely to be necessary - delete it later
 function getUsers(req, res) {
-    console.log('Getting users')
+    console.log('CALLING getUsers() from userController')
     // User.find(function (err, users) {
     //     if (err) res.send(err);
     //     else res.json(users);
