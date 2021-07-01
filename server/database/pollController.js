@@ -58,22 +58,25 @@ function deletePoll(req, res) {
     polls.deleteOne(
         { _id: idToDelete }
     ).then(result => {
-            res.json(idToDelete)
+        res.json(idToDelete)
     }).catch(err => console.log(err));
 }
 
+// increment vote count on one option
 function addVote(req, res) {
-    var id = req.params.id;
-	var option = req.body.option;
-	var query = { _id: id,
-				  'options.name': option },
-        update = { $inc: {
-			'options.$.votes': 1
-        }};
-    Poll.update(query, update, function (err, updated) {
-        if (err) res.send(err);
-        else res.json(updated);
-    });
+    const polls = req.app.locals.polls;
+    const pollId = ObjectId(req.body.poll);
+    const optionToIncrement = req.body.option;
+    const optionDotNotation = `options.${optionToIncrement}`;
+    console.log(`Adding vote to ${optionToIncrement} in poll ${pollId}.`);
+
+    // set up query and update (for simplicity in a more complex search)
+    const query = { _id: pollId, 'options.name': optionToIncrement }
+    const update = { $inc: { 'options.$.votes': 1 } }
+    polls.updateOne(query, update)
+        .then(result => {
+            res.json(`Added vote for ${optionToIncrement}`);
+        }).catch(err => console.log(err));
 }
 
 function addOption(req, res) {
