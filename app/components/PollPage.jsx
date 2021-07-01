@@ -15,7 +15,6 @@ export default class PollPage extends Component {
 
 	deletePoll(poll) {
 		actions.deletePoll(poll);
-		window.location.href = '/';
 	}
 
 	render() {

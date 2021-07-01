@@ -2,7 +2,7 @@ var $ = require('jquery');
 var resourceURL = location.protocol + '//' + location.host + '/api/polls';
 
 module.exports = {
-    getPolls: function() {
+    getPolls: function () {
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL,
@@ -11,7 +11,7 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
-        }).catch(function(rejected) {
+        }).catch(function (rejected) {
             console.log(rejected);
         });
     },
@@ -27,7 +27,7 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
-        }).catch(function(rejected) {
+        }).catch(function (rejected) {
             console.log(rejected);
         });
     },
@@ -43,26 +43,31 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
-        }).catch(function(rejected) {
+        }).catch(function (rejected) {
             console.log(rejected);
         });
     },
 
-    deletePoll: function(poll) {
+    deletePoll: function (poll) {
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + "/" + poll.id,
+                data: JSON.stringify(poll),
                 method: "DELETE",
                 dataType: 'json',
-                success: resolve,
+                contentType: 'application/json',
+                success: function(res) {
+                    console.log(`Deleted ${res}`);
+                    window.location.href = '/';
+                },
                 error: reject
-            });
-        }).catch(function(rejected) {
+            })
+        }).catch(function (rejected) {
             console.log(rejected);
         });
     },
 
-	addVote: function (vote) {
+    addVote: function (vote) {
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + "/vote/" + vote.poll,
@@ -73,40 +78,40 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
-        }).catch(function(rejected) {
+        }).catch(function (rejected) {
             console.log(rejected);
         });
     },
 
-	addOption: function (option) {
-		return new Promise(function (resolve, reject) {
-			$.ajax({
-				url: resourceURL + "/option/" + option.id,
-				data: JSON.stringify(option),
-				method: "POST",
-				dataType: 'json',
-				contentType: 'application/json',
-				success: resolve,
-				error: reject
-			});
-		}).catch(function(rejected) {
+    addOption: function (option) {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: resourceURL + "/option/" + option.id,
+                data: JSON.stringify(option),
+                method: "POST",
+                dataType: 'json',
+                contentType: 'application/json',
+                success: resolve,
+                error: reject
+            });
+        }).catch(function (rejected) {
             console.log(rejected);
         });
-	},
+    },
 
-	deleteOption: function (option) {
-		return new Promise(function (resolve, reject) {
-			$.ajax({
-				url: resourceURL + "/option/" + option.id,
-				data: JSON.stringify(option),
-				method: "DELETE",
-				dataType: 'json',
-				contentType: 'application/json',
-				success: resolve,
-				error: reject
-			});
-		}).catch(function(rejected) {
+    deleteOption: function (option) {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: resourceURL + "/option/" + option.id,
+                data: JSON.stringify(option),
+                method: "DELETE",
+                dataType: 'json',
+                contentType: 'application/json',
+                success: resolve,
+                error: reject
+            });
+        }).catch(function (rejected) {
             console.log(rejected);
         });
-	}
+    }
 }

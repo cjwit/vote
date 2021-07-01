@@ -2167,7 +2167,6 @@ var PollPage = function (_Component) {
 		key: 'deletePoll',
 		value: function deletePoll(poll) {
 			actions.deletePoll(poll);
-			window.location.href = '/';
 		}
 	}, {
 		key: 'render',
@@ -2764,9 +2763,14 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + "/" + poll.id,
+                data: JSON.stringify(poll),
                 method: "DELETE",
                 dataType: 'json',
-                success: resolve,
+                contentType: 'application/json',
+                success: function success(res) {
+                    console.log('Deleted ' + res);
+                    window.location.href = '/';
+                },
                 error: reject
             });
         }).catch(function (rejected) {
