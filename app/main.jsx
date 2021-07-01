@@ -129,7 +129,7 @@ function renderPollPage(id) {
 
 // ################
 // set up listeners
-authStore.onChange(getLoginCallback);
+// authStore.onChange(getLoginCallback);
 pollStore.onChange(getPollsCallback);
 
 // #################
