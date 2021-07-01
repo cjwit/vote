@@ -43,8 +43,9 @@ export default class CreatePollForm extends Component {
 			options.push(option);
 		});
 		info.options = options;
-		info.owner = this.props.login.user.username;
-        actions.addPoll(info);
+		// info.owner = this.props.login.user.username; // FIXME uncomment after fixing auth
+		info.owner = "Test User (change after fixing auth)";
+    actions.addPoll(info);
 		this.resetForm();
     }
 
@@ -99,7 +100,8 @@ export default class CreatePollForm extends Component {
 		const submit = $('#submit'),
 			name = this.state.name.length > 0,
 			options = this.state.options.length > 0,
-			valid = name && options && nameIsUnique && this.props.login.status;
+			// valid = name && options && nameIsUnique && this.props.login.status; // uncomment after fixing auth
+			valid = name && options && nameIsUnique;
 		if (valid) {
 			submit.prop('disabled', false);
 		} else {

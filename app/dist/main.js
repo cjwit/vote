@@ -352,7 +352,8 @@ var CreatePollForm = function (_Component) {
 				options.push(option);
 			});
 			info.options = options;
-			info.owner = _this.props.login.user.username;
+			// info.owner = this.props.login.user.username; // FIXME uncomment after fixing auth
+			info.owner = "Test User (change after fixing auth)";
 			actions.addPoll(info);
 			_this.resetForm();
 		}, _this.handleInputChange = function (e) {
@@ -416,7 +417,9 @@ var CreatePollForm = function (_Component) {
 			var submit = $('#submit'),
 			    name = this.state.name.length > 0,
 			    options = this.state.options.length > 0,
-			    valid = name && options && nameIsUnique && this.props.login.status;
+
+			// valid = name && options && nameIsUnique && this.props.login.status; // uncomment after fixing auth
+			valid = name && options && nameIsUnique;
 			if (valid) {
 				submit.prop('disabled', false);
 			} else {
