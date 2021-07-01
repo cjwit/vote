@@ -36,8 +36,8 @@ app.use(express.static(path.join(__dirname, '../app/dist')));
 
 // controllers
 // Polls FIXME: needs change from mongoose to mongodb
-// var pollController = require('./controllers/pollController');
-// app.use('/api/polls', pollController);
+var pollController = require('./database/pollController');
+app.use('/api/polls', pollController);
 var userController = require('./database/userController');
 app.use('/api/user', userController);
 
