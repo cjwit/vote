@@ -4,9 +4,16 @@ Vote! is an application that allows you to create, edit, share, and participate 
 
 **Note: this isn't currently working and I'm in the process of making some updates.**
 
-To start, run:
+To start server, run:
 
 ```
 npm install
 npm run start
+```
+
+To start dev tools, switch to older Node version with NVM (I'm using 8 instead of my installed 12) and run Gulp:
+
+```
+nvm use 8
+gulp
 ```
