@@ -18,7 +18,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 const { cursorTo } = require('readline');
 
-
 var app = express();
 
 app.use(compress());
@@ -39,6 +38,7 @@ app.use(express.static(path.join(__dirname, '../app/dist')));
 var pollController = require('./database/pollController');
 app.use('/api/polls', pollController);
 var userController = require('./database/userController');
+const { MongoClient } = require('mongodb');
 app.use('/api/user', userController);
 
 // passport config FIXME
@@ -97,12 +97,29 @@ app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/index.html'));
 })
 
+// connect to database
+async function connectDb() {
+    const uri = process.env.DBURL;
+    const client = new MongoClient(uri,
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        }
+    );
+    
+    await client.connect()
+        .then(connectedClient => {
+            const db = connectedClient.db('vote');
+            const polls = db.collection('polls');
+
+            // save using app.locals for use in requests elsewhere
+            app.locals.polls = polls;
+        })    
+}
+connectDb()
+
 // listen
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
     console.log('Listening on port', port, '...');
 });
-
-// connect to database
-const mongo = require('./database/mongo');
-mongo.connect();

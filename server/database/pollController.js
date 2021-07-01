@@ -1,5 +1,3 @@
-var mongo = require('./mongo');
-
 var _ = require('underscore');
 
 var router = require('express').Router();
@@ -13,16 +11,14 @@ function getPoll(req, res) {
 	console.log("get poll called")
 }
 
+// Use this one as a model for others
 function getPolls(req, res) {
-    db = mongo.getConnection();
-    console.log(db)
     console.log('CALLING getPolls from pollController')
-    const allPolls = db.collection('polls');
-    console.log(allPolls.asArray())
-    // Poll.find(function (err, polls) {
-    //     if (err) res.send(err);
-    //     else res.json(polls);
-    // });
+    const polls = req.app.locals.polls;
+    polls.find().toArray()
+        .then(allPolls => {
+            res.send(allPolls);
+        }).catch(err => console.log(err));
 }
 
 function addPoll(req, res) {

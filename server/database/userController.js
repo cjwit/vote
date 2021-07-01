@@ -1,6 +1,3 @@
-var mongo = require('./mongo');
-db = mongo.getConnection();
-
 var _ = require('underscore');
 
 var router = require('express').Router();
