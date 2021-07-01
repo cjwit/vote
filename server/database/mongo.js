@@ -16,8 +16,8 @@ connect = function () {
             console.log('Connecting to database')
         } finally {
             // close on finish/error
-            console.log('Closing database on error or finish')
-            await client.close();
+            // console.log('Closing database on error or finish')
+            // await client.close();
         }
     }
     run().catch(console.dir);
@@ -25,7 +25,7 @@ connect = function () {
 
 getConnection = function() {
     console.log('Receiving database connection instance')
-    return db
+    return db;
 }
 
 module.exports = {

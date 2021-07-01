@@ -1,5 +1,4 @@
 var mongo = require('./mongo');
-db = mongo.getConnection();
 
 var _ = require('underscore');
 
@@ -15,7 +14,11 @@ function getPoll(req, res) {
 }
 
 function getPolls(req, res) {
+    db = mongo.getConnection();
+    console.log(db)
     console.log('CALLING getPolls from pollController')
+    const allPolls = db.collection('polls');
+    console.log(allPolls.asArray())
     // Poll.find(function (err, polls) {
     //     if (err) res.send(err);
     //     else res.json(polls);
