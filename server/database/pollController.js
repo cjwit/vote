@@ -22,11 +22,18 @@ function getPolls(req, res) {
 }
 
 function addPoll(req, res) {
-    var poll = new Poll(_.extend({}, req.body));
-    poll.save(function (err) {
-        if (err) res.send(err);
-        else res.json(poll);
-    });
+    const polls = req.app.locals.polls;
+    const poll = req.body;
+    console.log(poll);
+    polls.insertOne(poll)
+        .then(result => {
+            res.json(poll)
+        }).catch(err => console.log(err));
+    // var poll = new Poll(_.extend({}, req.body));
+    // poll.save(function (err) {
+    //     if (err) res.send(err);
+    //     else res.json(poll);
+    // });
 }
 
 function editPoll(req, res) {
