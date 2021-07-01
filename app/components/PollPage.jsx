@@ -29,7 +29,8 @@ export default class PollPage extends Component {
 			addOptionInput = null,
 			deleteButton = null;
 
-		if (username === poll.owner) {
+		// if (username === poll.owner) { // FIXME remove comment once auth is fixed
+		if (true) { // FIXME
 			editPollInput = <InputSubmit poll = { poll } login = { login } submitFunction = { actions.editPoll } name = "editPollButton" placeholder = "Edit" duplicates = { this.props.pollNames } />
 			addOptionInput = <InputSubmit poll = { poll } login = { login } submitFunction = { actions.addOption } name = "addOptionButton" placeholder = "Add An Option" duplicates = { poll.options.map(function(o) { return o.name.toLowerCase(); }) } />
 			deleteButton = <DeleteButton poll = { poll } deleteFunction = { this.deletePoll } valueToDelete = { poll._id } />

@@ -2182,7 +2182,9 @@ var PollPage = function (_Component) {
 			    addOptionInput = null,
 			    deleteButton = null;
 
-			if (username === poll.owner) {
+			// if (username === poll.owner) { // FIXME remove comment once auth is fixed
+			if (true) {
+				// FIXME
 				editPollInput = _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.editPoll, name: 'editPollButton', placeholder: 'Edit', duplicates: this.props.pollNames });
 				addOptionInput = _react2.default.createElement(_InputSubmit2.default, { poll: poll, login: login, submitFunction: actions.addOption, name: 'addOptionButton', placeholder: 'Add An Option', duplicates: poll.options.map(function (o) {
 						return o.name.toLowerCase();
