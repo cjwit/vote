@@ -37,9 +37,8 @@ app.use(express.static(path.join(__dirname, '../app/dist')));
 // Polls FIXME: needs change from mongoose to mongodb
 var pollController = require('./database/pollController');
 app.use('/api/polls', pollController);
-var userController = require('./database/userController');
-const { MongoClient } = require('mongodb');
-app.use('/api/user', userController);
+// var userController = require('./database/userController');
+// app.use('/api/user', userController);
 
 // passport config FIXME
 // var User = require('./data/user.js');
@@ -98,6 +97,7 @@ app.get('/*', function (req, res) {
 })
 
 // connect to database
+const { MongoClient } = require('mongodb');
 async function connectDb() {
     const uri = process.env.DBURL;
     const client = new MongoClient(uri,

@@ -3,6 +3,7 @@ var resourceURL = location.protocol + '//' + location.host + '/api/';
 
 module.exports = {
     getLoginStatus: function() {
+        console.log("getLoginStatus")
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: resourceURL + 'auth',
@@ -11,6 +12,8 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
+        }).catch(function(rejected) {
+            console.log(rejected);
         });
     },
 
@@ -26,7 +29,9 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
-		});
+		}).catch(function(rejected) {
+            console.log(rejected);
+        });
     },
 
 	logout: function() {
@@ -38,6 +43,8 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
+        }).catch(function(rejected) {
+            console.log(rejected);
         });
     },
 
@@ -52,6 +59,8 @@ module.exports = {
                 success: resolve,
                 error: reject
             });
+        }).catch(function(rejected) {
+            console.log(rejected);
         });
     }
 }
