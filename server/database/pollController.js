@@ -1,5 +1,6 @@
-var mongoose = require('mongoose');
-var Poll = require('../data/poll');
+var mongo = require('./mongo');
+db = mongo.getConnection();
+
 var _ = require('underscore');
 
 var router = require('express').Router();
@@ -14,10 +15,11 @@ function getPoll(req, res) {
 }
 
 function getPolls(req, res) {
-    Poll.find(function (err, polls) {
-        if (err) res.send(err);
-        else res.json(polls);
-    });
+    console.log('CALLING getPolls from pollController')
+    // Poll.find(function (err, polls) {
+    //     if (err) res.send(err);
+    //     else res.json(polls);
+    // });
 }
 
 function addPoll(req, res) {
