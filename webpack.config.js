@@ -32,3 +32,5 @@ module.exports = {
         })
     ]
 }
+
+// consider adding: fonts, watch/reload, libraries
