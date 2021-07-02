@@ -79,18 +79,22 @@ function addVote(req, res) {
         }).catch(err => console.log(err));
 }
 
+// add an individual new option to a poll
 function addOption(req, res) {
-    var id = req.params.id;
-	var option = {
-		name: req.body.value,
-		votes: 0
-	}
-	var query = { _id: id },
-        update = { $push: { options: option }};
-    Poll.update(query, update, function (err, updated) {
-        if (err) res.send(err);
-        else res.json(updated);
-    });
+    const polls = req.app.locals.polls;
+    const pollId = ObjectId(req.body.id);
+    const optionName = req.body.value;
+    const newOption = {
+        name: optionName,
+        votes: 0
+    }
+    console.log(`Adding option ${optionName} to poll ${pollId}`);
+    polls.updateOne(
+        { _id: pollId },
+        { $push: { options: newOption }}
+    ).then(result => {
+        res.json(`Added option ${optionName} to poll ${pollId}`)
+    }).catch(err => console.log(err));
 }
 
 function deleteOption(req, res) {
