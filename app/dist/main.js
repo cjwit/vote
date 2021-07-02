@@ -2846,127 +2846,134 @@ var authService = require('../services/authService.js');
 var authActions = require('../actions/authActions.js');
 
 var LoginStore = function LoginStore() {
-    var listeners = []; // collection of functions
-    var currentUser = {
+  var listeners = []; // collection of functions
+  var currentUser = {
+    status: false,
+    user: null,
+    error: null
+  };
+
+  var getUser = function getUser(cb) {
+    cb(currentUser);
+  };
+
+  var onChange = function onChange(listener) {
+    getUser(listener);
+    listeners.push(listener);
+  };
+
+  var addUser = function addUser(user) {
+    authService.addUser(user).then(function (res) {
+      console.log(res);
+      if (res.message === "error") {
+        currentUser = {
+          status: false,
+          user: null,
+          error: "Username is taken, try again."
+        };
+        triggerListeners();
+      } else {
+        authActions.login(user);
+      }
+    });
+  };
+
+  var login = function login(loginObject) {
+    authService.login(loginObject).then(function (res) {
+      console.log(res);
+      currentUser = {
+        status: true,
+        user: {
+          username: res.username
+        },
+        error: null
+      };
+      triggerListeners();
+      window.location.href = "/user";
+    }).catch(function () {
+      currentUser = {
+        status: false,
+        user: null,
+        error: "Invalid login information. Try again or create a new account."
+      };
+      triggerListeners();
+    });
+  };
+
+  var getLoginStatus = function getLoginStatus(loginObject) {
+    authService.getLoginStatus(loginObject).then(function (res) {
+      console.log(res);
+      if (res === false) {
+        currentUser = {
+          status: false,
+          user: null,
+          error: null
+        };
+      } else {
+        currentUser = {
+          status: true,
+          user: {
+            username: res
+          },
+          error: null
+        };
+      }
+      triggerListeners();
+    }).catch(function () {
+      currentUser = {
+        status: false,
+        user: null,
+        error: "There was a problem getting login status."
+      };
+      triggerListeners();
+    });
+  };
+
+  var logout = function logout() {
+    authService.logout().then(function (res) {
+      console.log(res);
+      currentUser = {
         status: false,
         user: null,
         error: null
-    };
-
-    var getUser = function getUser(cb) {
-        cb(currentUser);
-    };
-
-    var onChange = function onChange(listener) {
-        getUser(listener);
-        listeners.push(listener);
-    };
-
-    var addUser = function addUser(user) {
-        authService.addUser(user).then(function (res) {
-            console.log(res);
-            if (res.message === "error") {
-                currentUser = {
-                    status: false,
-                    user: null,
-                    error: "Username is taken, try again."
-                };
-                triggerListeners();
-            } else {
-                authActions.login(user);
-            }
-        });
-    };
-
-    var login = function login(loginObject) {
-        authService.login(loginObject).then(function (res) {
-            console.log(res);
-            currentUser = {
-                status: true,
-                user: {
-                    username: res.username
-                },
-                error: null
-            };
-            triggerListeners();
-            window.location.href = "/user";
-        }).catch(function () {
-            currentUser = {
-                status: false,
-                user: null,
-                error: "Invalid login information. Try again or create a new account."
-            };
-            triggerListeners();
-        });
-    };
-
-    var getLoginStatus = function getLoginStatus(loginObject) {
-        authService.getLoginStatus(loginObject).then(function (res) {
-            console.log(res);
-            if (res === false) {
-                currentUser = {
-                    status: false,
-                    user: null,
-                    error: null
-                };
-            } else {
-                currentUser = {
-                    status: true,
-                    user: {
-                        username: res
-                    },
-                    error: null
-                };
-            }
-            triggerListeners();
-        });
-    };
-
-    var logout = function logout() {
-        authService.logout().then(function (res) {
-            console.log(res);
-            currentUser = {
-                status: false,
-                user: null,
-                error: null
-            };
-            triggerListeners();
-            window.location.href = "/";
-        });
-    };
-
-    var triggerListeners = function triggerListeners() {
-        getUser(function (res) {
-            listeners.forEach(function (listener) {
-                listener(res);
-            });
-        });
-    };
-
-    dispatcher.register(function (payload) {
-        var split = payload.type.split(':');
-        if (split[0] === 'auth') {
-            switch (split[1]) {
-                case "getLoginStatus":
-                    getLoginStatus();
-                    break;
-                case "login":
-                    login(payload.object);
-                    break;
-                case "logout":
-                    logout();
-                    break;
-                case "addUser":
-                    addUser(payload.object);
-                    break;
-            }
-        }
+      };
+      triggerListeners();
+      window.location.href = "/";
     });
+  };
 
-    // create the object for export
-    return {
-        onChange: onChange
-    };
+  var triggerListeners = function triggerListeners() {
+    getUser(function (res) {
+      listeners.forEach(function (listener) {
+        listener(res);
+      });
+    });
+  };
+
+  dispatcher.register(function (payload) {
+    var split = payload.type.split(':');
+    if (split[0] === 'auth') {
+      switch (split[1]) {
+        case "getLoginStatus":
+          getLoginStatus();
+          break;
+        case "login":
+          login(payload.object);
+          break;
+        case "logout":
+          logout();
+          break;
+        case "addUser":
+          addUser(payload.object);
+          break;
+      }
+    }
+  });
+
+  // create the object for export
+  return {
+    onChange: onChange
+  };
 };
 
 module.exports = LoginStore();

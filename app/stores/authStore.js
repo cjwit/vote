@@ -76,7 +76,14 @@ var LoginStore = function() {
 				};
 			}
             triggerListeners();
-        })
+        }).catch(() => {
+			currentUser = {
+                status: false,
+                user: null,
+				error: "There was a problem getting login status."
+            };
+			triggerListeners();
+		})
     }
 
     var logout = function() {
