@@ -3,7 +3,7 @@ var _ = require('underscore');
 var router = require('express').Router();
 router.route('/vote/:id').post(addVote);
 router.route('/option/:id').post(addOption).delete(deleteOption);
-router.route('/:id').get(getPoll).post(editPoll).delete(deletePoll);
+router.route('/:id').post(editPoll).delete(deletePoll);
 router.route('/').get(getPolls).post(addPoll);
 
 // receive all polls in the database
