@@ -6,15 +6,9 @@ router.route('/option/:id').post(addOption).delete(deleteOption);
 router.route('/:id').get(getPoll).post(editPoll).delete(deletePoll);
 router.route('/').get(getPolls).post(addPoll);
 
-// getPoll necessary?
-function getPoll(req, res) {
-	console.log("get poll called")
-}
-
 // receive all polls in the database
 // FIXME add private option for overall listing and filter for public
 function getPolls(req, res) {
-    console.log('CALLING getPolls from pollController')
     const polls = req.app.locals.polls;
     polls.find().toArray()
         .then(allPolls => {
@@ -97,15 +91,19 @@ function addOption(req, res) {
     }).catch(err => console.log(err));
 }
 
+// delete an option
 function deleteOption(req, res) {
-    var id = req.params.id;
-	var value = req.body.value;
-	var query = { _id: id },
-        update = { $pull: { options: { name: value }}};
-    Poll.update(query, update, function (err, updated) {
-        if (err) res.send(err);
-        else res.json(updated);
-    });
+    const polls = req.app.locals.polls;
+    const pollId = ObjectId(req.body.id)
+    const optionNameToDelete = req.body.value;
+    console.log(`Deleting option ${optionNameToDelete} from poll ${pollId}`);
+
+    const query = { _id: pollId }
+    const update = { $pull: { options: { name: optionNameToDelete } } }
+    polls.updateOne(query, update)
+        .then(result => {
+            res.json(`Deleted option ${optionNameToDelete} from poll ${pollId}`);
+        }).catch(err => console.log(err));
 }
 
 module.exports = router;
