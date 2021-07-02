@@ -102,7 +102,6 @@ async function main() {
 
     // set up database parameters
     const uri = process.env.DBURL;
-    console.log(`-----TESTING DATABASE URI: ${uri}-----`);
     const client = new MongoClient(uri,
         {
             useNewUrlParser: true,
