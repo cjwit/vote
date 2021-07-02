@@ -37,7 +37,7 @@ export default class Nav extends Component {
 			userButton = <li className= { active === 'user' ? 'navlink active' : 'navlink' } id = 'user'><a href="/user">My Polls</a></li>
 			signedInText = <p className = 'navbar-text navbar-right'>{ "Signed in as " + username }</p>
 		} else {
-			loginButton = <li className= { active === 'login' ? 'navlink active' : 'navlink' } id = 'login'><a href="/login">Login</a></li>
+			loginButton = <li className= { active === 'login' ? 'navlink active' : 'navlink' } id = 'login'><a href="/login">Login (currently broken, fixing)</a></li> // FIXME update label
 		}
 
 		return (

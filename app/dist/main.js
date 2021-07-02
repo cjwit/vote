@@ -1215,7 +1215,9 @@ var LoginPage = function (_Component) {
 						{ className: 'text-center' },
 						'Login'
 					),
-					_react2.default.createElement(_LoginForm2.default, { login: this.props.login })
+					'Currently broken, fixing.',
+					_react2.default.createElement(_LoginForm2.default, { login: this.props.login }),
+					'Note: the goal of this project is to create easily accessible small polls that do not require a user to log in before voting. For that reason, all polls are shared publicly, though control over deleting options or polls remains exclusively with the user who creates them.'
 				),
 				_react2.default.createElement(_Footer2.default, null)
 			);
@@ -1327,9 +1329,9 @@ var Nav = function (_Component) {
 					_react2.default.createElement(
 						'a',
 						{ href: '/login' },
-						'Login'
+						'Login (currently broken, fixing)'
 					)
-				);
+				); // FIXME update label
 			}
 
 			return _react2.default.createElement(
