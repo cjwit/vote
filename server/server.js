@@ -118,6 +118,9 @@ async function connectDb() {
 }
 connectDb()
 
+// FIXME to test app.locals
+app.locals.test = "!!!!!!!APP.LOCALS IS WORKING!!!!!!"
+
 // listen
 var port = process.env.PORT || 8080;
 app.listen(port, function () {

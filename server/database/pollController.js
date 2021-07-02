@@ -9,6 +9,7 @@ router.route('/').get(getPolls).post(addPoll);
 // receive all polls in the database
 // FIXME add private option for overall listing and filter for public
 function getPolls(req, res) {
+    console.log(`app.locals: ${req.app.locals.test}`) // FIXME remove after testing heroku
     const polls = req.app.locals.polls;
     polls.find().toArray()
         .then(allPolls => {
