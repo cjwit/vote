@@ -1545,10 +1545,14 @@ var Poll = function (_Component) {
 				);
 
 				// create delete button only if current user is the poll's owner
-				var deleteButton = void 0;
-				if (login.status === true) {
-					deleteButton = login.user.username === poll.owner ? _react2.default.createElement(_DeleteButton2.default, { poll: poll, deleteFunction: actions.deleteOption, valueToDelete: option.name }) : null;
-				}
+				// let deleteButton; // FIXME add this code and if statement after fixing auth
+				// if (login.status === true) { // FIXME return after fixing auth
+				// 	deleteButton = login.user.username === poll.owner ?
+				// 	<DeleteButton poll = { poll } deleteFunction = { actions.deleteOption } valueToDelete = { option.name } />
+				// 	:
+				// 	null;
+				// }
+				var deleteButton = _react2.default.createElement(_DeleteButton2.default, { poll: poll, deleteFunction: actions.deleteOption, valueToDelete: option.name }); // FIXME remove after fixing auth
 
 				optionButtons.push(_react2.default.createElement(
 					'div',

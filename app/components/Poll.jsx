@@ -43,13 +43,14 @@ export default class Poll extends Component {
 			const optionName = <span style = { optionStyle }>{ option.name }</span>
 
 			// create delete button only if current user is the poll's owner
-			let deleteButton;
-			if (login.status === true) {
-				deleteButton = login.user.username === poll.owner ?
-					<DeleteButton poll = { poll } deleteFunction = { actions.deleteOption } valueToDelete = { option.name } />
-					:
-					null;
-			}
+			// let deleteButton; // FIXME add this code and if statement after fixing auth
+			// if (login.status === true) { // FIXME return after fixing auth
+			// 	deleteButton = login.user.username === poll.owner ?
+			// 	<DeleteButton poll = { poll } deleteFunction = { actions.deleteOption } valueToDelete = { option.name } />
+			// 	:
+			// 	null;
+			// }
+			let deleteButton = <DeleteButton poll = { poll } deleteFunction = { actions.deleteOption } valueToDelete = { option.name } /> // FIXME remove after fixing auth
 
 			optionButtons.push( <div className = "poll-option" key = { 'option' + index }>
 									<p>
