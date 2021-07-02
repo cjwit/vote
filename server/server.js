@@ -9,6 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // app requirements and config
+const { MongoClient } = require('mongodb');
 var express = require('express');
 var path = require('path');
 var compress = require('compression');
@@ -96,9 +97,10 @@ app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, '../app/dist/index.html'));
 })
 
-// connect to database
-const { MongoClient } = require('mongodb');
-async function connectDb() {
+// connect to database and listen
+async function main() {
+
+    // set up database parameters
     const uri = process.env.DBURL;
     const client = new MongoClient(uri,
         {
@@ -106,23 +108,23 @@ async function connectDb() {
             useUnifiedTopology: true
         }
     );
-    
+
+    // wait for database to connect
     await client.connect()
         .then(connectedClient => {
+            
+            // save using app.locals for use in requests elsewhere
+            console.log('Connected to database');
             const db = connectedClient.db('vote');
             const polls = db.collection('polls');
-
-            // save using app.locals for use in requests elsewhere
             app.locals.polls = polls;
-        })    
+        
+            // get port and begin listening
+            var port = process.env.PORT || 8080;
+            app.listen(port, function () {
+                console.log('Listening on port', port, '...');
+            });
+    })
 }
-connectDb()
 
-// FIXME to test app.locals
-app.locals.test = "!!!!!!!APP.LOCALS IS WORKING!!!!!!"
-
-// listen
-var port = process.env.PORT || 8080;
-app.listen(port, function () {
-    console.log('Listening on port', port, '...');
-});
+main()
