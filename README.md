@@ -11,9 +11,14 @@ npm install
 npm run start
 ```
 
-To start dev tools, switch to older Node version with NVM (I'm using 8 instead of my installed 12) and run Gulp:
+To start dev tools:
 
 ```
-nvm use 8
-gulp
+npm run build
 ```
+
+Still to do with webpack:
+
+* Live reload
+* Handle bootstrap/jquery/d3
+* Clean up directory structure (actions/components/fonts/services/sources/stores/dispatcher.js/style.sass within an `src` folder)
