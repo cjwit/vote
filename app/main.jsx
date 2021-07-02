@@ -1,3 +1,4 @@
+import './style.sass';
 import React from 'react';
 var ReactDOM = require('react-dom');
 var auth = require('./actions/authActions.js')
