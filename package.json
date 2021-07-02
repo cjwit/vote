@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Next up:",
   "engines": {
-    "node": "8.17.0"
+    "node": "14.17.2"
   },
   "main": "server/server.js",
   "scripts": {
