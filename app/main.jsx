@@ -1,7 +1,10 @@
-import './style.sass';
 import React from 'react';
 var ReactDOM = require('react-dom');
 var auth = require('./actions/authActions.js')
+
+// import style resources
+import './sources/bootstrap.min.css';
+import './style.sass';
 
 // ################
 // React Components
